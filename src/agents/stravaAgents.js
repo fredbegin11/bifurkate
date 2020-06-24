@@ -42,7 +42,7 @@ export default {
     let i = 1;
 
     while (true) {
-      const result = await axios.get(`https://www.strava.com/api/v3/activities?per_page=200&page=${i}`, {
+      const result = await axios.get(`https://www.strava.com/api/v3/activities?per_page=20&page=${i}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` },
         crossDomain: true,
       });

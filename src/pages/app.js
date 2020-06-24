@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import _ from 'lodash';
 import polyline from '@mapbox/polyline';
 
 import Layout from '../components/layout';
@@ -24,9 +25,9 @@ const MapComponent = () => {
   useEffect(() => {
     if (athleteStoreHydrated && athlete.id) {
       stravaAgents.getAllActivities().then(activities => {
-        const filteredActivities = activities.filter(x => x.type !== 'VirtualRide');
+        const filteredActivities = activities.filter(x => x.type !== 'VirtualRide' && x.type !== 'VirtualRun' && !!_.get(x, 'map.summary_polyline'));
 
-        if (filteredActivities.length > 0) {
+        if (filteredActivities.length > 0 && !!_.get(filteredActivities[0], 'map.summary_polyline')) {
           const firstPolylines = polyline.decode(filteredActivities[0].map.summary_polyline);
           setCenter([firstPolylines[0][0], firstPolylines[0][1]]);
         }

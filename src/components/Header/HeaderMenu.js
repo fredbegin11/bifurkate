@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import HeaderProfileButton from './HeaderProfileButton';
-import { Link } from 'gatsby';
 
 const HeaderMenu = ({ profile }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,9 +22,6 @@ const HeaderMenu = ({ profile }) => {
 
         {isOpen && (
           <div className="header__menu-open">
-            <Link className="header__menu-button --mobile" to="/app">
-              App
-            </Link>
             <button className="header__menu-button" onClick={handleLogOffClick}>
               Log off
             </button>
