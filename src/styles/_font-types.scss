@@ -1,0 +1,84 @@
+%font-type-title {
+  font-family: Gidole;
+  font-size: rem(50);
+  font-weight: 900;
+
+  @include tablet {
+    font-family: Gidole;
+    font-size: rem(50);
+    font-weight: 900;
+  }
+
+  @include desktop {
+    font-family: Gidole;
+    font-size: rem(80);
+    font-weight: 900;
+  }
+}
+
+%font-type-small-title {
+  font-family: Gidole;
+  font-size: rem(30);
+  font-weight: 900;
+
+  @include tablet {
+    font-family: Gidole;
+    font-size: rem(40);
+    font-weight: 900;
+  }
+
+  @include desktop {
+    font-family: Gidole;
+    font-size: rem(50);
+    font-weight: 900;
+  }
+}
+
+%font-type-header {
+  font-family: Gidole;
+  font-size: rem(20);
+  font-weight: 900;
+  text-decoration: underline cc(main);
+
+  @include tablet {
+    font-family: Gidole;
+    font-size: rem(25);
+    font-weight: 900;
+  }
+
+  @include desktop {
+    font-family: Gidole;
+    font-size: rem(30);
+    font-weight: 900;
+  }
+}
+
+%font-type-subheader {
+  font-family: Gidole;
+  font-size: rem(18);
+  font-weight: 900;
+
+  @include tablet {
+    font-family: Gidole;
+    font-size: rem(20);
+    font-weight: 900;
+  }
+
+  @include desktop {
+    font-family: Gidole;
+    font-size: rem(25);
+    font-weight: 900;
+  }
+}
+
+%font-type-label {
+  font-family: Gidole;
+  font-size: rem(20);
+  font-weight: 900;
+}
+
+%font-type-rating {
+  font-family: Gidole;
+  font-size: rem(20);
+  font-weight: 900;
+}

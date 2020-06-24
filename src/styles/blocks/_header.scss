@@ -1,0 +1,96 @@
+.header {
+  align-items: center;
+  box-shadow: 0px 0px 15px -10px cc(dark);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 rem(45);
+  background-color: cc(palest);
+  height: rem(60);
+
+  &__title {
+    @extend %font-type-subheader;
+    align-items: center;
+    display: flex;
+    text-decoration: underline cc(main);
+
+    @include desktop {
+      width: rem(300);
+    }
+  }
+
+  &__logo {
+    height: rem(25);
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    padding: rem(10);
+    position: relative;
+    cursor: pointer;
+
+    @include desktop {
+      width: rem(500);
+      justify-content: flex-end;
+    }
+  }
+
+  &__name {
+    @include phone {
+      display: none;
+    }
+  }
+
+  &__image {
+    height: rem(40);
+    width: rem(40);
+    border-radius: 100%;
+    background-color: cc(dark);
+    margin-left: rem(20);
+  }
+
+  &__menu-open {
+    position: absolute;
+    top: rem(60);
+    left: 0;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.75);
+
+    @include phone {
+      width: rem(200);
+      left: rem(-75);
+    }
+  }
+
+  &__menu-button {
+    padding: rem(20) rem(10);
+
+    &:hover {
+      box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.75);
+    }
+
+    &.--mobile {
+      @include desktop {
+        display: none;
+      }
+    }
+  }
+
+  &__link {
+    @extend %font-type-label;
+    padding: rem(20);
+  }
+
+  &__links {
+    display: none;
+
+    @include desktop {
+      display: inherit;
+      width: 100%;
+    }
+  }
+}

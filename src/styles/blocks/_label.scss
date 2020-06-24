@@ -1,0 +1,22 @@
+.label {
+  @extend %font-type-label;
+  margin-left: rem(20);
+  margin-bottom: rem(10);
+
+  &__header {
+    @extend %font-type-header;
+    margin-left: rem(20);
+    margin-bottom: rem(10);
+  }
+
+  &__subheader {
+    @extend %font-type-subheader;
+    margin-left: rem(20);
+    margin-bottom: rem(10);
+
+    &.--cursor {
+      cursor: pointer;
+      margin-right: rem(10);
+    }
+  }
+}

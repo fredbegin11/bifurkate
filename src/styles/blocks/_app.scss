@@ -1,0 +1,29 @@
+body {
+  font-family: 'Gidole';
+  color: cc(text);
+  background-color: cc(pale);
+}
+
+a {
+  color: cc(text);
+  text-decoration: none;
+}
+
+p {
+  @extend %font-type-label;
+}
+
+@supports (zoom: 2) {
+  input[type='radio'],
+  input[type='checkbox'] {
+    zoom: 2;
+  }
+}
+
+@supports not (zoom: 2) {
+  input[type='radio'],
+  input[type='checkbox'] {
+    transform: scale(2);
+    margin: 15px;
+  }
+}
