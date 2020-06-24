@@ -5,13 +5,17 @@
   box-shadow: 0px 0px 15px -10px cc(dark);
   display: flex;
   justify-content: space-between;
-  padding: 0 rem(20);
+  padding: 0 rem(10);
   height: rem(60);
   width: 100%;
   z-index: 2;
 
   @include desktop {
-    padding: 0 rem(45);
+    padding: 0 rem(10);
+  }
+
+  &__title-container {
+    display: flex;
   }
 
   &__title {
@@ -21,8 +25,8 @@
     display: flex;
     text-decoration: underline cc(main);
 
-    @include desktop {
-      width: rem(300);
+    &.--no-settings {
+      margin-left: rem(20);
     }
   }
 

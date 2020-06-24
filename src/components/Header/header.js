@@ -1,10 +1,11 @@
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 
-import React from 'react';
 import HeaderMenu from './HeaderMenu';
+import SettingsButton from '../Settings/SettingsButton';
 
-const Header = ({ siteTitle, profile }) => {
+const Header = ({ onMenuClick, profile }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -17,9 +18,13 @@ const Header = ({ siteTitle, profile }) => {
 
   return (
     <header className="header">
-      <Link to="/app" className="header__title">
-        {data.site.siteMetadata.title}
-      </Link>
+      <div className="header__title-container">
+        {!!onMenuClick ? (
+          <SettingsButton label={data.site.siteMetadata.title} onClick={onMenuClick} />
+        ) : (
+          <span className="header__title --no-settings">{data.site.siteMetadata.title}</span>
+        )}
+      </div>
       {profile && <HeaderMenu profile={profile} />}
     </header>
   );

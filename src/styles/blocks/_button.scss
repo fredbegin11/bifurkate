@@ -1,0 +1,24 @@
+.button {
+  @extend %font-type-button;
+  align-items: center;
+  display: flex;
+  opacity: 0.8;
+  padding: rem(10);
+  top: rem(70);
+  transition: all 0.2s ease-out;
+  z-index: 2;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &__icon {
+    font-size: rem(25);
+    margin-right: rem(20);
+
+    @include desktop {
+      font-size: rem(25);
+      margin-right: rem(40);
+    }
+  }
+}

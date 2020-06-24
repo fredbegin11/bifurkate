@@ -8,6 +8,7 @@ import SEO from '../components/seo';
 import AthleteContext from '../contexts/AthleteContext';
 import stravaAgents from '../agents/stravaAgents';
 import { getMedian } from '../helpers/mathHelpers';
+import SettingsButton from '../components/Settings/SettingsButton';
 
 let Leaflet;
 
@@ -18,9 +19,12 @@ if (typeof window !== 'undefined') {
 
 const MapComponent = () => {
   const { storeHydrated: athleteStoreHydrated, athlete } = useContext(AthleteContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [polylines, setPolylines] = useState([]);
   const [center, setCenter] = useState(null);
+
+  const handleOnMenuClick = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
     if (athleteStoreHydrated && athlete.id) {
@@ -46,11 +50,13 @@ const MapComponent = () => {
     }
   }, [athleteStoreHydrated, athlete.id]);
 
+  console.log('isMenuOpen: ', isMenuOpen);
+
   return (
     <>
       {isLoading && <MapLoader />}
 
-      <Layout>
+      <Layout onMenuClick={handleOnMenuClick}>
         <SEO title="App" />
 
         {typeof window !== 'undefined' && (
@@ -61,7 +67,7 @@ const MapComponent = () => {
             />
             {polylines.map((polyline, index) => (
               // show heatmap = opacity={0.3}
-              <Leaflet.Polyline key={index} positions={polyline} color={'red'} weight={2} opacity={1} />
+              <Leaflet.Polyline key={index} positions={polyline} color="red" weight={2} opacity={1} />
             ))}
           </Leaflet.Map>
         )}
