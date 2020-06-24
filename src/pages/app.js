@@ -43,7 +43,7 @@ const MapComponent = () => {
         setIsLoading(false);
       });
     }
-  }, [athleteStoreHydrated]);
+  }, [athleteStoreHydrated, athlete.id]);
 
   return (
     <>

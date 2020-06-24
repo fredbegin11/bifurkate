@@ -14,13 +14,14 @@ const IndexPage = () => (
     <section className="landing">
       <img alt="" src={cycling} className="landing__image" />
       <article className="landing__card">
-        <span className="landing__title">KOM Chaser</span>
+        <span className="landing__title">BIFURKATE</span>
         <img alt="" className="landing__strava" src={stravaPower} />
+
         <hr className="landing__separator" />
         <p className="landing__description">
-          This app is meant to help you chase your next Strava KOM.
+          A Strava powered journey viewer.
           <br />
-          Go find your next target!
+          Go find new routes to explore!
         </p>
         <Link to="/app" className="landing__button">
           <img alt="" className="landing__strava" src={stravaButton} />

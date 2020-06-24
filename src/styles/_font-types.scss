@@ -1,16 +1,16 @@
 %font-type-title {
-  font-family: Gidole;
+  font-family: 'Montserrat';
   font-size: rem(50);
   font-weight: 900;
 
   @include tablet {
-    font-family: Gidole;
+    font-family: 'Montserrat';
     font-size: rem(50);
     font-weight: 900;
   }
 
   @include desktop {
-    font-family: Gidole;
+    font-family: 'Montserrat';
     font-size: rem(80);
     font-weight: 900;
   }
