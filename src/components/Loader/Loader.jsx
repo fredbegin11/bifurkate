@@ -29,4 +29,15 @@ const Loader = () => (
   </div>
 );
 
-export default Loader;
+const MapLoader = () => (
+  <div className="loader__container">
+    <div className="loader__center">
+      <Loader />
+    </div>
+    <div className="loader__center">
+      <span>Hang on, we're fetching your activities!</span>
+    </div>
+  </div>
+);
+
+export default MapLoader;

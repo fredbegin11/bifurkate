@@ -18,12 +18,6 @@ const HeaderMenu = ({ profile }) => {
 
   return (
     <>
-      <div className="header__links">
-        <Link className="header__link" to="/app">
-          App
-        </Link>
-      </div>
-
       <div className="header__menu" onClick={() => setIsOpen(!isOpen)}>
         {profile ? <HeaderProfileButton profile={profile} /> : <div className="header__image" />}
 

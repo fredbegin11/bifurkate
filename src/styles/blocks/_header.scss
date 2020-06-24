@@ -1,14 +1,22 @@
 .header {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
   align-items: center;
   box-shadow: 0px 0px 15px -10px cc(dark);
   display: flex;
   justify-content: space-between;
-  padding: 0 rem(45);
-  background-color: cc(palest);
+  padding: 0 rem(20);
   height: rem(60);
+  width: 100%;
+  z-index: 2;
+
+  @include desktop {
+    padding: 0 rem(45);
+  }
 
   &__title {
     @extend %font-type-subheader;
+    font-family: 'Montserrat';
     align-items: center;
     display: flex;
     text-decoration: underline cc(main);
@@ -16,10 +24,6 @@
     @include desktop {
       width: rem(300);
     }
-  }
-
-  &__logo {
-    height: rem(25);
   }
 
   &__menu {
@@ -68,6 +72,7 @@
 
   &__menu-button {
     padding: rem(20) rem(10);
+    background-color: cc(dark);
 
     &:hover {
       box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.75);

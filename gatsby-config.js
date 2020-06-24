@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Bifurkate`,
+    title: `BIFURKATE`,
     description: `A strava powered journey mapper`,
     author: `@fredbegin11`,
   },

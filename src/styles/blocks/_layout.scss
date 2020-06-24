@@ -1,8 +1,5 @@
 .layout {
-  height: calc(100vh - 60px);
-  padding: rem(50) rem(50);
-
-  @include phone {
-    padding: rem(25) rem(20);
-  }
+  height: 100vh;
+  position: relative;
+  z-index: 1;
 }
