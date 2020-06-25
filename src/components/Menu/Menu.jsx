@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import MenuContext from '../../contexts/MenuContext';
 
