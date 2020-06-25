@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import classNames from 'classnames';
 import { useStaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 
 import HeaderMenu from './HeaderMenu';
-import SettingsButton from '../Settings/SettingsButton';
+import MenuButton from '../Menu/MenuButton';
+import MenuContext from '../../contexts/MenuContext';
 
-const Header = ({ onMenuClick, profile }) => {
+const Header = ({ showMenu, profile }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -16,11 +18,15 @@ const Header = ({ onMenuClick, profile }) => {
     }
   `);
 
+  const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
+
+  const handleMenuClick = () => setIsMenuOpen(!isMenuOpen);
+
   return (
-    <header className="header">
+    <header className={classNames('header', isMenuOpen && '--open')}>
       <div className="header__title-container">
-        {!!onMenuClick ? (
-          <SettingsButton label={data.site.siteMetadata.title} onClick={onMenuClick} />
+        {showMenu ? (
+          <MenuButton isOpen={isMenuOpen} label={data.site.siteMetadata.title} onClick={handleMenuClick} />
         ) : (
           <span className="header__title --no-settings">{data.site.siteMetadata.title}</span>
         )}

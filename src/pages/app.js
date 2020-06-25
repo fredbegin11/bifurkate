@@ -8,7 +8,9 @@ import SEO from '../components/seo';
 import AthleteContext from '../contexts/AthleteContext';
 import stravaAgents from '../agents/stravaAgents';
 import { getMedian } from '../helpers/mathHelpers';
-import SettingsButton from '../components/Settings/SettingsButton';
+import Menu from '../components/Menu/Menu';
+import MenuContext from '../contexts/MenuContext';
+import { filterActivitiesByType } from '../helpers/activityHelpers';
 
 let Leaflet;
 
@@ -19,44 +21,46 @@ if (typeof window !== 'undefined') {
 
 const MapComponent = () => {
   const { storeHydrated: athleteStoreHydrated, athlete } = useContext(AthleteContext);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { heatMapMode, ...options } = useContext(MenuContext);
   const [isLoading, setIsLoading] = useState(true);
-  const [polylines, setPolylines] = useState([]);
+  const [activities, setActivities] = useState([]);
   const [center, setCenter] = useState(null);
-
-  const handleOnMenuClick = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
     if (athleteStoreHydrated && athlete.id) {
-      stravaAgents.getAllActivities().then(activities => {
-        const filteredActivities = activities.filter(x => x.type !== 'VirtualRide' && x.type !== 'VirtualRun' && !!_.get(x, 'map.summary_polyline'));
+      stravaAgents.getAllActivities().then(data => {
+        const filteredActivities = data.filter(x => (x.type === 'Ride' || x.type === 'Run' || x.type === 'Walk' || x.type === 'Hike') && !!_.get(x, 'map.summary_polyline'));
 
         if (filteredActivities.length > 0 && !!_.get(filteredActivities[0], 'map.summary_polyline')) {
           const firstPolylines = polyline.decode(filteredActivities[0].map.summary_polyline);
           setCenter([firstPolylines[0][0], firstPolylines[0][1]]);
         }
 
-        const calculatedPolylines = filteredActivities.map(x => polyline.decode(x.map.summary_polyline));
-        setPolylines(calculatedPolylines);
-
-        if (calculatedPolylines.length > 0) {
-          const centerLat = getMedian(calculatedPolylines.map(x => x[0][0]));
-          const centerLong = getMedian(calculatedPolylines.map(x => x[0][1]));
-          setCenter([centerLat, centerLong]);
-        }
+        setActivities(filteredActivities.map(x => ({ ...x, polyline: polyline.decode(x.map.summary_polyline) })));
 
         setIsLoading(false);
       });
     }
   }, [athleteStoreHydrated, athlete.id]);
 
-  console.log('isMenuOpen: ', isMenuOpen);
+  useEffect(() => {
+    if (!_.isEmpty(activities) && activities.length > 0) {
+      const centerLat = getMedian(activities.map(x => x.polyline[0][0]));
+      const centerLong = getMedian(activities.map(x => x.polyline[0][1]));
+
+      setCenter([centerLat, centerLong]);
+    }
+  }, [activities]);
+
+  const activitiesToShow = filterActivitiesByType(activities, options);
 
   return (
     <>
       {isLoading && <MapLoader />}
 
-      <Layout onMenuClick={handleOnMenuClick}>
+      <Menu />
+
+      <Layout showMenu>
         <SEO title="App" />
 
         {typeof window !== 'undefined' && (
@@ -65,9 +69,8 @@ const MapComponent = () => {
               url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
               attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
             />
-            {polylines.map((polyline, index) => (
-              // show heatmap = opacity={0.3}
-              <Leaflet.Polyline key={index} positions={polyline} color="red" weight={2} opacity={1} />
+            {activitiesToShow.map((activity, index) => (
+              <Leaflet.Polyline key={index} positions={activity.polyline} color="red" weight={2} opacity={heatMapMode ? 0.3 : 1} />
             ))}
           </Leaflet.Map>
         )}

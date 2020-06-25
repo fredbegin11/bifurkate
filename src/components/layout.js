@@ -6,7 +6,7 @@ import Header from './Header/header';
 import stravaAgents from '../agents/stravaAgents';
 import AthleteContext from '../contexts/AthleteContext';
 
-const Layout = ({ onMenuClick, children }) => {
+const Layout = ({ children, showMenu }) => {
   const { storeHydrated, athlete, setAthlete } = useContext(AthleteContext);
 
   const expiresAtLocal = typeof window !== 'undefined' ? localStorage.getItem('expires_at') : null;
@@ -41,7 +41,7 @@ const Layout = ({ onMenuClick, children }) => {
 
   return (
     <>
-      <Header profile={athlete} onMenuClick={onMenuClick} />
+      <Header profile={athlete} showMenu={showMenu} />
 
       <main className="layout">{children}</main>
     </>

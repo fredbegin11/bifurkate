@@ -7,16 +7,16 @@
     @extend %font-type-header;
     margin-left: rem(20);
     margin-bottom: rem(10);
+
+    &.--small-margin {
+      margin: 0;
+      margin-left: rem(10);
+    }
   }
 
   &__subheader {
     @extend %font-type-subheader;
     margin-left: rem(20);
     margin-bottom: rem(10);
-
-    &.--cursor {
-      cursor: pointer;
-      margin-right: rem(10);
-    }
   }
 }
