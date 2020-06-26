@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import _ from 'lodash';
+import moment from 'moment';
 import polyline from '@mapbox/polyline';
 
 import Layout from '../components/layout';
@@ -10,7 +11,7 @@ import stravaAgents from '../agents/stravaAgents';
 import { getMedian } from '../helpers/mathHelpers';
 import Menu from '../components/Menu/Menu';
 import MenuContext from '../contexts/MenuContext';
-import { filterActivitiesByType } from '../helpers/activityHelpers';
+import { filterActivities } from '../helpers/activityHelpers';
 
 let Leaflet;
 
@@ -21,7 +22,7 @@ if (typeof window !== 'undefined') {
 
 const MapComponent = () => {
   const { storeHydrated: athleteStoreHydrated, athlete } = useContext(AthleteContext);
-  const { heatMapMode, ...options } = useContext(MenuContext);
+  const { options, setSeason } = useContext(MenuContext);
   const [isLoading, setIsLoading] = useState(true);
   const [activities, setActivities] = useState([]);
   const [center, setCenter] = useState(null);
@@ -35,6 +36,10 @@ const MapComponent = () => {
           const firstPolylines = polyline.decode(filteredActivities[0].map.summary_polyline);
           setCenter([firstPolylines[0][0], firstPolylines[0][1]]);
         }
+
+        const seasons = filteredActivities.map(x => moment(x.start_date).format('YYYY'));
+        const uniqueSeasons = _.uniq(seasons, true);
+        uniqueSeasons.forEach(x => setSeason({ [x]: true }));
 
         setActivities(filteredActivities.map(x => ({ ...x, polyline: polyline.decode(x.map.summary_polyline) })));
 
@@ -52,7 +57,7 @@ const MapComponent = () => {
     }
   }, [activities]);
 
-  const activitiesToShow = filterActivitiesByType(activities, options);
+  const activitiesToShow = filterActivities(activities, options);
 
   return (
     <>
@@ -70,7 +75,7 @@ const MapComponent = () => {
               attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
             />
             {activitiesToShow.map((activity, index) => (
-              <Leaflet.Polyline key={index} positions={activity.polyline} color="red" weight={2} opacity={heatMapMode ? 0.3 : 1} />
+              <Leaflet.Polyline key={index} positions={activity.polyline} color="red" weight={2} opacity={options.heatMapMode ? 0.3 : 1} />
             ))}
           </Leaflet.Map>
         )}

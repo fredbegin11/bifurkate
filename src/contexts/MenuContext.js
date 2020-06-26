@@ -1,20 +1,20 @@
 import React from 'react';
 
 const defaultState = {
-  heatMapMode: false,
   setHeatMapMode: () => {},
 
   isMenuOpen: false,
   setIsMenuOpen: () => {},
+  setSeason: () => {},
 
-  setShowRide: () => {},
-  setShowRun: () => {},
-  setShowWalk: () => {},
-  setShowHike: () => {},
-  showRide: true,
-  showRun: true,
-  showWalk: true,
-  showHike: true,
+  options: {
+    heatMapMode: false,
+    showRide: true,
+    showRun: true,
+    showWalk: true,
+    showHike: true,
+    seasons: {},
+  },
 };
 
 const MenuContext = React.createContext(defaultState);
@@ -22,25 +22,18 @@ const MenuContext = React.createContext(defaultState);
 class MenuProvider extends React.Component {
   state = defaultState;
 
-  setHeatMapMode = () => this.setState({ heatMapMode: !this.state.heatMapMode });
+  setOption = options => this.setState({ options: { ...this.state.options, ...options } });
+
+  setSeason = season => this.setState({ options: { ...this.state.options, seasons: { ...this.state.options.seasons, ...season } } });
+
   setIsMenuOpen = () => this.setState({ isMenuOpen: !this.state.isMenuOpen });
-  setShowRide = () => this.setState({ showRide: !this.state.showRide });
-  setShowRun = () => this.setState({ showRun: !this.state.showRun });
-  setShowWalk = () => this.setState({ showWalk: !this.state.showWalk });
-  setShowHike = () => this.setState({ showHike: !this.state.showHike });
 
   render() {
     const { children } = this.props;
-    const { heatMapMode, isMenuOpen, showRide, showRun, showWalk, showHike } = this.state;
-    const { setHeatMapMode, setIsMenuOpen, setShowRide, setShowRun, setShowWalk, setShowHike } = this;
+    const { options, isMenuOpen } = this.state;
+    const { setSeason, setIsMenuOpen, setOption } = this;
 
-    return (
-      <MenuContext.Provider
-        value={{ setShowRide, setShowRun, setShowWalk, setShowHike, isMenuOpen, setIsMenuOpen, heatMapMode, setHeatMapMode, showRide, showRun, showWalk, showHike }}
-      >
-        {children}
-      </MenuContext.Provider>
-    );
+    return <MenuContext.Provider value={{ setSeason, setIsMenuOpen, setOption, options, isMenuOpen }}>{children}</MenuContext.Provider>;
   }
 }
 
