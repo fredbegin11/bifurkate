@@ -3,15 +3,17 @@
   display: flex;
   flex-direction: column;
   height: calc(100vh - 60px);
+  justify-content: space-between;
+  max-width: rem(300);
+  min-height: rem(650);
   padding: rem(20);
   position: absolute;
   top: rem(59);
-  transition: all;
-  max-width: rem(300);
-  width: 100%;
-  z-index: 2;
   transform: translateX(rem(-300));
   transition: all 0.2s ease-out;
+  transition: all;
+  width: 100%;
+  z-index: 2;
 
   @include phone {
     max-width: inherit;
@@ -25,7 +27,11 @@
   }
 
   &__status {
-    color: red;
+    color: white;
+
+    &.--inactive {
+      color: red;
+    }
 
     &.--active {
       color: green;

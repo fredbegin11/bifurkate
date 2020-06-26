@@ -65,7 +65,7 @@ const MapComponent = () => {
 
       <Menu />
 
-      <Layout showMenu>
+      <Layout showMenu={!isLoading}>
         <SEO title="App" />
 
         {typeof window !== 'undefined' && (
