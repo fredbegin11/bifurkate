@@ -41,7 +41,7 @@ const MapComponent = () => {
         const uniqueSeasons = _.uniq(seasons, true);
         uniqueSeasons.forEach(x => setSeason({ [x]: true }));
 
-        setActivities(filteredActivities.map(x => ({ ...x, polyline: polyline.decode(x.map.summary_polyline) })));
+        setActivities(filteredActivities.map(x => ({ ...x, polyline: polyline.decode(x.map.summary_polyline) })).reverse());
 
         setIsLoading(false);
       });
@@ -75,7 +75,17 @@ const MapComponent = () => {
               attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
             />
             {activitiesToShow.map((activity, index) => (
-              <Leaflet.Polyline key={index} positions={activity.polyline} color="red" weight={2} opacity={options.heatMapMode ? 0.3 : 1} />
+              <Leaflet.Polyline key={index} positions={activity.polyline} color="red" weight={2} opacity={options.heatMapMode ? 0.3 : 1}>
+                <Leaflet.Popup>
+                  <a href={`https://www.strava.com/activities/${activity.id}`} className="label__subheader --no-margin" target="_blank" rel="noopener noreferrer">
+                    {activity.name}
+                  </a>
+                  <br />
+                  Date: {moment(activity.start_date).format('YYYY-MM-DD')}
+                  <br />
+                  Distance: {(activity.distance / 1000).toFixed(2)} km
+                </Leaflet.Popup>
+              </Leaflet.Polyline>
             ))}
           </Leaflet.Map>
         )}

@@ -1,3 +1,21 @@
 .leaflet-container {
   height: 100%;
 }
+
+.leaflet-popup-content-wrapper {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.leaflet-popup-content-wrapper .leaflet-popup-content {
+  @extend %font-type-label;
+}
+
+.leaflet-popup-tip {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.leaflet-container a {
+  color: white;
+}

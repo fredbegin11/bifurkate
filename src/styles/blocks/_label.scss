@@ -18,5 +18,10 @@
     @extend %font-type-subheader;
     margin-left: rem(20);
     margin-bottom: rem(10);
+
+    &.--no-margin {
+      margin: 0;
+      text-decoration: underline cc(main);
+    }
   }
 }
