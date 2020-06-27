@@ -47,6 +47,12 @@
       padding: 8px;
     }
   }
+
+  margin-bottom: rem(-35);
+
+  @include phone {
+    margin-bottom: rem(20);
+  }
 }
 
 .footer-links {

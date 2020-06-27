@@ -62,11 +62,9 @@
   }
 
   &__strava {
-    max-width: rem(175);
-    margin-left: -5px;
-
-    @include phone {
-      margin-left: auto;
+    @include tablet {
+      max-width: rem(175);
+      margin-left: -5px;
     }
   }
 

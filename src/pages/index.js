@@ -8,9 +8,7 @@ import demo1 from '../images/demo1.png';
 import featureIcon1 from '../images/feature-icon-01.svg';
 import featureIcon2 from '../images/feature-icon-02.svg';
 import featureIcon3 from '../images/feature-icon-03.svg';
-import featureIcon4 from '../images/feature-icon-04.svg';
-import featureIcon5 from '../images/feature-icon-05.svg';
-import featureIcon6 from '../images/feature-icon-06.svg';
+import github from '../images/github.png';
 
 import SEO from '../components/seo';
 import stravaButton from '../images/stravabutton.png';
@@ -99,7 +97,7 @@ const IndexPage = () => {
   return (
     <>
       <SEO title="Home" />
-      <body className="is-boxed has-animations">
+      <div className="is-boxed has-animations">
         <div className="body-wrap">
           <header className="site-header">
             <div className="container">
@@ -119,7 +117,10 @@ const IndexPage = () => {
                 <div className="hero-inner">
                   <div className="hero-copy">
                     <h1 className="hero-title mt-0">Plan your next route!</h1>
-                    <p className="hero-paragraph">Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.</p>
+                    <p className="hero-paragraph">
+                      Tired of riding the same old routes or running the same old path? Well, you're not alone! <br />
+                      <br /> Login with the button right below to visualize where you tend to go and let it inspire you to go somewhere new!
+                    </p>
                     <div className="hero-cta">
                       <Link to="/app" className="landing__button">
                         <img alt="" className="landing__strava" src={stravaButton} />
@@ -158,11 +159,8 @@ const IndexPage = () => {
                         <div className="feature-icon">
                           <img src={featureIcon1} alt="Feature 01" />
                         </div>
-                        <h4 className="feature-title mt-24">Be Productive</h4>
-                        <p className="text-sm mb-0">
-                          Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus
-                          aenean vel elit scelerisque mauris.
-                        </p>
+                        <h4 className="feature-title mt-24">Plan your next route</h4>
+                        <p className="text-sm mb-0">Tired of riding in the same three old routes? Check your ride history and let it inspire you to try new routes!</p>
                       </div>
                     </div>
                     <div className="feature text-center is-revealing">
@@ -170,11 +168,8 @@ const IndexPage = () => {
                         <div className="feature-icon">
                           <img src={featureIcon2} alt="Feature 02" />
                         </div>
-                        <h4 className="feature-title mt-24">Be Productive</h4>
-                        <p className="text-sm mb-0">
-                          Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus
-                          aenean vel elit scelerisque mauris.
-                        </p>
+                        <h4 className="feature-title mt-24">Visualize your activities</h4>
+                        <p className="text-sm mb-0">A powerful visualization tool to analyze your past rides, runs, walks and hikes. Why? Because everyone loves data!</p>
                       </div>
                     </div>
                     <div className="feature text-center is-revealing">
@@ -182,47 +177,8 @@ const IndexPage = () => {
                         <div className="feature-icon">
                           <img src={featureIcon3} alt="Feature 03" />
                         </div>
-                        <h4 className="feature-title mt-24">Be Productive</h4>
-                        <p className="text-sm mb-0">
-                          Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus
-                          aenean vel elit scelerisque mauris.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="feature text-center is-revealing">
-                      <div className="feature-inner">
-                        <div className="feature-icon">
-                          <img src={featureIcon4} alt="Feature 04" />
-                        </div>
-                        <h4 className="feature-title mt-24">Be Productive</h4>
-                        <p className="text-sm mb-0">
-                          Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus
-                          aenean vel elit scelerisque mauris.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="feature text-center is-revealing">
-                      <div className="feature-inner">
-                        <div className="feature-icon">
-                          <img src={featureIcon5} alt="Feature 05" />
-                        </div>
-                        <h4 className="feature-title mt-24">Be Productive</h4>
-                        <p className="text-sm mb-0">
-                          Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus
-                          aenean vel elit scelerisque mauris.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="feature text-center is-revealing">
-                      <div className="feature-inner">
-                        <div className="feature-icon">
-                          <img src={featureIcon6} alt="Feature 06" />
-                        </div>
-                        <h4 className="feature-title mt-24">Be Productive</h4>
-                        <p className="text-sm mb-0">
-                          Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus
-                          aenean vel elit scelerisque mauris.
-                        </p>
+                        <h4 className="feature-title mt-24">Compare your seasons</h4>
+                        <p className="text-sm mb-0">Want to see if your riding habit has changed between years? You can filter your rides by seasons!</p>
                       </div>
                     </div>
                   </div>
@@ -231,19 +187,38 @@ const IndexPage = () => {
             </section>
           </main>
 
+          <section className="cta section">
+            <div className="container">
+              <div className="cta-inner section-inner">
+                <h3 className="section-title mt-0">Still not convinced? Give it a try, it's free!</h3>
+                <div className="cta-cta">
+                  <a href="/app">
+                    <img alt="" className="landing__strava" src={stravaButton} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <footer className="site-footer">
             <div className="container">
               <div className="site-footer-inner">
+                <div className="footer-social-links">
+                  <a href="https://github.com/fredbegin11/bifurkate" target="_blank" rel="noopener noreferrer">
+                    <span className="screen-reader-text">Github</span>
+                    <img src={github} alt="" width={30} height={30} />
+                  </a>
+                </div>
+
                 <div className="brand footer-brand">
                   <img alt="" className="landing__strava" src={stravaPower} />
                 </div>
-
                 <div className="footer-copyright">&copy; 2020 BIFURKATE, all rights reserved</div>
               </div>
             </div>
           </footer>
         </div>
-      </body>
+      </div>
     </>
   );
 };
