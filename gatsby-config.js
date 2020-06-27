@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `BIFURKATE`,
-    description: `A strava powered journey mapper`,
+    description: `Tired of riding in the same three old routes? Check your ride history and let it inspire you to try new routes!`,
     author: `@fredbegin11`,
     image: '/images/logo.png',
   },
