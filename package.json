@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@mapbox/polyline": "^1.1.1",
+    "animejs": "^3.2.0",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
@@ -30,6 +31,7 @@
     "react-icons": "^3.10.0",
     "react-leaflet": "^2.7.0",
     "react-select": "^3.1.0",
+    "scrollreveal": "^4.0.6",
     "use-position": "0.0.7"
   },
   "devDependencies": {

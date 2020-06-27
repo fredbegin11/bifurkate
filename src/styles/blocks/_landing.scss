@@ -58,11 +58,29 @@
   &__button {
     @extend %font-type-header;
     text-decoration: underline cc(main);
+    margin-right: rem(10);
   }
 
   &__strava {
+    max-width: rem(175);
+    margin-left: -5px;
+
     @include phone {
-      width: rem(200);
+      margin-left: auto;
     }
+  }
+
+  &__main-title {
+    @extend %font-type-subheader;
+  }
+}
+
+.hero-cta {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+
+  @include phone {
+    flex-direction: column;
   }
 }

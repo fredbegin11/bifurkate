@@ -9,7 +9,7 @@
   width: 100%;
   z-index: 2;
 
-  @include desktop {
+  @include laptop {
     padding: 0 rem(10);
   }
 
@@ -41,7 +41,7 @@
     padding: rem(10);
     position: relative;
 
-    @include desktop {
+    @include laptop {
       width: rem(500);
       justify-content: flex-end;
     }
@@ -52,6 +52,8 @@
   }
 
   &__name {
+    @extend %font-type-label;
+
     @include phone {
       display: none;
     }
@@ -99,7 +101,7 @@
   &__links {
     display: none;
 
-    @include desktop {
+    @include laptop {
       display: inherit;
       width: 100%;
     }

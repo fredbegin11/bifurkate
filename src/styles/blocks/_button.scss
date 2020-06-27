@@ -1,9 +1,9 @@
-.button {
+.custom-button {
   @extend %font-type-button;
   align-items: center;
   display: flex;
   opacity: 0.8;
-  padding: rem(10);
+  padding: rem(5) rem(10);
   top: rem(70);
   transition: all 0.2s ease-out;
   z-index: 2;
@@ -16,7 +16,7 @@
     font-size: rem(25);
     margin-right: rem(20);
 
-    @include desktop {
+    @include laptop {
       font-size: rem(25);
       margin-right: rem(40);
     }

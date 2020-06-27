@@ -2,10 +2,10 @@
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 74px);
   justify-content: space-between;
   max-width: rem(300);
-  min-height: rem(600);
+  min-height: rem(500);
   padding: rem(20);
   position: absolute;
   top: rem(59);
@@ -17,6 +17,7 @@
 
   @include phone {
     max-width: inherit;
+    max-height: inherit;
     width: 100%;
     transform: translateX(-100%);
     background-color: rgba(0, 0, 0, 1);
@@ -46,6 +47,8 @@
   }
 
   &__block {
-    padding-bottom: rem(20);
+    & + & {
+      padding-top: rem(20);
+    }
   }
 }
