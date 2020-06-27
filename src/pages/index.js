@@ -215,7 +215,6 @@ const IndexPage = () => {
                 <div className="brand footer-brand">
                   <img alt="" className="landing__strava" src={stravaPower} />
                 </div>
-                <div className="footer-copyright">&copy; 2020 BIFURKATE, all rights reserved</div>
               </div>
             </div>
           </footer>
