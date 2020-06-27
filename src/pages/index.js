@@ -13,21 +13,15 @@ import SEO from '../components/seo';
 import stravaButton from '../images/stravabutton.png';
 import stravaPower from '../images/stravapower.png';
 
-let ScrollReveal;
-
-// Fix for Heroku build (ScrollReveal wants a window object...)
-if (typeof window !== 'undefined') {
-  ScrollReveal = require('scrollreveal');
-}
-
 const IndexPage = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      const ScrollReveal = require('scrollreveal');
       const doc = document.documentElement;
       doc.classList.remove('no-js');
       doc.classList.add('js');
 
-      const sr = (window.sr = ScrollReveal());
+      const sr = (window.sr = ScrollReveal.default());
 
       sr.reveal('.feature', {
         duration: 600,
