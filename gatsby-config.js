@@ -3,6 +3,7 @@ module.exports = {
     title: `BIFURKATE`,
     description: `A strava powered journey mapper`,
     author: `@fredbegin11`,
+    image: '/images/logo.png',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

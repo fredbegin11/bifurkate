@@ -5,6 +5,7 @@ import { Link } from 'gatsby';
 
 import demo from '../images/demo.png';
 import demo1 from '../images/demo1.png';
+import birfurkate from '../images/birfurkate-line.png';
 import featureIcon1 from '../images/feature-icon-01.svg';
 import featureIcon2 from '../images/feature-icon-02.svg';
 import featureIcon3 from '../images/feature-icon-03.svg';
