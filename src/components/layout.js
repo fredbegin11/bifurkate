@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
@@ -8,8 +8,7 @@ import AthleteContext from '../contexts/AthleteContext';
 
 const Layout = ({ children, showMenu }) => {
   const { storeHydrated, athlete, setAthlete } = useContext(AthleteContext);
-
-  const expiresAtLocal = typeof window !== 'undefined' ? localStorage.getItem('expires_at') : null;
+  const [expiresAtState, setExpiresAtState] = useState(typeof window !== 'undefined' ? localStorage.getItem('expires_at') : null);
 
   useEffect(() => {
     const expiresAt = typeof window !== 'undefined' ? localStorage.getItem('expires_at') : null;
@@ -20,6 +19,7 @@ const Layout = ({ children, showMenu }) => {
       stravaAgents
         .refreshToken(refreshToken)
         .then(({ expires_at, refresh_token, access_token }) => {
+          setExpiresAtState(expires_at);
           typeof window !== 'undefined' && localStorage.setItem('expires_at', expires_at);
           typeof window !== 'undefined' && localStorage.setItem('refresh_token', refresh_token);
           typeof window !== 'undefined' && localStorage.setItem('access_token', access_token);
@@ -34,10 +34,10 @@ const Layout = ({ children, showMenu }) => {
 
   useEffect(() => {
     const currentTime = new Date().getTime() / 1000;
-    if (currentTime < expiresAtLocal && _.isEmpty(athlete) && storeHydrated) {
+    if (currentTime < expiresAtState && _.isEmpty(athlete) && storeHydrated) {
       stravaAgents.getProfile().then(athlete => setAthlete(athlete));
     }
-  }, [athlete, expiresAtLocal, storeHydrated, setAthlete]);
+  }, [athlete, expiresAtState, storeHydrated, setAthlete]);
 
   return (
     <>
