@@ -118,10 +118,13 @@ const IndexPage = () => {
               <div className="container">
                 <div className="hero-inner">
                   <div className="hero-copy">
-                    <h1 className="hero-title mt-0">Plan your next route!</h1>
+                    <h1 className="hero-title mt-0">Find some inspiration!</h1>
                     <p className="hero-paragraph">
-                      Tired of riding the same old routes or running the same old path? Well, you're not alone! <br />
-                      <br /> Login with the button right below to visualize where you tend to go and let it inspire you to go somewhere new!
+                      Like the saying goes, you need to know where you've been to know where your going. If you find yourself tired of riding the same old routes or running the
+                      same old path, don't worry, you're not alone.
+                      <br />
+                      <br />
+                      Login with the button right below to visualize where you tend to go and let it inspire you to go somewhere new!
                     </p>
                     <div className="hero-cta">
                       <Link to="/app" className="landing__button">
@@ -161,7 +164,7 @@ const IndexPage = () => {
                         <div className="feature-icon">
                           <img src={featureIcon1} alt="Feature 01" />
                         </div>
-                        <h4 className="feature-title mt-24">Plan your next route</h4>
+                        <h4 className="feature-title mt-24">Find some inspiration</h4>
                         <p className="text-sm mb-0">Tired of riding in the same three old routes? Check your ride history and let it inspire you to try new routes!</p>
                       </div>
                     </div>
