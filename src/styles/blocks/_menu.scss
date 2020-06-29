@@ -18,6 +18,7 @@
   @include phone {
     max-width: inherit;
     max-height: inherit;
+    height: inherit;
     width: 100%;
     transform: translateX(-100%);
     background-color: rgba(0, 0, 0, 1);
@@ -44,11 +45,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: white;
+    text-decoration: none;
   }
 
   &__block {
     & + & {
       padding-top: rem(20);
+    }
+  }
+
+  &__footer {
+    @include phone {
+      padding-top: rem(50);
+      padding-bottom: rem(10);
     }
   }
 }
