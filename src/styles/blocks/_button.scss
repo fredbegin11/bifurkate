@@ -3,10 +3,14 @@
   align-items: center;
   display: flex;
   opacity: 0.8;
-  padding: rem(5) rem(10);
+  padding: rem(3) rem(10);
   top: rem(70);
   transition: all 0.2s ease-out;
   z-index: 2;
+
+  @include phone {
+    padding: rem(5) rem(10);
+  }
 
   &:hover {
     opacity: 1;
