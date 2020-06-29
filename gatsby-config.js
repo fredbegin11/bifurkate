@@ -3,7 +3,7 @@ module.exports = {
     title: `BIFURKATE`,
     description: `Tired of riding in the same three old routes? Check your ride history and let it inspire you to try new routes!`,
     author: `@fredbegin11`,
-    image: '/icons/logo.png',
+    image: '/images/logo.png',
   },
   plugins: [
     {
