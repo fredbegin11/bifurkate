@@ -8,17 +8,22 @@ const Callback = ({ location }) => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const code = params.get('code');
+    const error = params.get('error');
 
-    stravaAgent
-      .authenticate(code)
-      .then(({ expires_at, refresh_token, access_token }) => {
-        typeof window !== 'undefined' && localStorage.setItem('expires_at', expires_at);
-        typeof window !== 'undefined' && localStorage.setItem('refresh_token', refresh_token);
-        typeof window !== 'undefined' && localStorage.setItem('access_token', access_token);
+    if (!error) {
+      stravaAgent
+        .authenticate(code)
+        .then(({ expires_at, refresh_token, access_token }) => {
+          typeof window !== 'undefined' && localStorage.setItem('expires_at', expires_at);
+          typeof window !== 'undefined' && localStorage.setItem('refresh_token', refresh_token);
+          typeof window !== 'undefined' && localStorage.setItem('access_token', access_token);
 
-        navigate('/app');
-      })
-      .catch(error => console.error('Error: ', error));
+          navigate('/app');
+        })
+        .catch(error => console.error('Error: ', error));
+    } else if (typeof window !== 'undefined') {
+      window.location.replace(process.env.GATSBY_AUTHORIZE_URL);
+    }
   }, []);
 
   return <span>Loading...</span>;
