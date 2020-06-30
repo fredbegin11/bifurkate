@@ -29,13 +29,13 @@ const Loader = () => (
   </div>
 );
 
-const MapLoader = () => (
+const MapLoader = ({ title = '' }) => (
   <div className="loader__container">
     <div className="loader__center">
       <Loader />
     </div>
     <div className="loader__center">
-      <span>Hang on, we're fetching your activities!</span>
+      <span>{title || "Hang on, we're fetching your activities!"}</span>
     </div>
   </div>
 );

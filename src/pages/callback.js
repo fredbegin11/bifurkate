@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { navigate } from 'gatsby';
 
+import Loader from '../components/Loader/Loader';
 import stravaAgent from '../agents/stravaAgents';
 
 const Callback = ({ location }) => {
@@ -26,7 +27,7 @@ const Callback = ({ location }) => {
     }
   }, []);
 
-  return <span>Loading...</span>;
+  return <Loader title="Hang on, we're redirecting you!" />;
 };
 
 Callback.propTypes = {
