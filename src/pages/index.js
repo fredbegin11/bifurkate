@@ -218,6 +218,9 @@ const IndexPage = () => {
                 <div className="brand footer-brand">
                   <img alt="" className="landing__strava" src={stravaPower} />
                 </div>
+                <Link className="landing__policy" to="/privacy">
+                  Privacy Policy
+                </Link>
               </div>
             </div>
           </footer>

@@ -64,7 +64,15 @@
   &__strava {
     @include tablet {
       max-width: rem(175);
-      margin-left: -5px;
+      margin-left: rem(-5);
+    }
+  }
+
+  &__policy {
+    margin-left: rem(3);
+
+    @include phone {
+      margin-left: rem(12);
     }
   }
 
