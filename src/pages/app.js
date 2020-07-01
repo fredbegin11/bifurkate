@@ -25,6 +25,7 @@ const MapComponent = () => {
   const { options, setSeason } = useContext(MenuContext);
   const [isLoading, setIsLoading] = useState(true);
   const [activities, setActivities] = useState([]);
+  const [selectedActivityId, setSelectedActivityId] = useState([]);
   const [center, setCenter] = useState(null);
 
   useEffect(() => {
@@ -58,6 +59,7 @@ const MapComponent = () => {
   }, [activities]);
 
   const activitiesToShow = filterActivities(activities, options);
+  const selectedActivity = activitiesToShow.find(x => x.id === selectedActivityId);
 
   return (
     <>
@@ -69,13 +71,20 @@ const MapComponent = () => {
         <SEO title="App" />
 
         {typeof window !== 'undefined' && (
-          <Leaflet.Map center={isLoading ? [46.8139, -71.29] : center} zoom={isLoading ? 5 : 10} zoomControl={false}>
+          <Leaflet.Map center={isLoading ? [46.8139, -71.29] : center} zoom={isLoading ? 5 : 10} zoomControl={false} onClick={() => setSelectedActivityId(null)}>
             <Leaflet.TileLayer
               url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
               attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
             />
             {activitiesToShow.map((activity, index) => (
-              <Leaflet.Polyline key={index} positions={activity.polyline} color="red" weight={2} opacity={options.heatMapMode ? 0.3 : 1}>
+              <Leaflet.Polyline
+                onClick={() => setSelectedActivityId(activity.id)}
+                key={index}
+                positions={activity.polyline}
+                color="red"
+                weight={2}
+                opacity={options.heatMapMode ? 0.3 : 1}
+              >
                 <Leaflet.Popup>
                   <a href={`https://www.strava.com/activities/${activity.id}`} className="label__subheader --no-margin" target="_blank" rel="noopener noreferrer">
                     {activity.name}
@@ -87,6 +96,20 @@ const MapComponent = () => {
                 </Leaflet.Popup>
               </Leaflet.Polyline>
             ))}
+
+            {selectedActivity && (
+              <Leaflet.Polyline positions={selectedActivity.polyline} color={'white'} weight={2} opacity={1}>
+                <Leaflet.Popup>
+                  <a href={`https://www.strava.com/activities/${selectedActivity.id}`} className="label__subheader --no-margin" target="_blank" rel="noopener noreferrer">
+                    {selectedActivity.name}
+                  </a>
+                  <br />
+                  Date: {moment(selectedActivity.start_date).format('YYYY-MM-DD')}
+                  <br />
+                  Distance: {(selectedActivity.distance / 1000).toFixed(2)} km
+                </Leaflet.Popup>
+              </Leaflet.Polyline>
+            )}
           </Leaflet.Map>
         )}
       </Layout>
