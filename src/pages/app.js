@@ -97,19 +97,7 @@ const MapComponent = () => {
               </Leaflet.Polyline>
             ))}
 
-            {selectedActivity && (
-              <Leaflet.Polyline positions={selectedActivity.polyline} color={'white'} weight={2} opacity={1}>
-                <Leaflet.Popup>
-                  <a href={`https://www.strava.com/activities/${selectedActivity.id}`} className="label__subheader --no-margin" target="_blank" rel="noopener noreferrer">
-                    {selectedActivity.name}
-                  </a>
-                  <br />
-                  Date: {moment(selectedActivity.start_date).format('YYYY-MM-DD')}
-                  <br />
-                  Distance: {(selectedActivity.distance / 1000).toFixed(2)} km
-                </Leaflet.Popup>
-              </Leaflet.Polyline>
-            )}
+            {selectedActivity && <Leaflet.Polyline positions={selectedActivity.polyline} color={'white'} weight={2} opacity={1} />}
           </Leaflet.Map>
         )}
       </Layout>
