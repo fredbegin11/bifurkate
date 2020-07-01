@@ -1,6 +1,10 @@
 .leaflet-container {
   height: 100%;
   min-height: rem(560);
+
+  @include phone {
+    min-height: inherit;
+  }
 }
 
 .leaflet-popup-content-wrapper {
@@ -19,4 +23,15 @@
 
 .leaflet-container a {
   color: white;
+}
+
+.leaflet-control-attribution {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  color: white;
+  font-size: rem(7) !important;
+
+  @include phone {
+    width: 100vw !important;
+    text-align: center;
+  }
 }
