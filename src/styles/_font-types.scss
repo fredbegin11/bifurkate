@@ -1,22 +1,4 @@
 %font-type-title {
-  font-family: 'Montserrat';
-  font-size: rem(45);
-  font-weight: 900;
-
-  @include tablet {
-    font-family: 'Montserrat';
-    font-size: rem(45);
-    font-weight: 900;
-  }
-
-  @include laptop {
-    font-family: 'Montserrat';
-    font-size: rem(75);
-    font-weight: 900;
-  }
-}
-
-%font-type-small-title {
   font-family: Gidole;
   font-size: rem(25);
   font-weight: 900;
@@ -29,6 +11,12 @@
 
   @include laptop {
     font-family: Gidole;
+    font-size: rem(40);
+    font-weight: 900;
+  }
+
+  @include desktop {
+    font-family: Gidole;
     font-size: rem(45);
     font-weight: 900;
   }
@@ -36,17 +24,17 @@
 
 %font-type-header {
   font-family: Gidole;
-  font-size: rem(20);
+  font-size: rem(18);
   font-weight: 900;
   text-decoration: underline cc(main);
 
   @include tablet {
     font-family: Gidole;
-    font-size: rem(20);
+    font-size: rem(18);
     font-weight: 900;
   }
 
-  @include laptop {
+  @include desktop {
     font-family: Gidole;
     font-size: rem(25);
     font-weight: 900;
@@ -64,7 +52,7 @@
     font-weight: 900;
   }
 
-  @include laptop {
+  @include desktop {
     font-family: Gidole;
     font-size: rem(20);
     font-weight: 900;
@@ -81,4 +69,16 @@
   font-family: 'Montserrat-Slim';
   font-size: rem(16);
   font-weight: 900;
+
+  @include tablet {
+    font-family: 'Montserrat-Slim';
+    font-size: rem(14);
+    font-weight: 900;
+  }
+
+  @include desktop {
+    font-family: 'Montserrat-Slim';
+    font-size: rem(16);
+    font-weight: 900;
+  }
 }

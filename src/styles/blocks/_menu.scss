@@ -1,19 +1,24 @@
+.simplebar-content {
+  height: 100%;
+}
+
+.simplebar-scrollbar::before {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
 .menu {
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 74px);
-  justify-content: space-between;
-  max-width: rem(300);
-  min-height: rem(500);
-  padding: rem(20);
-  position: absolute;
+  position: absolute !important;
   top: rem(59);
+  background-color: rgba(0, 0, 0, 0.5);
+  height: calc(100vh - 74px);
+  max-width: rem(300);
+  padding: rem(20);
   transform: translateX(rem(-300));
   transition: all 0.2s ease-out;
   transition: all;
   width: 100%;
   z-index: 2;
+  overflow-y: auto;
 
   @include phone {
     max-width: inherit;
@@ -40,6 +45,13 @@
     }
   }
 
+  &__inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
   &__item {
     width: 100%;
     display: flex;
@@ -56,9 +68,7 @@
   }
 
   &__footer {
-    @include phone {
-      padding-top: rem(50);
-      padding-bottom: rem(10);
-    }
+    padding-top: rem(50);
+    padding-bottom: rem(10);
   }
 }

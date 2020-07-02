@@ -1,58 +1,10 @@
 .landing {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-
   &__image {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: -1;
-  }
-
-  &__card {
-    align-items: center;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: rem(30);
-    text-align: center;
-    width: 100%;
-
-    @include tablet {
-      border-radius: rem(10);
-      box-shadow: 10px 10px 15px -15px rgba(0, 0, 0, 0.5);
-      margin: rem(10);
-      padding: rem(50);
-      transition: all 0.2s ease;
-      width: auto;
-    }
-  }
-
-  &__description {
-    @extend %font-type-subheader;
-    margin-bottom: rem(25);
-    line-height: 1.5;
-  }
-
-  &__separator {
-    width: 100%;
-    margin: rem(50) 0;
-    color: cc(main);
-  }
-
-  &__title {
-    @extend %font-type-title;
-    text-decoration: underline cc(main);
-    margin-bottom: rem(25);
   }
 
   &__button {
