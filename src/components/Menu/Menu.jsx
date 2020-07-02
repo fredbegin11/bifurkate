@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
+import SimpleBar from 'simplebar-react';
 import classNames from 'classnames';
 import { FaCheck, FaTimes, FaPowerOff, FaBeer, FaEnvelope } from 'react-icons/fa';
 import MenuContext from '../../contexts/MenuContext';
-import SimpleBar from 'simplebar-react';
 
 const Menu = () => {
   const { isMenuOpen, setOption, options, setSeason } = useContext(MenuContext);
@@ -18,9 +18,9 @@ const Menu = () => {
   };
 
   return (
-    <div className="menu__container">
-      <SimpleBar autoHide={false} className={classNames('menu', isMenuOpen && '--open')}>
-        <div className="menu__inner" style={{ maxHeight: 20 }}>
+    <SimpleBar forceVisible={true} autoHide={false} className={classNames('menu', isMenuOpen && '--open')}>
+      <div className="menu__inner">
+        <div>
           <div className="menu__block">
             <span className="label__header --small-margin">Map Settings</span>
             <button className="custom-button menu__item" onClick={() => setOption({ heatMapMode: !options.heatMapMode })}>
@@ -62,8 +62,8 @@ const Menu = () => {
             Log off <FaPowerOff className="menu__status" />
           </button>
         </div>
-      </SimpleBar>
-    </div>
+      </div>
+    </SimpleBar>
   );
 };
 
