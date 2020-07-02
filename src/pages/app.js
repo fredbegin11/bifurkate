@@ -11,7 +11,7 @@ import stravaAgents from '../agents/stravaAgents';
 import { getMedian } from '../helpers/mathHelpers';
 import Menu from '../components/Menu/Menu';
 import MenuContext from '../contexts/MenuContext';
-import { filterActivities } from '../helpers/activityHelpers';
+import { filterActivities, decodePolylines } from '../helpers/activityHelpers';
 
 let Leaflet;
 
@@ -42,8 +42,7 @@ const MapComponent = () => {
         const uniqueSeasons = _.uniq(seasons, true);
         uniqueSeasons.forEach(x => setSeason({ [x]: true }));
 
-        setActivities(filteredActivities.map(x => ({ ...x, polyline: polyline.decode(x.map.summary_polyline) })).reverse());
-
+        setActivities(filteredActivities.map(x => decodePolylines(x)).reverse());
         setIsLoading(false);
       });
     }

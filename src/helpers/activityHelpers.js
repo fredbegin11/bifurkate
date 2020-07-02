@@ -1,9 +1,10 @@
 import moment from 'moment';
+import polyline from '@mapbox/polyline';
 
 export const filterActivities = (activities, options) => {
   const { showRide, showRun, showWalk, showHike } = options;
 
-  let filteredActivities = activities;
+  let filteredActivities = activities.filter(x => !!x.polyline);
 
   if (!showRide) filteredActivities = filteredActivities.filter(x => x.type !== 'Ride');
   if (!showRun) filteredActivities = filteredActivities.filter(x => x.type !== 'Run');
@@ -16,4 +17,14 @@ export const filterActivities = (activities, options) => {
   });
 
   return filteredActivities;
+};
+
+export const decodePolylines = activity => {
+  let decodedPolyline = null;
+
+  try {
+    decodedPolyline = polyline.decode(activity.map.summary_polyline);
+  } catch (err) {}
+
+  return { ...activity, polyline: decodedPolyline };
 };
