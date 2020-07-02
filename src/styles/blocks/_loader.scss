@@ -20,7 +20,7 @@ $shadow: #000;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @extend %font-type-small-title;
+  @extend %font-type-title;
   background-color: rgba(100, 100, 100, 0.3);
   padding-top: rem(100);
   padding-bottom: rem(50);

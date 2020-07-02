@@ -1,19 +1,20 @@
-.menu {
-  background-color: rgba(0, 0, 0, 0.5);
+.simplebar-content {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 74px);
   justify-content: space-between;
-  max-width: rem(300);
-  min-height: rem(500);
+}
+
+.simplebar-scrollbar::before {
+  background-color: red !important;
+}
+
+.menu {
   padding: rem(20);
-  position: absolute;
-  top: rem(59);
   transform: translateX(rem(-300));
   transition: all 0.2s ease-out;
-  transition: all;
-  width: 100%;
-  z-index: 2;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 
   @include phone {
     max-width: inherit;
@@ -22,6 +23,25 @@
     width: 100%;
     transform: translateX(-100%);
     background-color: rgba(0, 0, 0, 1);
+  }
+
+  &__container {
+    height: calc(100vh - 74px);
+    max-width: rem(300);
+    position: absolute;
+    top: rem(59);
+    width: 100%;
+    z-index: 2;
+  }
+
+  &__inner {
+    background-color: transparent;
+    height: 100vh;
+    min-height: rem(450);
+
+    @include phone {
+      min-height: rem(450);
+    }
   }
 
   &.--open {
@@ -56,9 +76,6 @@
   }
 
   &__footer {
-    @include phone {
-      padding-top: rem(50);
-      padding-bottom: rem(10);
-    }
+    padding-bottom: rem(10);
   }
 }

@@ -1,6 +1,5 @@
 .leaflet-container {
   height: 100%;
-  min-height: rem(560);
 
   @include phone {
     min-height: inherit;
