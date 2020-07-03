@@ -34,3 +34,18 @@
     text-align: center;
   }
 }
+
+.leaflet-control-scale {
+  margin-left: rem(10) !important;
+  margin-bottom: rem(10) !important;
+  opacity: 0.7;
+
+  @include phone {
+    margin-bottom: rem(15) !important;
+  }
+}
+
+.leaflet-control-scale-line {
+  background-color: transparent;
+  color: white;
+}

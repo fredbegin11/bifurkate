@@ -70,11 +70,18 @@ const MapComponent = () => {
         <SEO title="App" />
 
         {typeof window !== 'undefined' && (
-          <Leaflet.Map center={isLoading ? [46.8139, -71.29] : center} zoom={isLoading ? 5 : 10} zoomControl={false} onClick={() => setSelectedActivityId(null)}>
+          <Leaflet.Map
+            preferCanvas={true}
+            center={isLoading ? [46.8139, -71.29] : center}
+            zoom={isLoading ? 5 : 10}
+            zoomControl={false}
+            onClick={() => setSelectedActivityId(null)}
+          >
             <Leaflet.TileLayer
               url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
               attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
             />
+            <Leaflet.ScaleControl />
             {activitiesToShow.map((activity, index) => (
               <Leaflet.Polyline
                 onClick={() => setSelectedActivityId(activity.id)}

@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { isMobile } from 'react-device-detect';
 
 import Header from './Header/header';
 import stravaAgents from '../agents/stravaAgents';
@@ -9,6 +10,16 @@ import AthleteContext from '../contexts/AthleteContext';
 const Layout = ({ children, showMenu }) => {
   const { storeHydrated, athlete, setAthlete } = useContext(AthleteContext);
   const [expiresAtState, setExpiresAtState] = useState(typeof window !== 'undefined' ? localStorage.getItem('expires_at') : null);
+
+  useEffect(() => {
+    if (isMobile && typeof window !== 'undefined') {
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+
+      window.addEventListener('resize', () => {
+        document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const expiresAt = typeof window !== 'undefined' ? localStorage.getItem('expires_at') : null;
