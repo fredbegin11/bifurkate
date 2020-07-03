@@ -5,14 +5,12 @@ const defaultState = {
 
   isMenuOpen: false,
   setIsMenuOpen: () => {},
+  toggleType: () => {},
   setSeason: () => {},
 
   options: {
     heatMapMode: false,
-    showRide: true,
-    showRun: true,
-    showWalk: true,
-    showHike: true,
+    activityTypeConfig: {},
     seasons: {},
   },
 };
@@ -28,12 +26,17 @@ class MenuProvider extends React.Component {
 
   setIsMenuOpen = () => this.setState({ isMenuOpen: !this.state.isMenuOpen });
 
+  toggleType = type => {
+    const { activityTypeConfig } = this.state.options;
+    this.setState({ options: { ...this.state.options, activityTypeConfig: { ...activityTypeConfig, [type]: !activityTypeConfig[type] } } });
+  };
+
   render() {
     const { children } = this.props;
     const { options, isMenuOpen } = this.state;
-    const { setSeason, setIsMenuOpen, setOption } = this;
+    const { setSeason, setIsMenuOpen, setOption, toggleType } = this;
 
-    return <MenuContext.Provider value={{ setSeason, setIsMenuOpen, setOption, options, isMenuOpen }}>{children}</MenuContext.Provider>;
+    return <MenuContext.Provider value={{ toggleType, setSeason, setIsMenuOpen, setOption, options, isMenuOpen }}>{children}</MenuContext.Provider>;
   }
 }
 

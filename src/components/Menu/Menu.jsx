@@ -3,9 +3,12 @@ import SimpleBar from 'simplebar-react';
 import classNames from 'classnames';
 import { FaCheck, FaTimes, FaPowerOff, FaBeer, FaEnvelope } from 'react-icons/fa';
 import MenuContext from '../../contexts/MenuContext';
+import { ActivityType } from '../../helpers/activityHelpers';
+import { usePrevious } from '../../helpers/hooks';
+import { useEffect } from 'react';
 
-const Menu = () => {
-  const { isMenuOpen, setOption, options, setSeason } = useContext(MenuContext);
+const Menu = ({ activityTypes }) => {
+  const { toggleType, isMenuOpen, setOption, options, setSeason } = useContext(MenuContext);
 
   const handleLogOffClick = () => {
     if (typeof window !== 'undefined') {
@@ -16,6 +19,19 @@ const Menu = () => {
 
     window.location.replace('/');
   };
+
+  const prevActivityTypes = usePrevious(activityTypes);
+
+  useEffect(() => {
+    if (prevActivityTypes && !_.isEqual(prevActivityTypes, activityTypes)) {
+      const activityTypeConfig = {};
+      activityTypes.forEach(x => {
+        activityTypeConfig[x] = true;
+      });
+
+      setOption({ activityTypeConfig });
+    }
+  }, [activityTypes, prevActivityTypes, setOption]);
 
   return (
     <SimpleBar forceVisible={true} autoHide={false} className={classNames('menu', isMenuOpen && '--open')}>
@@ -29,18 +45,11 @@ const Menu = () => {
           </div>
           <div className="menu__block">
             <span className="label__header --small-margin">Activity Type</span>
-            <button className="custom-button menu__item" onClick={() => setOption({ showRide: !options.showRide })}>
-              Cycling Rides {options.showRide ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
-            </button>
-            <button className="custom-button menu__item" onClick={() => setOption({ showRun: !options.showRun })}>
-              Runs {options.showRun ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
-            </button>
-            <button className="custom-button menu__item" onClick={() => setOption({ showWalk: !options.showWalk })}>
-              Walks {options.showWalk ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
-            </button>
-            <button className="custom-button menu__item" onClick={() => setOption({ showHike: !options.showHike })}>
-              Hikes {options.showHike ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
-            </button>
+            {activityTypes.map(type => (
+              <button key={type} className="custom-button menu__item" onClick={() => toggleType(type)}>
+                {ActivityType[type]} {options.activityTypeConfig[type] ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
+              </button>
+            ))}
           </div>
           <div className="menu__block">
             <span className="label__header --small-margin">Seasons</span>

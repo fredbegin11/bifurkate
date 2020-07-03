@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import _ from 'lodash';
 import moment from 'moment';
-import polyline from '@mapbox/polyline';
 
 import Layout from '../components/layout';
 import MapLoader from '../components/Loader/Loader';
@@ -11,7 +10,7 @@ import stravaAgents from '../agents/stravaAgents';
 import { getMedian } from '../helpers/mathHelpers';
 import Menu from '../components/Menu/Menu';
 import MenuContext from '../contexts/MenuContext';
-import { filterActivities, decodePolylines } from '../helpers/activityHelpers';
+import { filterActivities, processActivities, getAllActivityTypes } from '../helpers/activityHelpers';
 
 let Leaflet;
 
@@ -31,18 +30,10 @@ const MapComponent = () => {
   useEffect(() => {
     if (athleteStoreHydrated && athlete.id) {
       stravaAgents.getAllActivities().then(data => {
-        const filteredActivities = data.filter(x => (x.type === 'Ride' || x.type === 'Run' || x.type === 'Walk' || x.type === 'Hike') && !!_.get(x, 'map.summary_polyline'));
+        const { processedActivities, processedSeasons } = processActivities(data);
 
-        if (filteredActivities.length > 0 && !!_.get(filteredActivities[0], 'map.summary_polyline')) {
-          const firstPolylines = polyline.decode(filteredActivities[0].map.summary_polyline);
-          setCenter([firstPolylines[0][0], firstPolylines[0][1]]);
-        }
-
-        const seasons = filteredActivities.map(x => moment(x.start_date).format('YYYY'));
-        const uniqueSeasons = _.uniq(seasons, true);
-        uniqueSeasons.forEach(x => setSeason({ [x]: true }));
-
-        setActivities(filteredActivities.map(x => decodePolylines(x)).reverse());
+        setSeason(processedSeasons);
+        setActivities(processedActivities);
         setIsLoading(false);
       });
     }
@@ -50,10 +41,12 @@ const MapComponent = () => {
 
   useEffect(() => {
     if (!_.isEmpty(activities) && activities.length > 0) {
-      const centerLat = getMedian(activities.map(x => x.polyline[0][0]));
-      const centerLong = getMedian(activities.map(x => x.polyline[0][1]));
+      const centerLat = getMedian(activities.map(x => _.get(x, 'polyline[0][0]')));
+      const centerLong = getMedian(activities.map(x => _.get(x, 'polyline[0][1]')));
 
-      setCenter([centerLat, centerLong]);
+      if (centerLat && centerLong) {
+        setCenter([centerLat, centerLong]);
+      }
     }
   }, [activities]);
 
@@ -64,7 +57,7 @@ const MapComponent = () => {
     <>
       {isLoading && <MapLoader />}
 
-      <Menu />
+      <Menu activityTypes={getAllActivityTypes(activities)} />
 
       <Layout showMenu={!isLoading}>
         <SEO title="App" />
