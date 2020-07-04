@@ -17,6 +17,7 @@ const defaultState = {
 
 const MenuContext = React.createContext(defaultState);
 
+// TODO: Clean This Mess
 class MenuProvider extends React.Component {
   state = defaultState;
 
