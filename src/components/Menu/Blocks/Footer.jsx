@@ -7,6 +7,7 @@ const Footer = () => {
       localStorage.removeItem('expires_at');
       localStorage.removeItem('refresh_token');
       localStorage.removeItem('access_token');
+      localStorage.removeItem('athlete');
     }
 
     window.location.replace('/');
