@@ -8,7 +8,7 @@ import { ActivityType } from '../../helpers/activityHelpers';
 import { usePrevious } from '../../helpers/hooks';
 import { useEffect } from 'react';
 
-const Menu = ({ activityTypes }) => {
+const Menu = ({ userActivityTypes }) => {
   const { toggleType, isMenuOpen, setOption, options, setSeason } = useContext(MenuContext);
 
   const handleLogOffClick = () => {
@@ -21,18 +21,14 @@ const Menu = ({ activityTypes }) => {
     window.location.replace('/');
   };
 
-  const prevActivityTypes = usePrevious(activityTypes);
+  const prevActivityTypes = usePrevious(userActivityTypes);
 
   useEffect(() => {
-    if (prevActivityTypes && !_.isEqual(prevActivityTypes, activityTypes)) {
-      const activityTypeConfig = {};
-      activityTypes.forEach(x => {
-        activityTypeConfig[x] = true;
-      });
-
+    if (prevActivityTypes && !_.isEqual(prevActivityTypes, userActivityTypes)) {
+      const activityTypeConfig = userActivityTypes.reduce((activityTypeConfig = {}, x) => ({ ...activityTypeConfig, [x]: true }));
       setOption({ activityTypeConfig });
     }
-  }, [activityTypes, prevActivityTypes, setOption]);
+  }, [userActivityTypes, prevActivityTypes, setOption]);
 
   return (
     <SimpleBar forceVisible={true} autoHide={false} className={classNames('menu', isMenuOpen && '--open')}>
@@ -46,7 +42,7 @@ const Menu = ({ activityTypes }) => {
           </div>
           <div className="menu__block">
             <span className="label__header --small-margin">Activity Type</span>
-            {activityTypes.map(type => (
+            {userActivityTypes.map(type => (
               <button key={type} className="custom-button menu__item" onClick={() => toggleType(type)}>
                 {ActivityType[type]} {options.activityTypeConfig[type] ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
               </button>

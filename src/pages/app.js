@@ -57,7 +57,7 @@ const MapComponent = () => {
     <>
       {isLoading && <MapLoader />}
 
-      <Menu activityTypes={getAllActivityTypes(activities)} />
+      <Menu userActivityTypes={getAllActivityTypes(activities)} />
 
       <Layout showMenu={!isLoading}>
         <SEO title="App" />
