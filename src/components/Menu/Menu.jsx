@@ -1,19 +1,20 @@
-import _ from 'lodash';
 import React, { useContext } from 'react';
 import SimpleBar from 'simplebar-react';
+import _ from 'lodash';
 import classNames from 'classnames';
-import MenuContext from '../../contexts/MenuContext';
-import { usePrevious } from '../../helpers/hooks';
-import { useEffect } from 'react';
-import Seasons from './Blocks/Seasons';
+
 import ActivityTypes from './Blocks/ActivityTypes';
-import MapOptions from './Blocks/MapOptions';
-import NoActivities from './Blocks/NoActivities';
 import Footer from './Blocks/Footer';
+import MapOptions from './Blocks/MapOptions';
+import MenuContext from '../../contexts/MenuContext';
+import NoActivities from './Blocks/NoActivities';
+import Seasons from './Blocks/Seasons';
 import { getAllActivityTypes } from '../../helpers/activityHelpers';
+import { useEffect } from 'react';
+import { usePrevious } from '../../helpers/hooks';
 
 const Menu = ({ activities }) => {
-  const { initializeMenu, toggleActivityTypeDisplay, isMenuOpen, setOption, options, toggleSeasonDisplay } = useContext(MenuContext);
+  const { initializeMenu, toggleActivityTypeDisplay, isMenuOpen, setOption, setMapOption, options, toggleSeasonDisplay } = useContext(MenuContext);
   const userActivityTypes = getAllActivityTypes(activities);
 
   const prevActivityTypes = usePrevious(userActivityTypes);
@@ -34,7 +35,7 @@ const Menu = ({ activities }) => {
           {_.isEmpty(userActivityTypes) && <NoActivities />}
           {!_.isEmpty(userActivityTypes) && (
             <>
-              <MapOptions userActivityTypes={userActivityTypes} heatMapMode={options.heatMapMode} setOption={setOption} />
+              <MapOptions userActivityTypes={userActivityTypes} heatMapMode={options.mapConfig.heatMapMode} setMapOption={setMapOption} />
               <ActivityTypes userActivityTypes={userActivityTypes} activityTypeConfig={options.activityTypeConfig} toggleActivityTypeDisplay={toggleActivityTypeDisplay} />
               <Seasons seasonConfig={options.seasonConfig} toggleSeasonDisplay={toggleSeasonDisplay} />
             </>

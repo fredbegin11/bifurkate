@@ -3,15 +3,17 @@ import _ from 'lodash';
 import moment from 'moment';
 
 const defaultState = {
-  setHeatMapMode: () => {},
-
   isMenuOpen: false,
   toggleMenuOpen: () => {},
   toggleActivityTypeDisplay: () => {},
   toggleSeasonDisplay: () => {},
 
   options: {
-    heatMapMode: false,
+    mapConfig: {
+      heatMapMode: false,
+      polylineColor: 'red',
+      polylineWeight: 2,
+    },
     activityTypeConfig: {},
     seasonConfig: {},
   },
@@ -36,6 +38,8 @@ class MenuProvider extends React.Component {
 
   setOption = options => this.setState({ options: { ...this.state.options, ...options } });
 
+  setMapOption = options => this.setState({ options: { ...this.state.options, mapConfig: { ...this.state.options.mapConfig, ...options } } });
+
   toggleSeasonDisplay = season => this.setState({ options: { ...this.state.options, seasonConfig: { ...this.state.options.seasonConfig, ...season } } });
 
   toggleMenuOpen = () => this.setState({ isMenuOpen: !this.state.isMenuOpen });
@@ -50,7 +54,7 @@ class MenuProvider extends React.Component {
   render() {
     const { children } = this.props;
     const { options, isMenuOpen } = this.state;
-    const { initializeMenu, toggleSeasonDisplay, toggleMenuOpen, setOption, toggleActivityTypeDisplay } = this;
+    const { initializeMenu, toggleSeasonDisplay, toggleMenuOpen, setOption, toggleActivityTypeDisplay, setMapOption } = this;
 
     return (
       <MenuContext.Provider
@@ -62,6 +66,7 @@ class MenuProvider extends React.Component {
           toggleActivityTypeDisplay,
           toggleMenuOpen,
           toggleSeasonDisplay,
+          setMapOption,
         }}
       >
         {children}
