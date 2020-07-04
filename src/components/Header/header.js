@@ -18,9 +18,9 @@ const Header = ({ showMenu, profile }) => {
     }
   `);
 
-  const { isMenuOpen, setIsMenuOpen } = useContext(MenuContext);
+  const { isMenuOpen, toggleMenuOpen } = useContext(MenuContext);
 
-  const handleMenuClick = () => setIsMenuOpen(!isMenuOpen);
+  const handleMenuClick = () => toggleMenuOpen(!isMenuOpen);
 
   return (
     <header className={classNames('header', isMenuOpen && '--open')}>
