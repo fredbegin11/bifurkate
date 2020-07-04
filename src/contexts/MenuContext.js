@@ -1,43 +1,72 @@
 import React from 'react';
+import _ from 'lodash';
+import moment from 'moment';
 
 const defaultState = {
   setHeatMapMode: () => {},
 
   isMenuOpen: false,
-  setIsMenuOpen: () => {},
-  toggleType: () => {},
-  setSeason: () => {},
+  toggleMenuOpen: () => {},
+  toggleActivityTypeDisplay: () => {},
+  toggleSeasonDisplay: () => {},
 
   options: {
     heatMapMode: false,
     activityTypeConfig: {},
-    seasons: {},
+    seasonConfig: {},
   },
 };
 
 const MenuContext = React.createContext(defaultState);
 
-// TODO: Clean This Mess
 class MenuProvider extends React.Component {
   state = defaultState;
 
+  initializeMenu = (activities, userActivityTypes) => {
+    const activityTypeConfig = {};
+    userActivityTypes.forEach(x => (activityTypeConfig[x] = true));
+
+    let seasonConfig = {};
+    const allSeasons = activities.map(x => moment(x.start_date).format('YYYY'));
+    const uniqueSeasons = _.uniq(allSeasons, true);
+    uniqueSeasons.forEach(x => (seasonConfig[x] = true));
+
+    this.setOption({ activityTypeConfig, seasonConfig });
+  };
+
   setOption = options => this.setState({ options: { ...this.state.options, ...options } });
 
-  setSeason = season => this.setState({ options: { ...this.state.options, seasons: { ...this.state.options.seasons, ...season } } });
+  toggleSeasonDisplay = season => this.setState({ options: { ...this.state.options, seasonConfig: { ...this.state.options.seasonConfig, ...season } } });
 
-  setIsMenuOpen = () => this.setState({ isMenuOpen: !this.state.isMenuOpen });
+  toggleMenuOpen = () => this.setState({ isMenuOpen: !this.state.isMenuOpen });
 
-  toggleType = type => {
-    const { activityTypeConfig } = this.state.options;
-    this.setState({ options: { ...this.state.options, activityTypeConfig: { ...activityTypeConfig, [type]: !activityTypeConfig[type] } } });
+  toggleActivityTypeDisplay = type => {
+    const { options } = this.state;
+    const { activityTypeConfig } = options;
+
+    this.setState({ options: { ...options, activityTypeConfig: { ...activityTypeConfig, [type]: !activityTypeConfig[type] } } });
   };
 
   render() {
     const { children } = this.props;
     const { options, isMenuOpen } = this.state;
-    const { setSeason, setIsMenuOpen, setOption, toggleType } = this;
+    const { initializeMenu, toggleSeasonDisplay, toggleMenuOpen, setOption, toggleActivityTypeDisplay } = this;
 
-    return <MenuContext.Provider value={{ toggleType, setSeason, setIsMenuOpen, setOption, options, isMenuOpen }}>{children}</MenuContext.Provider>;
+    return (
+      <MenuContext.Provider
+        value={{
+          initializeMenu,
+          isMenuOpen,
+          options,
+          setOption,
+          toggleActivityTypeDisplay,
+          toggleMenuOpen,
+          toggleSeasonDisplay,
+        }}
+      >
+        {children}
+      </MenuContext.Provider>
+    );
   }
 }
 

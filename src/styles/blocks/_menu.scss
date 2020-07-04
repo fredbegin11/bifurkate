@@ -23,6 +23,7 @@
   @include phone {
     max-width: inherit;
     max-height: inherit;
+    min-height: calc(100vh - 74px);
     height: inherit;
     width: 100%;
     transform: translateX(-100%);

@@ -10,7 +10,7 @@ import stravaAgents from '../agents/stravaAgents';
 import { getMedian } from '../helpers/mathHelpers';
 import Menu from '../components/Menu/Menu';
 import MenuContext from '../contexts/MenuContext';
-import { filterActivities, processActivities, getAllActivityTypes } from '../helpers/activityHelpers';
+import { filterActivitiesToDisplay, processActivities } from '../helpers/activityHelpers';
 
 let Leaflet;
 
@@ -21,7 +21,7 @@ if (typeof window !== 'undefined') {
 
 const MapComponent = () => {
   const { storeHydrated: athleteStoreHydrated, athlete } = useContext(AthleteContext);
-  const { options, setSeason } = useContext(MenuContext);
+  const { options } = useContext(MenuContext);
   const [isLoading, setIsLoading] = useState(true);
   const [activities, setActivities] = useState([]);
   const [selectedActivityId, setSelectedActivityId] = useState([]);
@@ -30,9 +30,8 @@ const MapComponent = () => {
   useEffect(() => {
     if (athleteStoreHydrated && athlete.id) {
       stravaAgents.getAllActivities().then(data => {
-        const { processedActivities, processedSeasons } = processActivities(data);
+        const processedActivities = processActivities(data);
 
-        setSeason(processedSeasons);
         setActivities(processedActivities);
         setIsLoading(false);
       });
@@ -50,14 +49,14 @@ const MapComponent = () => {
     }
   }, [activities]);
 
-  const activitiesToShow = filterActivities(activities, options);
+  const activitiesToShow = filterActivitiesToDisplay(activities, options);
   const selectedActivity = activitiesToShow.find(x => x.id === selectedActivityId);
 
   return (
     <>
       {isLoading && <MapLoader />}
 
-      <Menu userActivityTypes={getAllActivityTypes(activities)} />
+      <Menu activities={activities} />
 
       <Layout showMenu={!isLoading}>
         <SEO title="App" />

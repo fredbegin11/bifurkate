@@ -1,9 +1,9 @@
 {
   "name": "gatsby-starter-default",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "description": "Tired of riding in the same three old routes? Check your ride history and let it inspire you to try new routes!",
+  "version": "1.1.0",
+  "author": "Frédéric Bégin <frederic.begin.fb@gmail.com>",
   "dependencies": {
     "@mapbox/polyline": "^1.1.1",
     "animejs": "^3.2.0",

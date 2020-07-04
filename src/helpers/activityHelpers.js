@@ -2,21 +2,18 @@ import _ from 'lodash';
 import moment from 'moment';
 import polyline from '@mapbox/polyline';
 
-// TODO: Clean This Mess
-export const filterActivities = (activities, options) => {
-  const { activityTypeConfig } = options;
+export const filterActivitiesToDisplay = (activities, options) => {
+  const { activityTypeConfig, seasonConfig } = options;
 
-  const typesToShow = Object.keys(activityTypeConfig).filter(key => !!activityTypeConfig[key]);
+  const typeKeys = Object.keys(activityTypeConfig);
+  const seasonKeys = Object.keys(seasonConfig);
+
+  const selectedTypes = typeKeys.filter(key => !!activityTypeConfig[key]);
+  const selectedSeasons = seasonKeys.filter(key => !!seasonConfig[key]);
 
   let filteredActivities = activities.filter(x => !!x.polyline);
-  filteredActivities = filteredActivities.filter(x => typesToShow.includes(x.type));
-
-  const seasons = Object.keys(options.seasons);
-  seasons.forEach(season => {
-    if (!options.seasons[season]) {
-      filteredActivities = filteredActivities.filter(x => moment(x.start_date).format('YYYY') !== season);
-    }
-  });
+  filteredActivities = filteredActivities.filter(x => selectedTypes.includes(x.type));
+  filteredActivities = filteredActivities.filter(x => selectedSeasons.includes(moment(x.start_date).format('YYYY')));
 
   return filteredActivities;
 };
@@ -34,14 +31,9 @@ export const decodePolylines = activity => {
 };
 
 export const processActivities = data => {
-  let seasonsObject = {};
   const filteredActivities = data.filter(x => !x.type.includes('Virtual') && !!_.get(x, 'map.summary_polyline'));
 
-  const seasons = filteredActivities.map(x => moment(x.start_date).format('YYYY'));
-  const uniqueSeasons = _.uniq(seasons, true);
-  uniqueSeasons.forEach(x => (seasonsObject[x] = true));
-
-  return { processedActivities: filteredActivities.map(x => decodePolylines(x)).reverse(), processedSeasons: seasonsObject };
+  return filteredActivities.map(x => decodePolylines(x)).reverse();
 };
 
 export const ActivityType = {
@@ -82,4 +74,9 @@ export const ActivityType = {
   Yoga: 'Yoga',
 };
 
-export const getAllActivityTypes = activities => _.uniq(activities.map(x => x.type));
+export const getAllActivityTypes = activities => _.uniq(activities.map(x => x.type)).sort();
+
+export const getAllSeasons = activities => {
+  const seasonConfig = activities.map(x => moment(x.start_date).format('YYYY'));
+  return _.uniq(seasonConfig, true);
+};
