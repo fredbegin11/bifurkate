@@ -24,6 +24,21 @@ const MenuContext = React.createContext(defaultState);
 class MenuProvider extends React.Component {
   state = defaultState;
 
+  componentDidMount() {
+    if (typeof window !== 'undefined') {
+      try {
+        const localMapConfig = JSON.parse(localStorage.getItem('mapConfig'));
+        this.setMapOption(localMapConfig);
+      } catch (err) {}
+    }
+  }
+
+  componentDidUpdate(_prevProps, prevState) {
+    if (typeof window !== 'undefined' && !_.isEqual(prevState.options.mapConfig, this.state.options.mapConfig)) {
+      localStorage.setItem('mapConfig', JSON.stringify(this.state.options.mapConfig));
+    }
+  }
+
   initializeMenu = (activities, userActivityTypes) => {
     const activityTypeConfig = {};
     userActivityTypes.forEach(x => (activityTypeConfig[x] = true));

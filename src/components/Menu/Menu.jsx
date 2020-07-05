@@ -35,13 +35,12 @@ const Menu = ({ activities }) => {
           {_.isEmpty(userActivityTypes) && <NoActivities />}
           {!_.isEmpty(userActivityTypes) && (
             <>
-              <MapOptions userActivityTypes={userActivityTypes} heatMapMode={options.mapConfig.heatMapMode} setMapOption={setMapOption} />
+              <MapOptions userActivityTypes={userActivityTypes} mapConfig={options.mapConfig} setMapOption={setMapOption} />
               <ActivityTypes userActivityTypes={userActivityTypes} activityTypeConfig={options.activityTypeConfig} toggleActivityTypeDisplay={toggleActivityTypeDisplay} />
               <Seasons seasonConfig={options.seasonConfig} toggleSeasonDisplay={toggleSeasonDisplay} />
             </>
           )}
         </div>
-
         <Footer />
       </div>
     </SimpleBar>

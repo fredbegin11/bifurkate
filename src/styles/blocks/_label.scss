@@ -12,6 +12,10 @@
       margin: 0;
       margin-left: rem(10);
     }
+
+    &.--no-margin {
+      margin: 0;
+    }
   }
 
   &__subheader {

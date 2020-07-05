@@ -1,13 +1,26 @@
 import React from 'react';
 import { FaCheck, FaTimes } from 'react-icons/fa';
+import { HuePicker } from 'react-color';
+import { useState } from 'react';
+import Collapsable from '../Collapsable';
 
-const MapOptions = ({ heatMapMode, setMapOption }) => (
-  <div className="menu__block">
-    <span className="label__header --small-margin">Map Options</span>
-    <button className="custom-button menu__item" onClick={() => setMapOption({ heatMapMode: !heatMapMode })}>
-      Heatmap Mode {heatMapMode ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
-    </button>
-  </div>
-);
+const MapOptions = ({ mapConfig, setMapOption }) => {
+  const [isColorPickerOpened, setIsColorPickerOpened] = useState(false);
+
+  return (
+    <Collapsable label="Map Options" isInitiallyOpen>
+      <button className="custom-button menu__item" onClick={() => setMapOption({ heatMapMode: !mapConfig.heatMapMode })}>
+        Heatmap Mode {mapConfig.heatMapMode ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
+      </button>
+      <div className="custom-button menu__item" onClick={() => setIsColorPickerOpened(!isColorPickerOpened)}>
+        <span className="menu__color-picker">Map Color</span>
+        <HuePicker width="100%" className="menu__color-picker --picker" color={mapConfig.polylineColor} onChangeComplete={({ hex }) => setMapOption({ polylineColor: hex })} />
+      </div>
+      <button className="custom-button menu__item --small" onClick={() => setMapOption({ heatMapMode: false, polylineColor: 'red' })}>
+        Reset to defaults
+      </button>
+    </Collapsable>
+  );
+};
 
 export default MapOptions;

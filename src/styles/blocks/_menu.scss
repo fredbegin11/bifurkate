@@ -46,6 +46,18 @@
     }
   }
 
+  &__color-picker {
+    flex: 2;
+
+    & + & {
+      flex: 1;
+    }
+
+    &.--picker {
+      cursor: pointer;
+    }
+  }
+
   &__inner {
     height: 100%;
     display: flex;
