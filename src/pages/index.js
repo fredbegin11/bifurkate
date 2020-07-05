@@ -120,7 +120,7 @@ const IndexPage = () => {
                   <div className="hero-copy">
                     <h1 className="hero-title mt-0">Find some inspiration!</h1>
                     <p className="hero-paragraph">
-                      Like the saying goes, you need to know where you've been to know where your going. If you find yourself tired of riding the same old routes or running the
+                      Like the saying goes, you need to know where you've been to know where you're going. If you find yourself tired of riding the same old routes or running the
                       same old path, don't worry, you're not alone.
                       <br />
                       <br />
