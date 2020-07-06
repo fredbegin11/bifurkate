@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
-import SimpleBar from 'simplebar-react';
 import _ from 'lodash';
-import classNames from 'classnames';
 
 import ActivityTypes from './Blocks/ActivityTypes';
 import Footer from './Blocks/Footer';
