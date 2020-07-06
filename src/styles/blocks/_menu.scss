@@ -47,11 +47,8 @@
   }
 
   &__color-picker {
-    flex: 2;
-
-    & + & {
-      flex: 1;
-    }
+    flex: 1;
+    justify-content: flex-end;
 
     &.--picker {
       cursor: pointer;

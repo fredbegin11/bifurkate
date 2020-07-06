@@ -11,7 +11,7 @@ const defaultState = {
   options: {
     mapConfig: {
       heatMapMode: false,
-      polylineColor: 'red',
+      polylineColor: '#FF0000',
       polylineWeight: 2,
     },
     activityTypeConfig: {},
