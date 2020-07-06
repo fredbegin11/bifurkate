@@ -59,6 +59,18 @@
     }
   }
 
+  &__weight-picker {
+    justify-content: flex-end;
+
+    & + & {
+      width: rem(70);
+    }
+
+    &.--picker {
+      cursor: pointer;
+    }
+  }
+
   &__inner {
     height: 100%;
     display: flex;
