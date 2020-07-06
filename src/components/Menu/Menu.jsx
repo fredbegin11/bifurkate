@@ -12,6 +12,7 @@ import Seasons from './Blocks/Seasons';
 import { getAllActivityTypes } from '../../helpers/activityHelpers';
 import { useEffect } from 'react';
 import { usePrevious } from '../../helpers/hooks';
+import MenuWrapper from './MenuWrapper';
 
 const Menu = ({ activities }) => {
   const { initializeMenu, toggleActivityTypeDisplay, isMenuOpen, setOption, setMapOption, options, toggleSeasonDisplay } = useContext(MenuContext);
@@ -29,7 +30,7 @@ const Menu = ({ activities }) => {
   }, [activities, userActivityTypes, prevActivityTypes, setOption, initializeMenu]);
 
   return (
-    <SimpleBar forceVisible={true} autoHide={false} className={classNames('menu', isMenuOpen && '--open')}>
+    <MenuWrapper isMenuOpen={isMenuOpen}>
       <div className="menu__inner">
         <div>
           {_.isEmpty(userActivityTypes) && <NoActivities />}
@@ -43,7 +44,7 @@ const Menu = ({ activities }) => {
         </div>
         <Footer />
       </div>
-    </SimpleBar>
+    </MenuWrapper>
   );
 };
 
