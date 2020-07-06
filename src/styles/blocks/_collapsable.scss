@@ -11,9 +11,11 @@ $transition: all 200ms ease-in;
 
 .collapsable-exit {
   opacity: 1;
+  max-height: rem(300);
 }
 
 .collapsable-exit-active {
   opacity: 0;
+  max-height: 0;
   transition: $transition;
 }
