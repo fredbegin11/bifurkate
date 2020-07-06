@@ -22,6 +22,7 @@ if (typeof window !== 'undefined') {
 const MapComponent = () => {
   const { storeHydrated: athleteStoreHydrated, athlete } = useContext(AthleteContext);
   const { options } = useContext(MenuContext);
+  const { polylineColor, polylineWeight, heatMapMode } = options.mapConfig;
   const [isLoading, setIsLoading] = useState(true);
   const [activities, setActivities] = useState([]);
   const [selectedActivityId, setSelectedActivityId] = useState([]);
@@ -81,9 +82,9 @@ const MapComponent = () => {
                 onClick={() => setSelectedActivityId(activity.id)}
                 key={index}
                 positions={activity.polyline}
-                color="red"
-                weight={2}
-                opacity={options.heatMapMode ? 0.3 : 1}
+                color={polylineColor}
+                weight={polylineWeight}
+                opacity={heatMapMode ? 0.3 : 1}
               >
                 <Leaflet.Popup>
                   <a href={`https://www.strava.com/activities/${activity.id}`} className="label__subheader --no-margin" target="_blank" rel="noopener noreferrer">

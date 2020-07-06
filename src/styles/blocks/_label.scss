@@ -11,6 +11,11 @@
     &.--small-margin {
       margin: 0;
       margin-left: rem(10);
+      margin-bottom: rem(3);
+    }
+
+    &.--no-margin {
+      margin: 0;
     }
   }
 

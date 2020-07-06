@@ -8,14 +8,13 @@
 
 .menu {
   position: absolute !important;
-  top: rem(59);
-  background-color: rgba(0, 0, 0, 0.5);
-  height: calc(100vh - 74px);
+  top: rem(60);
+  background-color: rgba(0, 0, 0, 0.6);
+  height: calc(100vh - 75px);
   max-width: rem(300);
   padding: rem(20);
   transform: translateX(rem(-300));
   transition: all 0.2s ease-out;
-  transition: all;
   width: 100%;
   z-index: 2;
   overflow-y: auto;
@@ -36,6 +35,7 @@
 
   &__status {
     color: white;
+    transition: transform 200ms ease;
 
     &.--inactive {
       color: red;
@@ -43,6 +43,31 @@
 
     &.--active {
       color: green;
+    }
+
+    &.--down {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__color-picker {
+    flex: 1;
+    justify-content: flex-end;
+
+    &.--picker {
+      cursor: pointer;
+    }
+  }
+
+  &__weight-picker {
+    justify-content: flex-end;
+
+    & + & {
+      width: rem(70);
+    }
+
+    &.--picker {
+      cursor: pointer;
     }
   }
 

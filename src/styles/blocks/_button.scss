@@ -12,6 +12,10 @@
     padding: rem(5) rem(10);
   }
 
+  &.--small {
+    @extend %font-type-button-small;
+  }
+
   &:hover {
     opacity: 1;
   }
