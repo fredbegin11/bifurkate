@@ -30,7 +30,6 @@ const MapComponent = () => {
   useEffect(() => {
     if (athleteStoreHydrated && athlete.id) {
       stravaAgents.getAllActivities().then(data => {
-        console.log('data: ', data);
         const processedActivities = processActivities(data);
 
         setActivities(processedActivities);
@@ -68,6 +67,8 @@ const MapComponent = () => {
             center={isLoading ? [46.8139, -71.29] : center}
             zoom={isLoading ? 5 : 10}
             zoomControl={false}
+            zoomSnap={0.5}
+            zoomDelta={0.5}
             onClick={() => setSelectedActivityId(null)}
           >
             <Leaflet.TileLayer
