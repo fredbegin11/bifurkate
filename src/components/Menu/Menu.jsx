@@ -11,6 +11,7 @@ import { getAllActivityTypes } from '../../helpers/activityHelpers';
 import { useEffect } from 'react';
 import { usePrevious } from '../../helpers/hooks';
 import MenuWrapper from './MenuWrapper';
+import Dates from './Blocks/Dates';
 
 const Menu = ({ activities }) => {
   const { initializeMenu, toggleActivityTypeDisplay, isMenuOpen, setOption, setMapOption, options, toggleSeasonDisplay } = useContext(MenuContext);
@@ -37,6 +38,7 @@ const Menu = ({ activities }) => {
               <MapOptions userActivityTypes={userActivityTypes} mapConfig={options.mapConfig} setMapOption={setMapOption} />
               <ActivityTypes userActivityTypes={userActivityTypes} activityTypeConfig={options.activityTypeConfig} toggleActivityTypeDisplay={toggleActivityTypeDisplay} />
               <Seasons seasonConfig={options.seasonConfig} toggleSeasonDisplay={toggleSeasonDisplay} />
+              <Dates config={options.datesConfig} setDateConfig={datesConfig => setOption({ datesConfig })} />
             </>
           )}
         </div>

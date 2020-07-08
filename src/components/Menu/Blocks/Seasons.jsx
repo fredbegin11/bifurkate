@@ -9,6 +9,8 @@ const Seasons = ({ seasonConfig, toggleSeasonDisplay }) => (
         {key} {seasonConfig[key] ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
       </button>
     ))}
+
+    <div className="custom-button menu__item">Custom Dates</div>
   </Collapsable>
 );
 

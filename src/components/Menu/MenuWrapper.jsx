@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
-import { isMobile } from 'react-device-detect';
+import React from 'react';
 import SimpleBar from 'simplebar-react';
 import classNames from 'classnames';
-import { useEffect } from 'react';
+import { useIsMobile } from '../../helpers/hooks';
 
 const MenuWrapper = ({ children, isMenuOpen }) => {
-  const [showMobile, setShowMobile] = useState(false);
+  const isMobile = useIsMobile();
 
-  useEffect(() => {
-    setShowMobile(isMobile);
-  }, []);
-
-  if (showMobile) {
+  if (isMobile) {
     return <div className={classNames('menu', isMenuOpen && '--open')}>{children}</div>;
   }
 

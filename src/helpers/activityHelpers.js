@@ -4,16 +4,24 @@ import polyline from '@mapbox/polyline';
 
 export const filterActivitiesToDisplay = (activities, options) => {
   const { activityTypeConfig, seasonConfig } = options;
-
   const typeKeys = Object.keys(activityTypeConfig);
   const seasonKeys = Object.keys(seasonConfig);
-
-  const selectedTypes = typeKeys.filter(key => !!activityTypeConfig[key]);
-  const selectedSeasons = seasonKeys.filter(key => !!seasonConfig[key]);
+  const { startDate, endDate } = options.datesConfig;
 
   let filteredActivities = activities.filter(x => !!x.polyline);
+
+  const selectedTypes = typeKeys.filter(key => !!activityTypeConfig[key]);
   filteredActivities = filteredActivities.filter(x => selectedTypes.includes(x.type));
-  filteredActivities = filteredActivities.filter(x => selectedSeasons.includes(moment(x.start_date).format('YYYY')));
+
+  if (startDate && endDate) {
+    filteredActivities = filteredActivities.filter(x => {
+      const activityDate = moment(x.start_date);
+      return activityDate.isBefore(endDate) && activityDate.isAfter(startDate);
+    });
+  } else {
+    const selectedSeasons = seasonKeys.filter(key => !!seasonConfig[key]);
+    filteredActivities = filteredActivities.filter(x => selectedSeasons.includes(moment(x.start_date).format('YYYY')));
+  }
 
   return filteredActivities;
 };

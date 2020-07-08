@@ -6,6 +6,7 @@
   "author": "Frédéric Bégin <frederic.begin.fb@gmail.com>",
   "dependencies": {
     "@mapbox/polyline": "^1.1.1",
+    "@wojtekmaj/react-daterange-picker": "^3.0.0",
     "animejs": "^3.2.0",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",

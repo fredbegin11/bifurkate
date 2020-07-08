@@ -16,6 +16,7 @@ const defaultState = {
     },
     activityTypeConfig: {},
     seasonConfig: {},
+    datesConfig: {},
   },
 };
 
