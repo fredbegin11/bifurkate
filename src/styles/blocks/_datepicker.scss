@@ -1,0 +1,32 @@
+.DateRangePicker_picker {
+  z-index: 4 !important;
+}
+
+.DateRangePickerInput,
+.DateInput,
+.DateInput_input,
+.DateRangePickerInput_arrow_svg,
+.DateRangePickerInput {
+  @extend %font-type-button-override;
+  background-color: transparent !important;
+  color: white !important;
+  fill: white !important;
+  stroke: white !important;
+  cursor: pointer !important;
+
+  &::placeholder {
+    @extend %font-type-button;
+    color: white !important;
+    opacity: 0.8;
+  }
+
+  &:hover {
+    &::placeholder {
+      opacity: 1;
+    }
+  }
+}
+
+.DateInput_input__focused {
+  border: none !important;
+}

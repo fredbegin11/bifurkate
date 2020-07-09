@@ -16,6 +16,7 @@ const defaultState = {
     },
     activityTypeConfig: {},
     seasonConfig: {},
+    datesConfig: {},
   },
 };
 
@@ -55,7 +56,17 @@ class MenuProvider extends React.Component {
 
   setMapOption = options => this.setState({ options: { ...this.state.options, mapConfig: { ...this.state.options.mapConfig, ...options } } });
 
-  toggleSeasonDisplay = season => this.setState({ options: { ...this.state.options, seasonConfig: { ...this.state.options.seasonConfig, ...season } } });
+  toggleSeasonDisplay = season => {
+    this.setOption({ datesConfig: {}, seasonConfig: { ...this.state.options.seasonConfig, ...season } });
+  };
+
+  setDateConfig = (datesConfig, seasonValue = false) => {
+    let seasonConfig = {};
+    const seasons = Object.keys(this.state.options.seasonConfig);
+    seasons.forEach(x => (seasonConfig[x] = seasonValue));
+
+    this.setOption({ datesConfig, seasonConfig });
+  };
 
   toggleMenuOpen = () => this.setState({ isMenuOpen: !this.state.isMenuOpen });
 
@@ -69,7 +80,7 @@ class MenuProvider extends React.Component {
   render() {
     const { children } = this.props;
     const { options, isMenuOpen } = this.state;
-    const { initializeMenu, toggleSeasonDisplay, toggleMenuOpen, setOption, toggleActivityTypeDisplay, setMapOption } = this;
+    const { initializeMenu, toggleSeasonDisplay, toggleMenuOpen, setOption, toggleActivityTypeDisplay, setMapOption, setDateConfig } = this;
 
     return (
       <MenuContext.Provider
@@ -82,6 +93,7 @@ class MenuProvider extends React.Component {
           toggleMenuOpen,
           toggleSeasonDisplay,
           setMapOption,
+          setDateConfig,
         }}
       >
         {children}

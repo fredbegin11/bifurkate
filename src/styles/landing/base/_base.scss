@@ -75,31 +75,3 @@ img,
 svg {
   display: block;
 }
-
-// tables
-table {
-  border-collapse: collapse;
-  margin-bottom: 24px;
-  width: 100%;
-}
-
-tr {
-  border-bottom: 1px solid color(bg, 3);
-}
-
-th {
-  text-align: left;
-}
-
-th,
-td {
-  padding: 10px 16px;
-
-  &:first-child {
-    padding-left: 0;
-  }
-
-  &:last-child {
-    padding-right: 0;
-  }
-}

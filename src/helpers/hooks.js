@@ -1,4 +1,5 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 export const usePrevious = value => {
   const ref = useRef();
@@ -8,4 +9,14 @@ export const usePrevious = value => {
   });
 
   return ref.current;
+};
+
+export const useIsMobile = () => {
+  const [showMobile, setShowMobile] = useState(false);
+
+  useEffect(() => {
+    setShowMobile(isMobile);
+  }, [isMobile]);
+
+  return showMobile;
 };
