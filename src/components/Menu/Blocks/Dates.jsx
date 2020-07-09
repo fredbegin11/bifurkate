@@ -1,20 +1,38 @@
 import React, { useState } from 'react';
 import Collapsable from '../Collapsable';
-import DateRangePicker from '@wojtekmaj/react-daterange-picker';
+import { DateRangePicker } from 'react-dates';
+import { useIsMobile } from '../../../helpers/hooks';
 
-const Dates = ({ config, setDateConfig }) => {
+const Dates = ({ config, setDateConfig, clearConfig }) => {
+  const [focusedInput, setFocusedInput] = useState(null);
+  const isMobile = useIsMobile();
+
   return (
-    <Collapsable label="Dates" isInitiallyOpen>
-      <div style={{ padding: 10 }}>
+    <Collapsable label="Custom Dates" isInitiallyOpen>
+      <div className="datepicker__wrapper">
         <DateRangePicker
-          value={[config.startDate, config.endDate]}
-          onChange={value =>
-            setDateConfig({
-              startDate: value ? value[0] : null,
-              endDate: value ? value[1] : null,
-            })
-          }
+          startDate={config.startDate}
+          startDateId="start"
+          endDate={config.endDate}
+          endDateId="end"
+          onDatesChange={({ startDate, endDate }) => setDateConfig({ startDate, endDate })}
+          focusedInput={focusedInput}
+          onFocusChange={setFocusedInput}
+          isOutsideRange={() => false}
+          openDirection="up"
+          block
+          numberOfMonths={isMobile ? 1 : 2}
+          withPortal
+          hideKeyboardShortcutsPanel
+          readOnly
+          noBorder
+          displayFormat="YYYY-MM-DD"
         />
+      </div>
+      <div className="menu__item --padded">
+        <button className="custom-button --small" onClick={clearConfig}>
+          Clear Dates
+        </button>
       </div>
     </Collapsable>
   );

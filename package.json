@@ -6,7 +6,6 @@
   "author": "Frédéric Bégin <frederic.begin.fb@gmail.com>",
   "dependencies": {
     "@mapbox/polyline": "^1.1.1",
-    "@wojtekmaj/react-daterange-picker": "^3.0.0",
     "animejs": "^3.2.0",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
@@ -29,6 +28,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-color": "^2.18.1",
+    "react-dates": "^21.8.0",
     "react-device-detect": "^1.13.1",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",

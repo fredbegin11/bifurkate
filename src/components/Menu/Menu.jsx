@@ -14,7 +14,7 @@ import MenuWrapper from './MenuWrapper';
 import Dates from './Blocks/Dates';
 
 const Menu = ({ activities }) => {
-  const { initializeMenu, toggleActivityTypeDisplay, isMenuOpen, setOption, setMapOption, options, toggleSeasonDisplay } = useContext(MenuContext);
+  const { initializeMenu, toggleActivityTypeDisplay, isMenuOpen, setOption, setMapOption, options, setDateConfig, toggleSeasonDisplay } = useContext(MenuContext);
   const userActivityTypes = getAllActivityTypes(activities);
 
   const prevActivityTypes = usePrevious(userActivityTypes);
@@ -37,8 +37,18 @@ const Menu = ({ activities }) => {
             <>
               <MapOptions userActivityTypes={userActivityTypes} mapConfig={options.mapConfig} setMapOption={setMapOption} />
               <ActivityTypes userActivityTypes={userActivityTypes} activityTypeConfig={options.activityTypeConfig} toggleActivityTypeDisplay={toggleActivityTypeDisplay} />
-              <Seasons seasonConfig={options.seasonConfig} toggleSeasonDisplay={toggleSeasonDisplay} />
-              <Dates config={options.datesConfig} setDateConfig={datesConfig => setOption({ datesConfig })} />
+              <Seasons
+                seasonConfig={options.seasonConfig}
+                toggleSeasonDisplay={toggleSeasonDisplay}
+                config={options.datesConfig}
+                setDateConfig={datesConfig => setDateConfig(datesConfig)}
+                clearConfig={() => setDateConfig({ datesConfig: { startDate: null, endDate: null } }, true)}
+              />
+              <Dates
+                config={options.datesConfig}
+                setDateConfig={datesConfig => setDateConfig(datesConfig)}
+                clearConfig={() => setDateConfig({ datesConfig: { startDate: null, endDate: null } }, true)}
+              />
             </>
           )}
         </div>

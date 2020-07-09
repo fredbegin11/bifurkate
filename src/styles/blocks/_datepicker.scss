@@ -1,83 +1,32 @@
-.react-daterange-picker {
-  padding: rem(3) rem(10);
-  border: thin solid gray;
+.DateRangePicker_picker {
+  z-index: 4 !important;
 }
 
-.react-daterange-picker__wrapper {
+.DateRangePickerInput,
+.DateInput,
+.DateInput_input,
+.DateRangePickerInput_arrow_svg,
+.DateRangePickerInput {
+  @extend %font-type-button-override;
+  background-color: transparent !important;
+  color: white !important;
+  fill: white !important;
+  stroke: white !important;
+  cursor: pointer !important;
+
+  &::placeholder {
+    @extend %font-type-button;
+    color: white !important;
+    opacity: 0.8;
+  }
+
+  &:hover {
+    &::placeholder {
+      opacity: 1;
+    }
+  }
+}
+
+.DateInput_input__focused {
   border: none !important;
-}
-
-.react-daterange-picker__inputGroup__input:invalid {
-  background-color: transparent !important;
-}
-
-.react-calendar__navigation__label,
-.react-calendar__navigation__arrow {
-  @extend %font-type-subheader;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &:hover {
-    background-color: cc(darkest) !important;
-  }
-}
-
-.react-calendar__navigation,
-.react-calendar__viewContainer {
-  background-color: cc(darkest);
-}
-
-.react-calendar__tile {
-  &:hover {
-    background-color: cc(darkest) !important;
-  }
-
-  &--active {
-    background-color: cc(dark) !important;
-  }
-}
-
-.react-calendar__tile,
-.react-calendar__navigation {
-  margin: 0 !important;
-}
-
-.react-calendar__tile--now {
-  background-color: transparent !important;
-  color: cc(main) !important;
-}
-
-.react-calendar__month-view__days__day--weekend {
-  color: white !important;
-}
-
-.react-calendar__month-view__days__day--neighboringMonth {
-  color: #757575 !important;
-}
-
-.react-calendar__tile--hover {
-  background-color: cc(dark) !important;
-}
-
-abbr {
-  text-decoration: none !important;
-  cursor: default !important;
-}
-
-.react-daterange-picker__inputGroup {
-  display: flex !important;
-  justify-content: center !important;
-}
-
-.react-daterange-picker__button {
-  color: white !important;
-}
-
-.react-daterange-picker__button__icon {
-  stroke: white;
-}
-
-.react-daterange-picker__calendar-button {
-  display: none;
 }

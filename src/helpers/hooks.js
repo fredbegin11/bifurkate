@@ -16,7 +16,7 @@ export const useIsMobile = () => {
 
   useEffect(() => {
     setShowMobile(isMobile);
-  }, []);
+  }, [isMobile]);
 
   return showMobile;
 };
