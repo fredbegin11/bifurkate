@@ -45,6 +45,7 @@ export default {
         borderWidth: 1,
         borderStyle: 'solid',
         borderRadius: 2,
+        backgroundColor: 'transparent !important',
       },
     },
 

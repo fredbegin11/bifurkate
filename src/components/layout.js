@@ -3,16 +3,9 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { isMobile } from 'react-device-detect';
 
-import ThemedStyleSheet from 'react-with-styles/lib/ThemedStyleSheet';
-import aphroditeInterface from 'react-with-styles-interface-aphrodite';
-
 import Header from './Header/header';
 import stravaAgents from '../agents/stravaAgents';
 import AthleteContext from '../contexts/AthleteContext';
-import DatesTheme from '../themes/DatesTheme';
-
-ThemedStyleSheet.registerInterface(aphroditeInterface);
-ThemedStyleSheet.registerTheme(DatesTheme);
 
 const Layout = ({ children, showMenu }) => {
   const { storeHydrated, athlete, setAthlete } = useContext(AthleteContext);
