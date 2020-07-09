@@ -1,5 +1,6 @@
 .DateRangePicker_picker {
   z-index: 4 !important;
+  background-color: rgba(0, 0, 0, 0.6) !important;
 }
 
 .DateRangePickerInput,
@@ -29,4 +30,53 @@
 
 .DateInput_input__focused {
   border: none !important;
+}
+
+.DayPicker,
+.DayPicker_transitionContainer,
+.CalendarMonthGrid,
+.CalendarMonth,
+.CalendarDay {
+  background-color: cc(datePicker, five) !important;
+}
+
+.DayPickerNavigation_button {
+  background-color: cc(datePicker, five) !important;
+}
+
+.CalendarDay {
+  border: rem(1) solid cc(datePicker, three) !important;
+}
+
+.CalendarDay__selected {
+  border: none !important;
+}
+
+.CalendarDay__selected,
+.CalendarDay__selected:active,
+.CalendarDay__selected:hover {
+  background: cc(datePicker, four) !important;
+  border: 1px double cc(datePicker, two) !important;
+}
+
+.PresetDateRangePicker_button {
+  border: 2px solid cc(datePicker, two) !important;
+  color: cc(datePicker, two) !important;
+}
+
+.PresetDateRangePicker_button__selected {
+  color: #fff;
+  background: cc(datePicker, two) !important;
+}
+
+.CalendarDay__hovered_span,
+.CalendarDay__hovered_span:hover {
+  background: cc(datePicker, three) !important;
+  border: 1px double cc(datePicker, three) !important;
+  color: cc(datePicker, one) !important;
+}
+.CalendarDay__hovered_span:active {
+  background: cc(datePicker, three) !important;
+  border: 1px double cc(datePicker, three) !important;
+  color: cc(datePicker, one) !important;
 }
