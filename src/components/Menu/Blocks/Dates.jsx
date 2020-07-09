@@ -9,26 +9,24 @@ const Dates = ({ config, setDateConfig, clearConfig }) => {
 
   return (
     <Collapsable label="Custom Dates" isInitiallyOpen>
-      <div className="datepicker__wrapper">
-        <DateRangePicker
-          startDate={config.startDate}
-          startDateId="start"
-          endDate={config.endDate}
-          endDateId="end"
-          onDatesChange={({ startDate, endDate }) => setDateConfig({ startDate, endDate })}
-          focusedInput={focusedInput}
-          onFocusChange={setFocusedInput}
-          isOutsideRange={() => false}
-          openDirection="up"
-          block
-          numberOfMonths={isMobile ? 1 : 2}
-          withPortal
-          hideKeyboardShortcutsPanel
-          readOnly
-          noBorder
-          displayFormat="YYYY-MM-DD"
-        />
-      </div>
+      <DateRangePicker
+        startDate={config.startDate}
+        startDateId="start"
+        endDate={config.endDate}
+        endDateId="end"
+        onDatesChange={({ startDate, endDate }) => setDateConfig({ startDate, endDate })}
+        focusedInput={focusedInput}
+        onFocusChange={setFocusedInput}
+        isOutsideRange={() => false}
+        openDirection="up"
+        block
+        numberOfMonths={isMobile ? 1 : 2}
+        withPortal
+        hideKeyboardShortcutsPanel
+        readOnly
+        noBorder
+        displayFormat="YYYY-MM-DD"
+      />
       <div className="menu__item --padded">
         <button className="custom-button --small" onClick={clearConfig}>
           Clear Dates

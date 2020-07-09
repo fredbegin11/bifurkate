@@ -1,12 +1,13 @@
-.DateRangePicker_picker {
+[class*='DateRangePicker_picker'] {
   z-index: 4 !important;
+  background-color: rgba(0, 0, 0, 0.6) !important;
 }
 
-.DateRangePickerInput,
-.DateInput,
-.DateInput_input,
-.DateRangePickerInput_arrow_svg,
-.DateRangePickerInput {
+[class*='DateRangePickerInput'],
+[class*='DateInput'],
+[class*='DateInput_input'],
+[class*='DateRangePickerInput_arrow_svg'],
+[class*='DateRangePickerInput'] {
   @extend %font-type-button-override;
   background-color: transparent !important;
   color: white !important;
@@ -25,8 +26,4 @@
       opacity: 1;
     }
   }
-}
-
-.DateInput_input__focused {
-  border: none !important;
 }
