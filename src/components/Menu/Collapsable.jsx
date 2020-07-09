@@ -1,17 +1,3 @@
-// import React from 'react';
-
-// const Collapsable = ({ label, children }) => {
-//   return (
-//     <div className="menu__block">
-//       <div className="label__header --small-margin">{label}</div>
-
-//       <div className="collapsable">{children}</div>
-//     </div>
-//   );
-// };
-
-// export default Collapsable;
-
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { FaChevronUp } from 'react-icons/fa';
