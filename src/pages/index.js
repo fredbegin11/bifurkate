@@ -126,6 +126,7 @@ const IndexPage = () => {
                       <br />
                       Login with the button right below to visualize where you tend to go and let it inspire you to go somewhere new!
                     </p>
+
                     <div className="hero-cta">
                       <Link to="/app" className="landing__button">
                         <img alt="" className="landing__strava" src={stravaButton} />
@@ -194,6 +195,14 @@ const IndexPage = () => {
 
           <section className="cta section">
             <div className="container">
+              <div className="video-container">
+                <iframe
+                  src="https://www.youtube.com/embed/8CcQjqgjwjM?vq=hd1080&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&color=white&disablekb=1"
+                  frameborder="0"
+                  allowFullScreen="true"
+                  title="demo"
+                ></iframe>
+              </div>
               <div className="cta-inner section-inner">
                 <h3 className="section-title mt-0">Still not convinced? Give it a try, it's free!</h3>
                 <div className="cta-cta">
