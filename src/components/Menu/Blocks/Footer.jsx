@@ -8,6 +8,7 @@ const Footer = () => {
       localStorage.removeItem('refresh_token');
       localStorage.removeItem('access_token');
       localStorage.removeItem('athlete');
+      localStorage.removeItem('mapConfig');
     }
 
     window.location.replace('/');

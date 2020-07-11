@@ -30,12 +30,17 @@ const MapComponent = () => {
 
   useEffect(() => {
     if (athleteStoreHydrated && athlete.id) {
-      stravaAgents.getAllActivities().then(data => {
-        const processedActivities = processActivities(data);
+      stravaAgents
+        .getAllActivities()
+        .then(data => {
+          const processedActivities = processActivities(data);
 
-        setActivities(processedActivities);
-        setIsLoading(false);
-      });
+          setActivities(processedActivities);
+          setIsLoading(false);
+        })
+        .catch(_err => {
+          setIsLoading(false);
+        });
     }
   }, [athleteStoreHydrated, athlete.id]);
 
