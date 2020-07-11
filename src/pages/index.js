@@ -198,8 +198,8 @@ const IndexPage = () => {
               <div className="video-container">
                 <iframe
                   src="https://www.youtube.com/embed/8CcQjqgjwjM?vq=hd1080&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&color=white&disablekb=1"
-                  frameborder="0"
-                  allowFullScreen="true"
+                  frameBorder="0"
+                  allowFullScreen={true}
                   title="demo"
                 ></iframe>
               </div>
