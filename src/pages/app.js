@@ -70,6 +70,7 @@ const MapComponent = () => {
             zoomControl={false}
             zoomSnap={0.5}
             zoomDelta={0.5}
+            minZoom={3}
             onClick={() => setSelectedActivityId(null)}
           >
             <Leaflet.TileLayer
