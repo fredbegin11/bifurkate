@@ -19,7 +19,7 @@ const Callback = ({ location }) => {
           typeof window !== 'undefined' && localStorage.setItem('refresh_token', refresh_token);
           typeof window !== 'undefined' && localStorage.setItem('access_token', access_token);
 
-          navigate('/app');
+          navigate('/app/');
         })
         .catch(error => console.error('Error: ', error));
     } else if (typeof window !== 'undefined') {

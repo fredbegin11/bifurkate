@@ -131,7 +131,7 @@ const IndexPage = () => {
                     </p>
 
                     <div className="hero-cta">
-                      <Link to="/app" className="landing__button">
+                      <Link to="/app/" className="landing__button">
                         <img alt="" className="landing__strava" src={stravaButton} />
                       </Link>
                     </div>

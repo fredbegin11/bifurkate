@@ -13,7 +13,6 @@ module.exports = {
         trackingId: 'UA-171159310-1',
       },
     },
-    `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
