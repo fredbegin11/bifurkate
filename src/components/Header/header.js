@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import HeaderMenu from './HeaderMenu';
 import MenuButton from '../Menu/MenuButton';
 import MenuContext from '../../contexts/MenuContext';
-import logo from '../../images/logo-line-light.png';
+import logo from '../../images/branding/light/logo_transparent_background.png';
 import { useIsMobile } from '../../helpers/hooks';
 
 const Header = ({ showMenu, profile }) => {

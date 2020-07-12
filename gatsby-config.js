@@ -32,7 +32,7 @@ module.exports = {
         background_color: `#ff4b00`,
         theme_color: `#ff4b00`,
         display: `minimal-ui`,
-        icon: `src/images/logo-square.png`, // This path is relative to the root of the site.
+        icon: `src/images/branding/logo-square.png`,
       },
     },
     {
