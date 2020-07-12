@@ -30,6 +30,12 @@
   &__title-container {
     display: flex;
     align-items: center;
+
+    &.--full {
+      width: 100%;
+      justify-content: space-between;
+      flex-direction: row-reverse;
+    }
   }
 
   &__title {
