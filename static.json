@@ -1,3 +1,5 @@
 {
-  "root": "public/"
+  "root": "public/",
+  "https_only": true,
+  "canonical_host": "www.bifurkate.com"
 }
