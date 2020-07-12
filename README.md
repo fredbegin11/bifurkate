@@ -19,4 +19,4 @@ https://hidden-garden-48687.herokuapp.com/
 
 http://www.bifurkate.com/
 
-✌️✌️✌️
+✌️
