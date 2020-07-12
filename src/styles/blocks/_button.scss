@@ -23,11 +23,5 @@
 
   &__icon {
     font-size: rem(25);
-    margin-right: rem(5);
-
-    @include laptop {
-      font-size: rem(25);
-      margin-right: rem(10);
-    }
   }
 }
