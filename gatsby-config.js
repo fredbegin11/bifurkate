@@ -21,6 +21,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    'gatsby-plugin-force-trailing-slashes',
     `gatsby-plugin-sass`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
