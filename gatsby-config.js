@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `BIFURKATE`,
-    description: `A Strava powered ride vizualizer with personal heatmap feature.`,
+    description: `A Strava powered ride visualizer with personal heatmap feature.`,
     author: `@fredbegin11`,
     image: '/images/logo.png',
   },
