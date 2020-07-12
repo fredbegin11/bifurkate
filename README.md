@@ -1,4 +1,4 @@
-# Bifurkate - http://www.bifurkate.com/
+# Bifurkate - https://www.bifurkate.com/
 
 ### Find some inspiration!
 
@@ -17,6 +17,6 @@ https://hidden-garden-48687.herokuapp.com/
 
 #### Production
 
-http://www.bifurkate.com/
+https://www.bifurkate.com/
 
 ✌️✌️✌️
