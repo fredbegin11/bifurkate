@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 
 import demo from '../images/demo.png';
 import demo1 from '../images/demo1.png';
+import logo from '../images/logo-line-light.png';
 import featureIcon1 from '../images/feature-icon-01.svg';
 import featureIcon2 from '../images/feature-icon-02.svg';
 import featureIcon3 from '../images/feature-icon-03.svg';
@@ -106,7 +107,9 @@ const IndexPage = () => {
               <div className="site-header-inner">
                 <div className="brand header-brand">
                   <h1 className="m-0">
-                    <span className="landing__main-title">BIFURKATE</span>
+                    <span className="landing__main-title">
+                      <img alt="" className="landing__strava" src={logo} />
+                    </span>
                   </h1>
                 </div>
               </div>
