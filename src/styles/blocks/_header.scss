@@ -21,10 +21,15 @@
 
   &__logo {
     height: rem(40);
+
+    @include phone {
+      height: rem(30);
+    }
   }
 
   &__title-container {
     display: flex;
+    align-items: center;
   }
 
   &__title {
