@@ -1,9 +1,12 @@
+require(`dotenv`).config();
+
 module.exports = {
   siteMetadata: {
     title: `BIFURKATE`,
     description: `A Strava powered ride visualizer with personal heatmap feature.`,
     author: `@fredbegin11`,
     image: '/images/logo.png',
+    siteUrl: process.env.GATSBY_CURRENT_DOMAIN || `https://www.bifurkate.com`,
   },
   plugins: [
     {
@@ -20,6 +23,7 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    'gatsby-plugin-force-trailing-slashes',
     `gatsby-plugin-sass`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
