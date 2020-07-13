@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { navigate } from 'gatsby';
 
 import Loader from '../components/Loader/Loader';
-import stravaAgent from '../agents/stravaAgents';
+import backendAgents from '../agents/backendAgents';
 
 const Callback = ({ location }) => {
   useEffect(() => {
@@ -12,7 +12,7 @@ const Callback = ({ location }) => {
     const error = params.get('error');
 
     if (!error) {
-      stravaAgent
+      backendAgents
         .authenticate(code)
         .then(({ expires_at, refresh_token, access_token }) => {
           typeof window !== 'undefined' && localStorage.setItem('expires_at', expires_at);

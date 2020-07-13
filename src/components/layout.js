@@ -6,6 +6,7 @@ import { isMobile } from 'react-device-detect';
 import Header from './Header/header';
 import stravaAgents from '../agents/stravaAgents';
 import AthleteContext from '../contexts/AthleteContext';
+import backendAgents from '../agents/backendAgents';
 
 const Layout = ({ children, showMenu }) => {
   const { storeHydrated, athlete, setAthlete } = useContext(AthleteContext);
@@ -27,7 +28,7 @@ const Layout = ({ children, showMenu }) => {
     const currentTime = new Date().getTime() / 1000;
 
     if (currentTime > expiresAt) {
-      stravaAgents
+      backendAgents
         .refreshToken(refreshToken)
         .then(({ expires_at, refresh_token, access_token }) => {
           setExpiresAtState(expires_at);
