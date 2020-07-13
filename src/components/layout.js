@@ -27,7 +27,7 @@ const Layout = ({ children, showMenu }) => {
     const refreshToken = typeof window !== 'undefined' ? localStorage.getItem('refresh_token') : null;
     const currentTime = new Date().getTime() / 1000;
 
-    if (currentTime > expiresAt) {
+    if (currentTime && currentTime > expiresAt) {
       backendAgents
         .refreshToken(refreshToken)
         .then(({ expires_at, refresh_token, access_token }) => {
