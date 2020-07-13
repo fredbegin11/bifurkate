@@ -4,7 +4,6 @@ module.exports = {
     description: `A Strava powered ride visualizer with personal heatmap feature.`,
     author: `@fredbegin11`,
     image: '/images/logo.png',
-    siteUrl: `https://www.bifurkate.com`,
   },
   plugins: [
     {
