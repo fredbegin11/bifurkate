@@ -11,6 +11,7 @@ import { getMedian } from '../helpers/mathHelpers';
 import Menu from '../components/Menu/Menu';
 import MenuContext from '../contexts/MenuContext';
 import { filterActivitiesToDisplay, processActivities } from '../helpers/activityHelpers';
+import ActivityContext from '../contexts/ActivityContext';
 
 let Leaflet;
 
@@ -21,10 +22,10 @@ if (typeof window !== 'undefined') {
 
 const MapComponent = () => {
   const { storeHydrated: athleteStoreHydrated, athlete } = useContext(AthleteContext);
+  const { activities, setActivities } = useContext(ActivityContext);
   const { options } = useContext(MenuContext);
   const { polylineColor, polylineWeight, heatMapMode } = options.mapConfig;
   const [isLoading, setIsLoading] = useState(true);
-  const [activities, setActivities] = useState([]);
   const [selectedActivityId, setSelectedActivityId] = useState([]);
   const [center, setCenter] = useState(null);
 
@@ -34,7 +35,6 @@ const MapComponent = () => {
         .getAllActivities()
         .then(data => {
           const processedActivities = processActivities(data);
-
           setActivities(processedActivities);
           setIsLoading(false);
         })

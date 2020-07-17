@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import moment from 'moment';
+import { getSeasonConfig } from '../helpers/activityHelpers';
 
 const defaultState = {
   isMenuOpen: false,
@@ -44,11 +45,7 @@ class MenuProvider extends React.Component {
     const activityTypeConfig = {};
     userActivityTypes.forEach(x => (activityTypeConfig[x] = true));
 
-    let seasonConfig = {};
-    const allSeasons = activities.map(x => moment(x.start_date).format('YYYY'));
-    const uniqueSeasons = _.uniq(allSeasons, true);
-    uniqueSeasons.forEach(x => (seasonConfig[x] = true));
-
+    const seasonConfig = getSeasonConfig(activities);
     this.setOption({ activityTypeConfig, seasonConfig });
   };
 

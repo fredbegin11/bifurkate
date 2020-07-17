@@ -6,9 +6,12 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { AthleteProvider } from './src/contexts/AthleteContext';
 import { MenuProvider } from './src/contexts/MenuContext';
+import { ActivityProvider } from './src/contexts/ActivityContext';
 
 export const wrapRootElement = ({ element }) => (
   <MenuProvider>
-    <AthleteProvider>{element}</AthleteProvider>
+    <ActivityProvider>
+      <AthleteProvider>{element}</AthleteProvider>
+    </ActivityProvider>
   </MenuProvider>
 );
