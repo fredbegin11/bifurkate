@@ -12,6 +12,7 @@ import { getAllActivitiesBySeasons } from '../helpers/activityHelpers';
 import MapLoader from '../components/Loader/Loader';
 import { getFormattedDate, months } from '../helpers/dateHelpers';
 import PropertyTabs from '../components/Stats/PropertyTabs';
+import CalendarChart from '../components/Charts/CalendarChart';
 
 const getTotalDistance = activities => Math.round(activities.reduce((accumulator, activity) => accumulator + activity.distance, 0) / 1000);
 const getTotalTime = activities => getFormattedDate(activities.reduce((accumulator, activity) => accumulator + activity.moving_time, 0));
@@ -95,6 +96,7 @@ const App = () => {
             </div>
             <PropertyTabs activeProperty={propertyToDisplay} properties={properties} onClick={setPropertyToDisplay} />
             <StatsCharts colors={!showMonthly && 'white'} property={propertyToDisplay} unit={units[propertyToDisplay]} data={getChartData(propertyToDisplay)} />
+            <CalendarChart activities={activities} nbOfSeasons={seasons.length} />
           </div>
         )}
       </Layout>
