@@ -6,6 +6,7 @@
   "author": "Frédéric Bégin <frederic.begin.fb@gmail.com>",
   "dependencies": {
     "@mapbox/polyline": "^1.1.1",
+    "@nivo/bar": "^0.62.0",
     "@nivo/bullet": "^0.62.0",
     "animejs": "^3.2.0",
     "axios": "^0.19.2",

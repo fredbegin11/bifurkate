@@ -1,21 +1,24 @@
 import React from 'react';
-import { ResponsiveBullet } from '@nivo/bullet';
+import { ResponsiveBar } from '@nivo/bar';
 
-const StatsChart = ({ data }) => (
-  <ResponsiveBullet
-    theme={{ textColor: 'white', fontSize: 16, tooltip: { container: { backgroundColor: 'rgba(0,0,0,0.8)' } } }}
-    data={data}
-    margin={{ top: 50, right: 90, bottom: 50, left: 90 }}
-    spacing={46}
-    titleAlign="start"
-    titleOffsetX={-70}
-    measureSize={0.2}
-    measureColors="red_yellow_green"
-    animate={true}
-    motionStiffness={90}
-    motionDamping={12}
-    rangeColors="black"
-  />
+const StatsChart = ({ data, unit, property }) => (
+  <div style={{ marginBottom: 50, height: 400 }}>
+    <ResponsiveBar
+      animate={true}
+      colors="white"
+      data={data}
+      enableGridY={false}
+      indexBy="season"
+      keys={[property]}
+      labelFormat={value => `${value} ${unit}`}
+      labelTextColor="black"
+      layout="horizontal"
+      margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+      padding={0.3}
+      theme={{ textColor: 'white', fontSize: 16, tooltip: { container: { backgroundColor: 'rgba(0,0,0,0.8)' } } }}
+      tooltipFormat={value => `${value} ${unit}`}
+    />
+  </div>
 );
 
 export default StatsChart;
