@@ -10,10 +10,11 @@ const StatsChart = ({ data }) => (
     titleAlign="start"
     titleOffsetX={-70}
     measureSize={0.2}
+    measureColors="red_yellow_green"
     animate={true}
     motionStiffness={90}
     motionDamping={12}
-    rangeColors="oranges"
+    rangeColors="black"
   />
 );
 

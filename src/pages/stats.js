@@ -1,18 +1,25 @@
 import React, { useContext, useState } from 'react';
+import _ from 'lodash';
 
 import ActivityContext from '../contexts/ActivityContext';
 import { useInitData } from '../helpers/hooks';
 import Layout from '../components/layout';
 import StatsCharts from '../components/Charts/StatsCharts';
-import StatsRadarChart from '../components/Charts/StatsRadarChart';
 import SEO from '../components/seo';
 import { getAllActivitiesBySeasons } from '../helpers/activityHelpers';
 import MapLoader from '../components/Loader/Loader';
+import { getFormattedDate } from '../helpers/dateHelpers';
 
-const getFormattedDate = totalSeconds => {
-  const hours = Math.floor(totalSeconds / 3600);
+const getTotalDistance = activities => activities.reduce((accumulator, activity) => accumulator + activity.distance, 0) / 1000;
+const getTotalTime = activities => getFormattedDate(activities.reduce((accumulator, activity) => accumulator + activity.moving_time, 0));
+const getTotalElevation = activities => activities.reduce((accumulator, activity) => accumulator + activity.total_elevation_gain, 0);
+const getTotalCalories = activities => activities.reduce((accumulator, activity) => accumulator + (activity.kilojoules || 0), 0) / 4.184;
 
-  return `${hours} hours`;
+const propertyConfig = {
+  'Distance (km)': getTotalDistance,
+  'Time (hours)': getTotalTime,
+  'Elevation (m)': getTotalElevation,
+  'Calories Burned': getTotalCalories,
 };
 
 const App = () => {
@@ -22,43 +29,27 @@ const App = () => {
   useInitData({ setIsLoading });
 
   const activitiesBySeasons = getAllActivitiesBySeasons(activities);
-
-  const properties = ['Distance (km)', 'Time (hours)', 'Elevation (m)', 'Calories Burned'];
-
-  const getValues = activities => ({
-    'Distance (km)': (activities.reduce((accumulator, activity) => accumulator + activity.distance, 0) / 1000).toFixed(0),
-    'Time (hours)': getFormattedDate(activities.reduce((accumulator, activity) => accumulator + activity.moving_time, 0)),
-    // 'Time (hours)': activities.reduce((accumulator, activity) => accumulator + activity.moving_time, 0),
-    'Elevation (m)': activities.reduce((accumulator, activity) => accumulator + activity.total_elevation_gain, 0).toFixed(0),
-    'Calories Burned': (activities.reduce((accumulator, activity) => accumulator + (activity.kilojoules || 0), 0) / 4.184).toFixed(0),
-  });
-
   const seasons = Object.keys(activitiesBySeasons);
+  const properties = Object.keys(propertyConfig);
 
-  const getChartData = season => {
-    const values = getValues(activitiesBySeasons[season]);
+  const getChartData = property => {
+    return seasons.map(season => {
+      const processFunction = propertyConfig[property];
+      const allValues = seasons.map(x => processFunction(activitiesBySeasons[x]));
+      const maxValue = _.max(allValues);
 
-    return Object.keys(values).map(key => {
-      const value = values[key];
-      const fraction = value / 5;
-      const ranges = [0, 1, 2, 3, fraction, fraction * 2, fraction * 3, fraction * 4, value];
+      const fraction = maxValue / 5;
+      const ranges = [0, fraction * 6];
+      const seasonValue = processFunction(activitiesBySeasons[season]);
 
       return {
-        id: key,
+        id: season,
         ranges,
-        measures: [value],
+        measures: [seasonValue],
         markers: [],
       };
     });
   };
-
-  const getRadarData = () =>
-    properties.map(property => {
-      return {
-        property,
-        ...getValues(activitiesBySeasons[season]),
-      };
-    });
 
   return (
     <>
@@ -66,21 +57,19 @@ const App = () => {
       <Layout disableMenu={!isLoading} noMenu>
         <SEO title="Stats" />
 
-        <div className="layout__content">
-          {!isLoading &&
-            seasons.map(season => (
-              <>
-                <span className="label__header">{season}</span>
-                <div style={{ marginBottom: 50, height: 500 }}>
-                  <StatsCharts data={getChartData(season)} />
-                </div>
-              </>
-            ))}
-        </div>
-
         {!isLoading && (
-          <div style={{ marginBottom: 50, height: 500 }}>
-            <StatsRadarChart keys={seasons} data={getRadarData()} />
+          <div className="layout__content">
+            {properties.map(property => {
+              console.log('getChartData(property): ', getChartData(property));
+              return (
+                <>
+                  <span className="label__header">{property}</span>
+                  <div style={{ marginBottom: 50, height: 500 }}>
+                    <StatsCharts data={getChartData(property)} />
+                  </div>
+                </>
+              );
+            })}
           </div>
         )}
       </Layout>
