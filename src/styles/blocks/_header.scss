@@ -20,6 +20,7 @@
   }
 
   &__logo {
+    cursor: pointer;
     height: rem(40);
 
     @include phone {

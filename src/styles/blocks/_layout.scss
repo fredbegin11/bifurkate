@@ -3,4 +3,14 @@
   height: calc(var(--vh, 1vh) * 100);
   position: relative;
   z-index: 1;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: rem(100) rem(40) rem(40) rem(40);
+
+    @include phone {
+      padding: rem(80) rem(20) rem(20) rem(20);
+    }
+  }
 }

@@ -92,3 +92,13 @@ export const getSeasonConfig = activities => {
 
   return seasonConfig;
 };
+
+export const getAllActivitiesBySeasons = activities => {
+  let seasonConfig = {};
+  const allSeasons = activities.map(x => moment(x.start_date).format('YYYY'));
+  const uniqueSeasons = _.uniq(allSeasons, true);
+
+  uniqueSeasons.forEach(x => (seasonConfig[x] = activities.filter(act => moment(act.start_date).format('YYYY') === x)));
+
+  return seasonConfig;
+};

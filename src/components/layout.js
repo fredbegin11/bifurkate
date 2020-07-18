@@ -8,7 +8,7 @@ import stravaAgents from '../agents/stravaAgents';
 import AthleteContext from '../contexts/AthleteContext';
 import backendAgents from '../agents/backendAgents';
 
-const Layout = ({ children, showMenu }) => {
+const Layout = ({ children, disableMenu, noMenu }) => {
   const { storeHydrated, athlete, setAthlete } = useContext(AthleteContext);
   const [expiresAtState, setExpiresAtState] = useState(typeof window !== 'undefined' ? localStorage.getItem('expires_at') : null);
 
@@ -53,7 +53,7 @@ const Layout = ({ children, showMenu }) => {
 
   return (
     <>
-      <Header profile={athlete} showMenu={showMenu} />
+      <Header profile={athlete} disableMenu={disableMenu} noMenu={noMenu} />
 
       <main className="layout">{children}</main>
     </>
