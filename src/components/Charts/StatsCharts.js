@@ -1,16 +1,17 @@
 import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
+import { months } from '../../helpers/dateHelpers';
 
-const StatsChart = ({ data, unit, property }) => (
+const StatsChart = ({ colors, data, unit, property }) => (
   <div style={{ marginBottom: 50, height: 400 }}>
     <ResponsiveBar
       animate={true}
-      colors="white"
+      colors={colors || { scheme: 'red_grey' }}
       data={data}
       enableGridY={false}
       indexBy="season"
-      keys={[property]}
-      labelFormat={value => `${value} ${unit}`}
+      keys={[property, ...months]}
+      labelFormat={() => ''}
       labelTextColor="black"
       layout="horizontal"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
