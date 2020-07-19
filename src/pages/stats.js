@@ -4,7 +4,7 @@ import _ from 'lodash';
 import classNames from 'classNames';
 
 import ActivityContext from '../contexts/ActivityContext';
-import { useInitData } from '../helpers/hooks';
+import { useInitData, useIsMobile } from '../helpers/hooks';
 import Layout from '../components/layout';
 import StatsCharts from '../components/Charts/StatsCharts';
 import SEO from '../components/seo';
@@ -28,6 +28,7 @@ const units = { 'Distance (km)': 'km', 'Time (hours)': 'hours', 'Elevation (m)':
 
 const App = () => {
   const { activities } = useContext(ActivityContext);
+  const isMobile = useIsMobile();
 
   const activitiesBySeasons = getAllActivitiesBySeasons(activities);
   const seasons = Object.keys(activitiesBySeasons);
@@ -86,17 +87,23 @@ const App = () => {
 
         {!isLoading && (
           <div className="layout__content">
+            {!isMobile && (
+              <>
+                <CalendarChart activities={activities} nbOfSeasons={seasons.length} />
+                <span className="label__header">Assiduity</span>
+              </>
+            )}
+
             <div style={{ paddingBottom: 20 }}>
-              <button className={classNames('button', !showMonthly && '--active')} onClick={() => setShowMonthly(false)}>
+              <button className={classNames('button --small', !showMonthly && '--active')} onClick={() => setShowMonthly(false)}>
                 Yearly
               </button>
-              <button className={classNames('button', showMonthly && '--active')} onClick={() => setShowMonthly(true)}>
+              <button className={classNames('button --small', showMonthly && '--active')} onClick={() => setShowMonthly(true)}>
                 Monthly
               </button>
             </div>
             <PropertyTabs activeProperty={propertyToDisplay} properties={properties} onClick={setPropertyToDisplay} />
             <StatsCharts colors={!showMonthly && 'white'} property={propertyToDisplay} unit={units[propertyToDisplay]} data={getChartData(propertyToDisplay)} />
-            <CalendarChart activities={activities} nbOfSeasons={seasons.length} />
           </div>
         )}
       </Layout>

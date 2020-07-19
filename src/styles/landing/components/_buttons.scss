@@ -21,6 +21,11 @@
   text-align: center;
   white-space: nowrap;
 
+  &.--small {
+    padding: 8px 16px;
+    height: 32px;
+  }
+
   &:hover {
     background: lighten(color(bg, 3), 1%);
   }

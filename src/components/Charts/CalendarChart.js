@@ -11,7 +11,7 @@ const CalendarChart = ({ activities, nbOfSeasons }) => {
 
   const data = sortedActivities.map(activity => ({
     day: moment(activity.start_date).format('YYYY-MM-DD'),
-    value: 1,
+    value: Math.round(activity.distance / 100) / 10,
   }));
 
   return (
@@ -23,13 +23,22 @@ const CalendarChart = ({ activities, nbOfSeasons }) => {
         from={minDate}
         to={maxDate}
         emptyColor="transparent"
-        colors={['#e5e5e5']}
+        colors={[
+          'rgba(255, 75, 0, 0.3)',
+          'rgba(255, 75, 0, 0.4)',
+          'rgba(255, 75, 0, 0.5)',
+          'rgba(255, 75, 0, 0.6)',
+          'rgba(255, 75, 0, 0.7)',
+          'rgba(255, 75, 0, 0.8)',
+          'rgba(255, 75, 0, 0.9)',
+          'rgba(255, 75, 0, 1)',
+        ]}
         margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
         yearSpacing={40}
         monthBorderColor="#000"
         dayBorderWidth={2}
         dayBorderColor="#000"
-        isInteractive={false}
+        tooltipFormat={value => `${value} km`}
       />
     </div>
   );
