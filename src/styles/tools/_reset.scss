@@ -139,8 +139,8 @@ address {
 
 a {
   background-color: transparent;
-  text-decoration: none;
-  color: inherit;
+  text-decoration: none !important;
+  color: inherit !important;
 }
 
 /**

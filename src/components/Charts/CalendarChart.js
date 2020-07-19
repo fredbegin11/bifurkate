@@ -2,8 +2,11 @@ import { ResponsiveCalendarCanvas } from '@nivo/calendar';
 import _ from 'lodash';
 import moment from 'moment';
 import React from 'react';
+import { useIsMobile } from '../../helpers/hooks';
 
 const CalendarChart = ({ activities, nbOfSeasons }) => {
+  const isMobile = useIsMobile();
+
   const sortedActivities = _.orderBy(activities, activity => moment(activity.start_date).format('YYYY-MM-DD'));
   const firstActivity = _.first(sortedActivities) || {};
   const minDate = moment(firstActivity.start_date).format('YYYY-MM-DD');
@@ -15,7 +18,7 @@ const CalendarChart = ({ activities, nbOfSeasons }) => {
   }));
 
   return (
-    <div style={{ marginBottom: 50, height: nbOfSeasons * 140 }}>
+    <div style={{ marginBottom: 50, height: nbOfSeasons * 150 }}>
       <ResponsiveCalendarCanvas
         theme={{ textColor: 'white', fontSize: 16, tooltip: { container: { backgroundColor: 'rgba(0,0,0,0.8)' } } }}
         data={data}
@@ -33,12 +36,13 @@ const CalendarChart = ({ activities, nbOfSeasons }) => {
           'rgba(255, 75, 0, 0.9)',
           'rgba(255, 75, 0, 1)',
         ]}
-        margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-        yearSpacing={40}
+        margin={{ top: 100, right: 20, bottom: 0, left: 20 }}
+        yearSpacing={45}
         monthBorderColor="#000"
         dayBorderWidth={2}
         dayBorderColor="#000"
         tooltipFormat={value => `${value} km`}
+        isInteractive={!isMobile}
       />
     </div>
   );

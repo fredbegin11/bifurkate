@@ -23,6 +23,7 @@ const StatsChart = ({ colors, data, unit, property }) => {
         theme={{ textColor: 'white', fontSize: 16, tooltip: { container: { backgroundColor: 'rgba(0,0,0,0.8)' } } }}
         tooltipFormat={value => `${value} ${unit}`}
         direction={isMobile ? 'vertical' : 'horizontal'}
+        isInteractive={!isMobile}
       />
     </div>
   );

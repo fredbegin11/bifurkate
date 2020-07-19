@@ -1,6 +1,5 @@
 import React from 'react';
 import _ from 'lodash';
-import moment from 'moment';
 import { getSeasonConfig } from '../helpers/activityHelpers';
 
 const defaultState = {

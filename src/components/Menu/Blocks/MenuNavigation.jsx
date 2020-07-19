@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'gatsby';
-import { FaChartBar } from 'react-icons/fa';
+import { FaChartBar, FaMapMarked } from 'react-icons/fa';
+import Collapsable from '../Collapsable';
+import MenuContext from '../../../contexts/MenuContext';
 
-const MenuNavigation = () => (
-  <div className="menu__block">
-    <Link className="custom-button menu__item" to="/stats/">
-      <div className="label__header --no-margin">My Stats</div>
-      <FaChartBar className="menu__status" />
-    </Link>
-  </div>
-);
+const MenuNavigation = () => {
+  const { toggleMenuOpen } = useContext(MenuContext);
+
+  return (
+    <Collapsable label="Navigation" isInitiallyOpen>
+      <Link className="custom-button menu__item" to="/app/" onClick={toggleMenuOpen}>
+        Map <FaMapMarked className="menu__status" />
+      </Link>
+      <Link className="custom-button menu__item" to="/stats/" onClick={toggleMenuOpen}>
+        Stats <FaChartBar className="menu__status" />
+      </Link>
+    </Collapsable>
+  );
+};
 
 export default MenuNavigation;

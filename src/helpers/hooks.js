@@ -1,6 +1,5 @@
-import { useRef, useEffect, useState, useContext } from 'react';
+import { useRef, useEffect, useState, useContext, useLayoutEffect } from 'react';
 import _ from 'lodash';
-import { isMobile } from 'react-device-detect';
 import AthleteContext from '../contexts/AthleteContext';
 import ActivityContext from '../contexts/ActivityContext';
 import stravaAgents from '../agents/stravaAgents';
@@ -19,9 +18,20 @@ export const usePrevious = value => {
 export const useIsMobile = () => {
   const [showMobile, setShowMobile] = useState(false);
 
+  useLayoutEffect(() => {
+    function updateIsMobile() {
+      setShowMobile(screen.width < 768);
+    }
+
+    window.addEventListener('resize', updateIsMobile);
+    updateIsMobile();
+
+    return () => window.removeEventListener('resize', updateIsMobile);
+  }, []);
+
   useEffect(() => {
-    setShowMobile(isMobile);
-  }, [isMobile]);
+    setShowMobile(screen.width < 768);
+  }, [screen.width]);
 
   return showMobile;
 };

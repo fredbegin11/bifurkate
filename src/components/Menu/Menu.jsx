@@ -14,7 +14,7 @@ import MenuWrapper from './MenuWrapper';
 import Dates from './Blocks/Dates';
 import MenuNavigation from './Blocks/MenuNavigation';
 
-const Menu = ({ activities }) => {
+const Menu = ({ activities, navigationOnly }) => {
   const { initializeMenu, toggleActivityTypeDisplay, isMenuOpen, setOption, setMapOption, options, setDateConfig, toggleSeasonDisplay } = useContext(MenuContext);
   const userActivityTypes = getAllActivityTypes(activities);
 
@@ -32,28 +32,31 @@ const Menu = ({ activities }) => {
   return (
     <MenuWrapper isMenuOpen={isMenuOpen}>
       <div className="menu__inner">
-        <div>
-          {_.isEmpty(userActivityTypes) && <NoActivities />}
-          {!_.isEmpty(userActivityTypes) && (
-            <>
-              <MenuNavigation />
-              <MapOptions userActivityTypes={userActivityTypes} mapConfig={options.mapConfig} setMapOption={setMapOption} />
-              <ActivityTypes userActivityTypes={userActivityTypes} activityTypeConfig={options.activityTypeConfig} toggleActivityTypeDisplay={toggleActivityTypeDisplay} />
-              <Seasons
-                seasonConfig={options.seasonConfig}
-                toggleSeasonDisplay={toggleSeasonDisplay}
-                config={options.datesConfig}
-                setDateConfig={datesConfig => setDateConfig(datesConfig)}
-                clearConfig={() => setDateConfig({ datesConfig: { startDate: null, endDate: null } }, true)}
-              />
-              <Dates
-                config={options.datesConfig}
-                setDateConfig={datesConfig => setDateConfig(datesConfig)}
-                clearConfig={() => setDateConfig({ datesConfig: { startDate: null, endDate: null } }, true)}
-              />
-            </>
-          )}
-        </div>
+        {navigationOnly && <MenuNavigation />}
+        {!navigationOnly && (
+          <div>
+            {_.isEmpty(userActivityTypes) && <NoActivities />}
+            {!_.isEmpty(userActivityTypes) && (
+              <>
+                <MenuNavigation />
+                <MapOptions userActivityTypes={userActivityTypes} mapConfig={options.mapConfig} setMapOption={setMapOption} />
+                <ActivityTypes userActivityTypes={userActivityTypes} activityTypeConfig={options.activityTypeConfig} toggleActivityTypeDisplay={toggleActivityTypeDisplay} />
+                <Seasons
+                  seasonConfig={options.seasonConfig}
+                  toggleSeasonDisplay={toggleSeasonDisplay}
+                  config={options.datesConfig}
+                  setDateConfig={datesConfig => setDateConfig(datesConfig)}
+                  clearConfig={() => setDateConfig({ datesConfig: { startDate: null, endDate: null } }, true)}
+                />
+                <Dates
+                  config={options.datesConfig}
+                  setDateConfig={datesConfig => setDateConfig(datesConfig)}
+                  clearConfig={() => setDateConfig({ datesConfig: { startDate: null, endDate: null } }, true)}
+                />
+              </>
+            )}
+          </div>
+        )}
         <Footer />
       </div>
     </MenuWrapper>

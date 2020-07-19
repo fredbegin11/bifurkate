@@ -1,14 +1,15 @@
 import React, { useEffect, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { isMobile } from 'react-device-detect';
 
 import Header from './Header/header';
 import stravaAgents from '../agents/stravaAgents';
 import AthleteContext from '../contexts/AthleteContext';
 import backendAgents from '../agents/backendAgents';
+import { useIsMobile } from '../helpers/hooks';
 
-const Layout = ({ children, disableMenu, noMenu }) => {
+const Layout = ({ children, disableMenu }) => {
+  const isMobile = useIsMobile();
   const { storeHydrated, athlete, setAthlete } = useContext(AthleteContext);
   const [expiresAtState, setExpiresAtState] = useState(typeof window !== 'undefined' ? localStorage.getItem('expires_at') : null);
 
@@ -53,7 +54,7 @@ const Layout = ({ children, disableMenu, noMenu }) => {
 
   return (
     <>
-      <Header profile={athlete} disableMenu={disableMenu} noMenu={noMenu} />
+      <Header profile={athlete} disableMenu={disableMenu} />
 
       <main className="layout">{children}</main>
     </>

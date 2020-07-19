@@ -15,7 +15,7 @@ const Map = ({ activities, isLoading }) => {
   const { options } = useContext(MenuContext);
   const { polylineColor, polylineWeight, heatMapMode } = options.mapConfig;
   const [selectedActivityId, setSelectedActivityId] = useState([]);
-  const [center, setCenter] = useState(null);
+  const [center, setCenter] = useState([46.8139, -71.29]);
 
   const selectedActivity = activities.find(x => x.id === selectedActivityId);
 
