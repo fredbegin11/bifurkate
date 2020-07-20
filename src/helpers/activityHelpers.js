@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import moment from 'moment';
 import polyline from '@mapbox/polyline';
+import { getFormattedDate } from './dateHelpers';
 
 export const filterActivitiesToDisplay = (activities, options) => {
   const { activityTypeConfig, seasonConfig } = options;
@@ -92,3 +93,7 @@ export const getSeasonConfig = activities => {
 
   return seasonConfig;
 };
+
+export const getTotalDistance = activities => Math.round(activities.reduce((accumulator, activity) => accumulator + activity.distance, 0) / 1000);
+export const getTotalTime = activities => getFormattedDate(activities.reduce((accumulator, activity) => accumulator + activity.moving_time, 0));
+export const getTotalElevation = activities => Math.round(activities.reduce((accumulator, activity) => accumulator + activity.total_elevation_gain, 0));

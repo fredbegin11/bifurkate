@@ -25,7 +25,7 @@ const App = () => {
   return (
     <>
       {isLoading && <MapLoader />}
-      <Menu activities={activities} />
+      <Menu activities={activities} shownActivities={activitiesToShow} />
       <Layout showMenu={!isLoading}>
         <SEO title="App" />
         <Map activities={activitiesToShow} isLoading={isLoading} />
