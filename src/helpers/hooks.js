@@ -29,9 +29,11 @@ export const useIsMobile = () => {
     return () => window.removeEventListener('resize', updateIsMobile);
   }, []);
 
-  useEffect(() => {
-    setShowMobile(screen.width < 768);
-  }, [screen.width]);
+  if (typeof window !== 'undefined') {
+    useEffect(() => {
+      setShowMobile(screen.width < 768);
+    }, [screen.width]);
+  }
 
   return showMobile;
 };

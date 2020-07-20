@@ -1,12 +1,10 @@
 import React, { useContext, useState } from 'react';
-import moment from 'moment';
 import _ from 'lodash';
 
 import ActivityContext from '../contexts/ActivityContext';
 import Layout from '../components/layout';
 import MapLoader from '../components/Loader/Loader';
 import Menu from '../components/Menu/Menu';
-import PropertyTabs from '../components/Stats/PropertyTabs';
 import SEO from '../components/seo';
 import StatsCharts from '../components/Charts/StatsCharts';
 import CalendarChart from '../components/Charts/CalendarChart';
@@ -22,7 +20,6 @@ const propertyConfig = {
   'Distance (km)': getTotalDistance,
   'Time (hours)': getTotalTime,
   'Elevation (m)': getTotalElevation,
-  Assiduity: null,
 };
 
 const units = { 'Distance (km)': 'km', 'Time (hours)': 'hours', 'Elevation (m)': 'meters' };
@@ -35,7 +32,6 @@ const App = () => {
   const properties = Object.keys(propertyConfig);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [propertyToDisplay, setPropertyToDisplay] = useState(properties[0]);
 
   useInitData({ setIsLoading });
 
@@ -56,11 +52,11 @@ const App = () => {
 
         {!isLoading && (
           <div className="layout__content">
-            <PropertyTabs activeProperty={propertyToDisplay} properties={properties} onClick={setPropertyToDisplay} />
-            {propertyToDisplay !== 'Assiduity' && (
-              <StatsCharts colors="white" property={propertyToDisplay} unit={units[propertyToDisplay]} data={getChartData(propertyToDisplay)} />
-            )}
-            {propertyToDisplay === 'Assiduity' && <CalendarChart activities={activities} nbOfSeasons={seasons.length} />}
+            {properties.map(key => (
+              <StatsCharts colors="white" property={key} unit={units[key]} data={getChartData(key)} />
+            ))}
+
+            <CalendarChart activities={activities} nbOfSeasons={seasons.length} />
           </div>
         )}
       </Layout>

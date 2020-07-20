@@ -5,6 +5,7 @@
   z-index: 1;
 
   &__content {
+    background-color: cc(grey) !important;
     display: flex;
     flex-direction: column;
     padding: rem(100) rem(40) rem(40) rem(40);

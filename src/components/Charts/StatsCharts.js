@@ -7,7 +7,8 @@ const StatsChart = ({ colors, data, unit, property }) => {
   const isMobile = useIsMobile();
 
   return (
-    <div style={{ marginBottom: 50, height: 400 }}>
+    <div className="chart">
+      <span className="label__header">{property}</span>
       <ResponsiveBar
         animate={true}
         colors={colors || { scheme: 'red_grey' }}
@@ -18,7 +19,7 @@ const StatsChart = ({ colors, data, unit, property }) => {
         labelFormat={() => ''}
         labelTextColor="black"
         layout={!isMobile ? 'horizontal' : 'vertical'}
-        margin={{ top: 50, right: 0, bottom: 50, left: 60 }}
+        margin={{ top: 0, right: 70, bottom: 50, left: 70 }}
         padding={0.3}
         theme={{ textColor: 'white', fontSize: 16, tooltip: { container: { backgroundColor: 'rgba(0,0,0,0.8)' } } }}
         tooltipFormat={value => `${value} ${unit}`}

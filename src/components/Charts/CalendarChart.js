@@ -18,7 +18,7 @@ const CalendarChart = ({ activities, nbOfSeasons }) => {
   }));
 
   return (
-    <div style={{ marginBottom: 50, height: nbOfSeasons * 150 }}>
+    <div className="chart" style={{ height: nbOfSeasons * 150 }}>
       <ResponsiveCalendarCanvas
         theme={{ textColor: 'white', fontSize: 16, tooltip: { container: { backgroundColor: 'rgba(0,0,0,0.8)' } } }}
         data={data}
