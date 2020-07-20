@@ -19,7 +19,7 @@ export const useIsMobile = () => {
 
   useLayoutEffect(() => {
     function updateIsMobile() {
-      setShowMobile(screen.width < 768);
+      setShowMobile(typeof window !== 'undefined' && screen.width < 768);
     }
 
     window.addEventListener('resize', updateIsMobile);
@@ -29,8 +29,10 @@ export const useIsMobile = () => {
   }, []);
 
   useEffect(() => {
-    setShowMobile(screen.width < 768);
-  }, [screen.width]);
+    if (typeof window !== 'undefined') {
+      setShowMobile(screen.width < 768);
+    }
+  }, [typeof window !== 'undefined' && screen.width]);
 
   return showMobile;
 };
