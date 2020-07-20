@@ -1,5 +1,8 @@
-import { useRef, useEffect, useState } from 'react';
-import { isMobile } from 'react-device-detect';
+import { useRef, useEffect, useState, useLayoutEffect, useContext } from 'react';
+import AthleteContext from '../contexts/AthleteContext';
+import ActivityContext from '../contexts/ActivityContext';
+import stravaAgents from '../agents/stravaAgents';
+import { processActivities } from './activityHelpers';
 
 export const usePrevious = value => {
   const ref = useRef();
@@ -14,9 +17,43 @@ export const usePrevious = value => {
 export const useIsMobile = () => {
   const [showMobile, setShowMobile] = useState(false);
 
+  useLayoutEffect(() => {
+    function updateIsMobile() {
+      setShowMobile(screen.width < 768);
+    }
+
+    window.addEventListener('resize', updateIsMobile);
+    updateIsMobile();
+
+    return () => window.removeEventListener('resize', updateIsMobile);
+  }, []);
+
   useEffect(() => {
-    setShowMobile(isMobile);
-  }, [isMobile]);
+    setShowMobile(screen.width < 768);
+  }, [screen.width]);
 
   return showMobile;
+};
+
+export const useInitData = ({ setIsLoading }) => {
+  const { storeHydrated, athlete } = useContext(AthleteContext);
+  const { activities, setActivities } = useContext(ActivityContext);
+
+  useEffect(() => {
+    if (storeHydrated && athlete.id && _.isEmpty(activities)) {
+      setIsLoading(true);
+
+      stravaAgents
+        .getAllActivities()
+        .then(data => {
+          const processedActivities = processActivities(data);
+          console.log('processedActivities: ', processedActivities);
+          setActivities(processedActivities);
+          setIsLoading(false);
+        })
+        .catch(_err => {
+          setIsLoading(false);
+        });
+    }
+  }, [storeHydrated, athlete.id, activities]);
 };

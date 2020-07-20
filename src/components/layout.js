@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { isMobile } from 'react-device-detect';
+import { useIsMobile } from '../helpers/hooks';
 
 import Header from './Header/header';
 import stravaAgents from '../agents/stravaAgents';
@@ -11,6 +11,7 @@ import backendAgents from '../agents/backendAgents';
 const Layout = ({ children, showMenu }) => {
   const { storeHydrated, athlete, setAthlete } = useContext(AthleteContext);
   const [expiresAtState, setExpiresAtState] = useState(typeof window !== 'undefined' ? localStorage.getItem('expires_at') : null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (isMobile && typeof window !== 'undefined') {
