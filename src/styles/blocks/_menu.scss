@@ -9,7 +9,7 @@
 .menu {
   position: absolute !important;
   top: rem(60);
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: cc(darkest);
   height: calc(100vh - 75px);
   max-width: rem(325);
   padding: rem(20);
@@ -85,6 +85,11 @@
     align-items: center;
     color: white;
     text-decoration: none;
+    margin-bottom: rem(5);
+
+    &.--no-margin {
+      margin-bottom: 0;
+    }
   }
 
   &__block {

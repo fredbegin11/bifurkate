@@ -16,13 +16,13 @@ const Footer = () => {
 
   return (
     <div className="menu__footer">
-      <a href="mailto:frederic.begin.fb@gmail.com?subject=Bifurkate Feedback" target="_blank" rel="noopener noreferrer" className="custom-button menu__item">
+      <a href="mailto:frederic.begin.fb@gmail.com?subject=Bifurkate Feedback" target="_blank" rel="noopener noreferrer" className="custom-button menu__item --no-margin">
         Feedback / Suggestion <FaEnvelope className="menu__status" />
       </a>
-      <a href="https://www.paypal.me/fredbegin11" target="_blank" rel="noopener noreferrer" className="custom-button menu__item">
+      <a href="https://www.paypal.me/fredbegin11" target="_blank" rel="noopener noreferrer" className="custom-button menu__item --no-margin">
         Buy me a beer <FaBeer className="menu__status" />
       </a>
-      <button className="custom-button menu__item" onClick={handleLogOffClick}>
+      <button className="custom-button menu__item --no-margin" onClick={handleLogOffClick}>
         Log off <FaPowerOff className="menu__status" />
       </button>
     </div>

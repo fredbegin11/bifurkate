@@ -1,5 +1,5 @@
 .header {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: cc(darkest);
   position: absolute;
   align-items: center;
   display: flex;
@@ -39,18 +39,6 @@
     }
   }
 
-  &__title {
-    @extend %font-type-subheader;
-    font-family: 'Montserrat';
-    align-items: center;
-    display: flex;
-    text-decoration: underline cc(main);
-
-    &.--no-settings {
-      margin-left: rem(20);
-    }
-  }
-
   &__menu {
     display: flex;
     align-items: center;
@@ -79,47 +67,7 @@
     height: rem(40);
     width: rem(40);
     border-radius: 100%;
-    background-color: cc(dark);
+    background-color: cc(darkest);
     margin-left: rem(20);
-  }
-
-  &__menu-open {
-    position: absolute;
-    top: rem(60);
-    left: 0;
-    background-color: transparent;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    z-index: 1;
-    box-shadow: 0px 5px 10px -5px rgba(0, 0, 0, 0.75);
-
-    @include phone {
-      width: 100vw;
-      left: 0;
-    }
-  }
-
-  &__menu-button {
-    padding: rem(20) rem(10);
-    background-color: cc(dark);
-
-    @include phone {
-      padding: rem(20) rem(20);
-    }
-  }
-
-  &__link {
-    @extend %font-type-label;
-    padding: rem(20);
-  }
-
-  &__links {
-    display: none;
-
-    @include laptop {
-      display: inherit;
-      width: 100%;
-    }
   }
 }

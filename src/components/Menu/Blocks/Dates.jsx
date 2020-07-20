@@ -27,7 +27,7 @@ const Dates = ({ config, setDateConfig, clearConfig }) => {
         noBorder
         displayFormat="YYYY-MM-DD"
       />
-      <div className="menu__item --padded">
+      <div className="menu__item --no-margin">
         <button className="custom-button --small" onClick={clearConfig}>
           Clear Dates
         </button>

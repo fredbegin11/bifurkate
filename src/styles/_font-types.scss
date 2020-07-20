@@ -61,48 +61,38 @@
 
 %font-type-label {
   font-family: Gidole;
-  font-size: rem(16);
+  font-size: rem(18);
   font-weight: 900;
 }
 
 %font-type-button {
-  font-family: 'Montserrat-Slim';
-  font-size: rem(16);
+  font-family: 'Gidole';
+  font-size: rem(18);
   font-weight: 900;
-
-  @include tablet {
-    font-family: 'Montserrat-Slim';
-    font-size: rem(14);
-    font-weight: 900;
-  }
-
-  @include desktop {
-    font-family: 'Montserrat-Slim';
-    font-size: rem(16);
-    font-weight: 900;
-  }
+  line-height: 1;
 }
 
 %font-type-button-override {
-  font-family: 'Montserrat-Slim' !important;
+  font-family: 'Gidole' !important;
   font-size: rem(14) !important;
   font-weight: 900 !important;
 
   @include tablet {
-    font-family: 'Montserrat-Slim' !important;
+    font-family: 'Gidole' !important;
     font-size: rem(14) !important;
     font-weight: 900 !important;
   }
 
   @include desktop {
-    font-family: 'Montserrat-Slim' !important;
+    font-family: 'Gidole' !important;
     font-size: rem(14) !important;
     font-weight: 900 !important;
   }
 }
 
 %font-type-button-small {
-  font-family: 'Montserrat-Slim';
-  font-size: rem(10);
+  font-family: 'Gidole';
+  font-size: rem(12);
   font-weight: 900;
+  line-height: 2;
 }
