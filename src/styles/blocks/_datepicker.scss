@@ -668,7 +668,7 @@
   color: #f2f2f2 !important;
   background-color: #000 !important;
   width: 100%;
-  padding: 11px 11px 9px;
+  padding: 0px 0px 0 12px !important;
   border: 0;
   border-top: 0;
   border-right: 0;
@@ -751,6 +751,7 @@
   display: inline-block;
   vertical-align: middle;
   color: #f2f2f2 !important;
+  padding-top: 3px !important;
 }
 .DateRangePickerInput_arrow_svg {
   vertical-align: middle;
