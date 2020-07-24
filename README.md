@@ -6,7 +6,7 @@
 
 Like the saying goes, you need to know where you've been to know where your going. If you find yourself tired of riding the same old routes or running the same old path, don't worry, you're not alone.
 
-Bifurkate is a powerful visualization tool to analyze your past rides, runs, walks and hikes. Why? Because everyone loves data! Also, I needed a reasons to mess around with the Strava API.
+Bifurkate is a powerful visualization tool to analyze your past rides, runs, walks and hikes. Why? Because I needed a reasons to mess around with the Strava API and let's face it, everyone loves data!
 
 ### Commands to run the project
 
