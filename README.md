@@ -1,6 +1,6 @@
 # Bifurkate - https://www.bifurkate.com/
 
-###### Made with ❤️  in my sketchy three rooms apartment in the heart of Quebec city.
+###### Made with ❤️   in my sketchy three rooms apartment in the heart of Quebec city.
 
 ### Find some inspiration!
 
