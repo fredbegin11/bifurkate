@@ -11,6 +11,6 @@ Bifurkate is a powerful visualization tool to analyze your past rides, runs, wal
 - npm install
 - gatsby develop
 
-Made with ❤️ in my sketchy three rooms apartment in the heart of Quebec city.
+Made with ❤️  in my sketchy three rooms apartment in the heart of Quebec city.
 
 ✌️✌✌
