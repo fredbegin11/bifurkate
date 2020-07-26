@@ -13,6 +13,7 @@
     "gatsby": "^2.20.12",
     "gatsby-image": "^2.3.1",
     "gatsby-plugin-create-client-paths": "^2.2.1",
+    "gatsby-plugin-eslint": "^2.0.8",
     "gatsby-plugin-force-trailing-slashes": "^1.0.4",
     "gatsby-plugin-google-analytics": "^2.3.6",
     "gatsby-plugin-manifest": "^2.3.3",
@@ -45,7 +46,14 @@
   },
   "devDependencies": {
     "eslint-config-react-app": "^5.2.1",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx": "^0.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3"
   },
   "keywords": [
     "gatsby"
