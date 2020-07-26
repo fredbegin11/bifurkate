@@ -3,7 +3,7 @@ require(`dotenv`).config();
 module.exports = {
   siteMetadata: {
     title: `BIFURKATE`,
-    description: `Tired of riding or running in the same three old routes? Don't worry, you're not alone! Bifurkate is a powerful and lightweight Strava powered app to visualize your activity history. It shows all your activities on a map, offers a personal heat map and let's you filter your activities. `,
+    description: `Tired of riding or running in the same three old routes? Don't worry, you're not alone! Bifurkate is a powerful and lightweight Strava powered app to visualize your cycling and running history. It shows all your activities on a map, offers a personal heat map and let's you filter your activities. `,
     author: `@fredbegin11`,
     image: '/images/logo.png',
     siteUrl: process.env.GATSBY_CURRENT_DOMAIN || `https://www.bifurkate.com`,
