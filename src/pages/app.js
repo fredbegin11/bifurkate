@@ -8,8 +8,9 @@ import Menu from '../components/Menu/Menu';
 import MenuContext from '../contexts/MenuContext';
 import { filterActivitiesToDisplay } from '../helpers/activityHelpers';
 import ActivityContext from '../contexts/ActivityContext';
-import Map from '../components/Map';
+
 import { useInitData } from '../helpers/hooks';
+import Map from '../components/Map/Map';
 
 const App = () => {
   const { activities } = useContext(ActivityContext);
@@ -17,8 +18,6 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useInitData({ setIsLoading });
-
-  console.log('activities: ', activities);
 
   const activitiesToShow = filterActivitiesToDisplay(activities, options);
 

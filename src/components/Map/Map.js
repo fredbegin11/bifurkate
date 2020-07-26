@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
-import moment from 'moment';
-import { getMedian } from '../helpers/mathHelpers';
-import MenuContext from '../contexts/MenuContext';
+import { getMedian } from '../../helpers/mathHelpers';
+import PolylineActivity from './PolylineActivity';
 
 let Leaflet;
 
@@ -12,12 +11,8 @@ if (typeof window !== 'undefined') {
 }
 
 const Map = ({ activities, isLoading }) => {
-  const { options } = useContext(MenuContext);
-  const { polylineColor, polylineWeight, heatMapMode } = options.mapConfig;
   const [selectedActivityId, setSelectedActivityId] = useState([]);
   const [center, setCenter] = useState([46.8139, -71.29]);
-
-  const selectedActivity = activities.find(x => x.id === selectedActivityId);
 
   useEffect(() => {
     if (!_.isEmpty(activities) && activities.length > 0) {
@@ -29,6 +24,8 @@ const Map = ({ activities, isLoading }) => {
       }
     }
   }, [isLoading]);
+
+  const selectedActivity = activities.find(x => x.id === selectedActivityId);
 
   return (
     <>
@@ -49,26 +46,8 @@ const Map = ({ activities, isLoading }) => {
           />
           <Leaflet.ScaleControl />
           {activities.map((activity, index) => (
-            <Leaflet.Polyline
-              onClick={() => setSelectedActivityId(activity.id)}
-              key={index}
-              positions={activity.polyline}
-              color={polylineColor}
-              weight={polylineWeight}
-              opacity={heatMapMode ? 0.3 : 1}
-            >
-              <Leaflet.Popup>
-                <a href={`https://www.strava.com/activities/${activity.id}`} className="label__subheader --no-margin" target="_blank" rel="noopener noreferrer">
-                  {activity.name}
-                </a>
-                <br />
-                Date: {moment(activity.start_date).format('YYYY-MM-DD')}
-                <br />
-                Distance: {(activity.distance / 1000).toFixed(2)} km
-              </Leaflet.Popup>
-            </Leaflet.Polyline>
+            <PolylineActivity key={index} activity={activity} Leaflet={Leaflet} onClick={setSelectedActivityId} />
           ))}
-
           {selectedActivity && <Leaflet.Polyline positions={selectedActivity.polyline} color={'white'} weight={2} opacity={1} />}
         </Leaflet.Map>
       )}
