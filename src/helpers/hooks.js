@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState, useLayoutEffect, useContext } from 'react';
+import _ from 'lodash';
 import AthleteContext from '../contexts/AthleteContext';
 import ActivityContext from '../contexts/ActivityContext';
 import stravaAgents from '../agents/stravaAgents';
@@ -52,9 +53,7 @@ export const useInitData = ({ setIsLoading }) => {
           setActivities(processedActivities);
           setIsLoading(false);
         })
-        .catch(_err => {
-          setIsLoading(false);
-        });
+        .catch(() => setIsLoading(false));
     }
   }, [storeHydrated, athlete.id, activities]);
 };

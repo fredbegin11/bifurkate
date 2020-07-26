@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
 
 import HeaderMenu from './HeaderMenu';
 import MenuButton from '../Menu/MenuButton';
@@ -25,11 +24,6 @@ const Header = ({ showMenu, profile }) => {
       {profile && !isMobile && <HeaderMenu profile={profile} />}
     </header>
   );
-};
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-  profile: PropTypes.object,
 };
 
 Header.defaultProps = {

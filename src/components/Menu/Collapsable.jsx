@@ -11,7 +11,7 @@ const Collapsable = ({ label, isInitiallyOpen, children }) => {
   if (!isMobile) {
     return (
       <div className="menu__block">
-        <button className="custom-button menu__item" onClick={() => setIsOpen(!isOpen)}>
+        <button type="button" className="custom-button menu__item" onClick={() => setIsOpen(!isOpen)}>
           <div className="label__header --no-margin">{label}</div>
           <FaChevronUp className={classNames('menu__status', !isOpen && '--down')} />
         </button>

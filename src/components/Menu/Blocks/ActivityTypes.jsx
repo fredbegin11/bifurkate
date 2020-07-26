@@ -6,7 +6,7 @@ import Collapsable from '../Collapsable';
 const ActivityTypes = ({ userActivityTypes, activityTypeConfig, toggleActivityTypeDisplay }) => (
   <Collapsable label="Activity Type" isInitiallyOpen>
     {userActivityTypes.map(type => (
-      <button key={type} className="custom-button menu__item" onClick={() => toggleActivityTypeDisplay(type)}>
+      <button type="button" key={type} className="custom-button menu__item" onClick={() => toggleActivityTypeDisplay(type)}>
         {ActivityType[type]} {activityTypeConfig[type] ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
       </button>
     ))}

@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import _ from 'lodash';
 
 import Layout from '../components/layout';
 import MapLoader from '../components/Loader/Loader';

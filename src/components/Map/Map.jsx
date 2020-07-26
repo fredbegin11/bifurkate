@@ -31,7 +31,7 @@ const Map = ({ activities, isLoading }) => {
     <>
       {typeof window !== 'undefined' && (
         <Leaflet.Map
-          preferCanvas={true}
+          preferCanvas
           center={center}
           zoom={isLoading ? 5 : 10}
           zoomControl={false}
@@ -45,10 +45,10 @@ const Map = ({ activities, isLoading }) => {
             attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
           />
           <Leaflet.ScaleControl />
-          {activities.map((activity, index) => (
-            <PolylineActivity key={index} activity={activity} Leaflet={Leaflet} onClick={setSelectedActivityId} />
+          {activities.map(activity => (
+            <PolylineActivity key={activity.id} activity={activity} Leaflet={Leaflet} onClick={setSelectedActivityId} />
           ))}
-          {selectedActivity && <Leaflet.Polyline positions={selectedActivity.polyline} color={'white'} weight={2} opacity={1} />}
+          {selectedActivity && <Leaflet.Polyline positions={selectedActivity.polyline} color="white" weight={2} opacity={1} />}
         </Leaflet.Map>
       )}
     </>

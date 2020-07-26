@@ -20,7 +20,7 @@ export default {
       });
 
       data = [...data, ...result.data];
-      i++;
+      i += 1;
 
       if (result.data.length === 0) {
         break;

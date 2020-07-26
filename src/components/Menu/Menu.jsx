@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import _ from 'lodash';
 
-import ActivityTypes from './Blocks/ActivityTypes';
+import ActivityTypes from './Blocks/ActivityTypes.jsx';
 import Footer from './Blocks/Footer';
 import MapOptions from './Blocks/MapOptions';
 import MenuContext from '../../contexts/MenuContext';
 import NoActivities from './Blocks/NoActivities';
 import Seasons from './Blocks/Seasons';
 import { getAllActivityTypes } from '../../helpers/activityHelpers';
-import { useEffect } from 'react';
 import { usePrevious } from '../../helpers/hooks';
 import MenuWrapper from './MenuWrapper';
 import Dates from './Blocks/Dates';

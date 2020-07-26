@@ -22,7 +22,7 @@ const Footer = () => {
       <a href="https://www.paypal.me/fredbegin11" target="_blank" rel="noopener noreferrer" className="custom-button menu__item">
         Buy me a beer <FaBeer className="menu__status" />
       </a>
-      <button className="custom-button menu__item" onClick={handleLogOffClick}>
+      <button type="button" className="custom-button menu__item" onClick={handleLogOffClick}>
         Log off <FaPowerOff className="menu__status" />
       </button>
     </div>

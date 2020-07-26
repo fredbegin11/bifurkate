@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Collapsable from '../Collapsable';
 import { DateRangePicker } from 'react-dates';
+import Collapsable from '../Collapsable';
 import { useIsMobile } from '../../../helpers/hooks';
 
 const Dates = ({ config, setDateConfig, clearConfig }) => {
@@ -28,7 +28,7 @@ const Dates = ({ config, setDateConfig, clearConfig }) => {
         displayFormat="YYYY-MM-DD"
       />
       <div className="menu__item --no-margin">
-        <button className="custom-button --small" onClick={clearConfig}>
+        <button type="button" className="custom-button --small" onClick={clearConfig}>
           Clear Dates
         </button>
       </div>

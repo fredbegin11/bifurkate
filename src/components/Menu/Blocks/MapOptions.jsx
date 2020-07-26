@@ -1,12 +1,12 @@
 import React from 'react';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import { CirclePicker } from 'react-color';
-import Collapsable from '../Collapsable';
 import InputRange from 'react-input-range';
+import Collapsable from '../Collapsable';
 
 const MapOptions = ({ mapConfig, setMapOption }) => (
   <Collapsable label="Map Options" isInitiallyOpen>
-    <button className="custom-button menu__item" onClick={() => setMapOption({ heatMapMode: !mapConfig.heatMapMode })}>
+    <button type="button" className="custom-button menu__item" onClick={() => setMapOption({ heatMapMode: !mapConfig.heatMapMode })}>
       Heatmap {mapConfig.heatMapMode ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
     </button>
     <div className="custom-button menu__item">
@@ -33,7 +33,7 @@ const MapOptions = ({ mapConfig, setMapOption }) => (
         />
       </div>
     </div>
-    <button className="custom-button menu__item --small" onClick={() => setMapOption({ heatMapMode: false, polylineColor: 'red', polylineWeight: 2 })}>
+    <button type="button" className="custom-button menu__item --small" onClick={() => setMapOption({ heatMapMode: false, polylineColor: 'red', polylineWeight: 2 })}>
       Reset to defaults
     </button>
   </Collapsable>

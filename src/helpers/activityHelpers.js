@@ -86,10 +86,12 @@ export const ActivityType = {
 export const getAllActivityTypes = activities => _.uniq(activities.map(x => x.type)).sort();
 
 export const getSeasonConfig = activities => {
-  let seasonConfig = {};
+  const seasonConfig = {};
   const allSeasons = activities.map(x => moment(x.start_date).format('YYYY'));
   const uniqueSeasons = _.uniq(allSeasons, true);
-  uniqueSeasons.forEach(x => (seasonConfig[x] = true));
+  uniqueSeasons.forEach(x => {
+    seasonConfig[x] = true;
+  });
 
   return seasonConfig;
 };

@@ -1,5 +1,4 @@
 import React, { useEffect, useContext, useState } from 'react';
-import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { useIsMobile } from '../helpers/hooks';
 
@@ -31,11 +30,13 @@ const Layout = ({ children, showMenu }) => {
     if (currentTime && currentTime > expiresAt) {
       backendAgents
         .refreshToken(refreshToken)
-        .then(({ expires_at, refresh_token, access_token }) => {
-          setExpiresAtState(expires_at);
-          typeof window !== 'undefined' && localStorage.setItem('expires_at', expires_at);
-          typeof window !== 'undefined' && localStorage.setItem('refresh_token', refresh_token);
-          typeof window !== 'undefined' && localStorage.setItem('access_token', access_token);
+        .then(data => {
+          setExpiresAtState(data.expires_at);
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('expires_at', data.expires_at);
+            localStorage.setItem('refresh_token', data.refresh_token);
+            localStorage.setItem('access_token', data.access_token);
+          }
         })
         .catch(() => {
           window.location.replace(process.env.GATSBY_AUTHORIZE_URL);
@@ -48,7 +49,7 @@ const Layout = ({ children, showMenu }) => {
   useEffect(() => {
     const currentTime = new Date().getTime() / 1000;
     if (currentTime < expiresAtState && _.isEmpty(athlete) && storeHydrated) {
-      stravaAgents.getProfile().then(athlete => setAthlete(athlete));
+      stravaAgents.getProfile().then(athleteProfile => setAthlete(athleteProfile));
     }
   }, [athlete, expiresAtState, storeHydrated, setAthlete]);
 
@@ -59,10 +60,6 @@ const Layout = ({ children, showMenu }) => {
       <main className="layout">{children}</main>
     </>
   );
-};
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default Layout;

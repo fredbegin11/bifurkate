@@ -33,7 +33,6 @@ const IndexPage = () => {
       });
 
       doc.classList.add('anime-ready');
-      /* global anime */
       anime
         .timeline({
           targets: '.hero-figure-box-05',
@@ -84,12 +83,7 @@ const IndexPage = () => {
         targets: '.hero-figure-box-01, .hero-figure-box-02, .hero-figure-box-03, .hero-figure-box-04, .hero-figure-box-08, .hero-figure-box-09, .hero-figure-box-10',
         duration: anime.random(600, 800),
         delay: anime.random(600, 800),
-        rotate: [
-          anime.random(-360, 360),
-          function(el) {
-            return el.getAttribute('data-rotation');
-          },
-        ],
+        rotate: [anime.random(-360, 360), el => el.getAttribute('data-rotation')],
         scale: [0.7, 1],
         opacity: [0, 1],
         easing: 'easeInOutExpo',
@@ -140,20 +134,20 @@ const IndexPage = () => {
                     <svg className="placeholder" width="528" height="396" viewBox="0 0 528 396">
                       <rect width="528" height="396" style={{ fill: 'transparent' }} />
                     </svg>
-                    <div className="hero-figure-box hero-figure-box-01" data-rotation="45deg"></div>
-                    <div className="hero-figure-box hero-figure-box-02" data-rotation="-45deg"></div>
-                    <div className="hero-figure-box hero-figure-box-03" data-rotation="0deg"></div>
-                    <div className="hero-figure-box hero-figure-box-04" data-rotation="-135deg"></div>
+                    <div className="hero-figure-box hero-figure-box-01" data-rotation="45deg" />
+                    <div className="hero-figure-box hero-figure-box-02" data-rotation="-45deg" />
+                    <div className="hero-figure-box hero-figure-box-03" data-rotation="0deg" />
+                    <div className="hero-figure-box hero-figure-box-04" data-rotation="-135deg" />
                     <div className="hero-figure-box hero-figure-box-05">
                       <img alt="" src={demo} className="landing__image" />
                     </div>
                     <div className="hero-figure-box hero-figure-box-06">
                       <img alt="" src={demo1} className="landing__image" />
                     </div>
-                    <div className="hero-figure-box hero-figure-box-07"></div>
-                    <div className="hero-figure-box hero-figure-box-08" data-rotation="-22deg"></div>
-                    <div className="hero-figure-box hero-figure-box-09" data-rotation="-52deg"></div>
-                    <div className="hero-figure-box hero-figure-box-10" data-rotation="-50deg"></div>
+                    <div className="hero-figure-box hero-figure-box-07" />
+                    <div className="hero-figure-box hero-figure-box-08" data-rotation="-22deg" />
+                    <div className="hero-figure-box hero-figure-box-09" data-rotation="-52deg" />
+                    <div className="hero-figure-box hero-figure-box-10" data-rotation="-50deg" />
                   </div>
                 </div>
               </div>
@@ -202,9 +196,9 @@ const IndexPage = () => {
                 <iframe
                   src="https://www.youtube.com/embed/8CcQjqgjwjM?vq=hd1080&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&color=white&disablekb=1"
                   frameBorder="0"
-                  allowFullScreen={true}
+                  allowFullScreen
                   title="demo"
-                ></iframe>
+                />
               </div>
               <div className="cta-inner section-inner">
                 <h3 className="section-title mt-0">Still not convinced? Give it a try, it's free!</h3>

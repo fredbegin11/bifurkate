@@ -1,6 +1,5 @@
 import React from 'react';
 import _ from 'lodash';
-import moment from 'moment';
 import { getSeasonConfig } from '../helpers/activityHelpers';
 
 const defaultState = {
@@ -43,7 +42,9 @@ class MenuProvider extends React.Component {
 
   initializeMenu = (activities, userActivityTypes) => {
     const activityTypeConfig = {};
-    userActivityTypes.forEach(x => (activityTypeConfig[x] = true));
+    userActivityTypes.forEach(x => {
+      activityTypeConfig[x] = true;
+    });
 
     const seasonConfig = getSeasonConfig(activities);
     this.setOption({ activityTypeConfig, seasonConfig });
@@ -58,9 +59,11 @@ class MenuProvider extends React.Component {
   };
 
   setDateConfig = (datesConfig, seasonValue = false) => {
-    let seasonConfig = {};
+    const seasonConfig = {};
     const seasons = Object.keys(this.state.options.seasonConfig);
-    seasons.forEach(x => (seasonConfig[x] = seasonValue));
+    seasons.forEach(x => {
+      seasonConfig[x] = seasonValue;
+    });
 
     this.setOption({ datesConfig, seasonConfig });
   };

@@ -11,7 +11,7 @@ const MenuWrapper = ({ children, isMenuOpen }) => {
   }
 
   return (
-    <SimpleBar forceVisible={true} autoHide={false} className={classNames('menu', isMenuOpen && '--open')}>
+    <SimpleBar forceVisible autoHide={false} className={classNames('menu', isMenuOpen && '--open')}>
       {children}
     </SimpleBar>
   );

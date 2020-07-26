@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { navigate } from 'gatsby';
 
@@ -14,24 +13,22 @@ const Callback = ({ location }) => {
     if (!error) {
       backendAgents
         .authenticate(code)
-        .then(({ expires_at, refresh_token, access_token }) => {
-          typeof window !== 'undefined' && localStorage.setItem('expires_at', expires_at);
-          typeof window !== 'undefined' && localStorage.setItem('refresh_token', refresh_token);
-          typeof window !== 'undefined' && localStorage.setItem('access_token', access_token);
+        .then(data => {
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('expires_at', data.expires_at);
+            localStorage.setItem('refresh_token', data.refresh_token);
+            localStorage.setItem('access_token', data.access_token);
+          }
 
           navigate('/app/');
         })
-        .catch(error => console.error('Error: ', error));
+        .catch(() => {});
     } else if (typeof window !== 'undefined') {
       window.location.replace(process.env.GATSBY_AUTHORIZE_URL);
     }
   }, []);
 
   return <Loader title="Hang on, we're redirecting you!" />;
-};
-
-Callback.propTypes = {
-  location: PropTypes.object.isRequired,
 };
 
 export default Callback;
