@@ -1,5 +1,6 @@
 {
   "root": "public/",
   "https_only": true,
-  "canonical_host": "www.bifurkate.com"
+  "canonical_host": "www.bifurkate.com",
+  "error_page": "/404.html"
 }
