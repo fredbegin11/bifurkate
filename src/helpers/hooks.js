@@ -49,7 +49,6 @@ export const useInitData = ({ setIsLoading }) => {
         .getAllActivities()
         .then(data => {
           const processedActivities = processActivities(data);
-          console.log('processedActivities: ', processedActivities);
           setActivities(processedActivities);
           setIsLoading(false);
         })
