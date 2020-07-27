@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaEnvelope, FaBeer, FaPowerOff } from 'react-icons/fa';
 
-const Footer = () => {
+const Footer = ({ onExportClick }) => {
   const handleLogOffClick = () => {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('expires_at');
@@ -16,6 +16,9 @@ const Footer = () => {
 
   return (
     <div className="menu__footer">
+      <button type="button" className="custom-button menu__item" onClick={onExportClick}>
+        Export Map as PNG
+      </button>
       <a href="mailto:frederic.begin.fb@gmail.com?subject=Bifurkate Feedback" target="_blank" rel="noopener noreferrer" className="custom-button menu__item">
         Feedback / Suggestion <FaEnvelope className="menu__status" />
       </a>

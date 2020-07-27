@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
+import { withLeaflet } from 'react-leaflet';
+import PrintControlDefault from 'react-leaflet-easyprint';
 import _ from 'lodash';
 import { getMedian } from '../../helpers/mathHelpers';
 import PolylineActivity from './PolylineActivity';
+
+import MenuContext from '../../contexts/MenuContext';
 
 let Leaflet;
 
@@ -10,7 +14,11 @@ if (typeof window !== 'undefined') {
   Leaflet = require('react-leaflet');
 }
 
+const PrintControl = withLeaflet(PrintControlDefault);
+
 const Map = ({ activities, isLoading }) => {
+  const { setPrintControlRef } = useContext(MenuContext);
+  const printControlRef = useRef();
   const [selectedActivityId, setSelectedActivityId] = useState([]);
   const [center, setCenter] = useState([46.8139, -71.29]);
 
@@ -22,6 +30,8 @@ const Map = ({ activities, isLoading }) => {
       if (centerLat && centerLong) {
         setCenter([centerLat, centerLong]);
       }
+
+      setPrintControlRef(printControlRef);
     }
   }, [isLoading]);
 
@@ -49,6 +59,7 @@ const Map = ({ activities, isLoading }) => {
             <PolylineActivity key={activity.id} activity={activity} Leaflet={Leaflet} onClick={setSelectedActivityId} />
           ))}
           {selectedActivity && <Leaflet.Polyline positions={selectedActivity.polyline} color="white" weight={2} opacity={1} />}
+          <PrintControl ref={printControlRef} hidden position="topleft" sizeModes={['Current', 'A4Portrait', 'A4Landscape']} hideControlContainer={false} exportOnly />
         </Leaflet.Map>
       )}
     </>

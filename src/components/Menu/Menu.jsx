@@ -8,14 +8,18 @@ import MenuContext from '../../contexts/MenuContext';
 import NoActivities from './Blocks/NoActivities';
 import Seasons from './Blocks/Seasons';
 import { getAllActivityTypes } from '../../helpers/activityHelpers';
-import { usePrevious } from '../../helpers/hooks';
+import { usePrevious, useIsMobile } from '../../helpers/hooks';
 import MenuWrapper from './MenuWrapper';
 import Dates from './Blocks/Dates';
 import Stats from './Blocks/Stats';
 
 const Menu = ({ activities, shownActivities }) => {
-  const { initializeMenu, toggleActivityTypeDisplay, isMenuOpen, setOption, setMapOption, options, setDateConfig, toggleSeasonDisplay } = useContext(MenuContext);
+  const { printControlRef, initializeMenu, toggleActivityTypeDisplay, isMenuOpen, setOption, setMapOption, options, setDateConfig, toggleSeasonDisplay } = useContext(MenuContext);
   const userActivityTypes = getAllActivityTypes(activities);
+
+  const isMobile = useIsMobile();
+
+  const handleExportMap = () => printControlRef.current.printMap(isMobile ? 'A4Portrait' : 'A4Landscape', 'Bifurkate-Export');
 
   const prevActivityTypes = usePrevious(userActivityTypes);
 
@@ -53,7 +57,7 @@ const Menu = ({ activities, shownActivities }) => {
             </>
           )}
         </div>
-        <Footer />
+        <Footer onExportClick={handleExportMap} />
       </div>
     </MenuWrapper>
   );
