@@ -8,13 +8,13 @@ import PolylineActivity from './PolylineActivity';
 import MenuContext from '../../contexts/MenuContext';
 
 let Leaflet;
+let PrintControl;
 
 // Fix for Heroku build (Leaflet wants a window object...)
 if (typeof window !== 'undefined') {
   Leaflet = require('react-leaflet');
+  PrintControl = withLeaflet(PrintControlDefault);
 }
-
-const PrintControl = withLeaflet(PrintControlDefault);
 
 const Map = ({ activities, isLoading }) => {
   const { setPrintControlRef } = useContext(MenuContext);
