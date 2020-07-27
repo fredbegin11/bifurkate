@@ -7,7 +7,7 @@ import Collapsable from '../Collapsable';
 const ActivityTypes = ({ userActivityTypes, activityTypeConfig, toggleActivityTypeDisplay }) => {
   const handleClick = type => {
     toggleActivityTypeDisplay(type);
-    trackCustomEvent({ category: 'filter-activity-type', action: 'Click', label: 'Set Activity Type Filter', number: type });
+    trackCustomEvent({ category: 'filter-activity-type', action: 'Click', label: 'Set Activity Type Filter' });
   };
 
   return (

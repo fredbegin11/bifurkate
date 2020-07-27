@@ -13,12 +13,12 @@ const MapOptions = ({ mapConfig, setMapOption }) => {
 
   const handleColorClick = polylineColor => {
     setMapOption({ polylineColor });
-    trackCustomEvent({ category: 'toggle-color', action: 'Click', label: 'Set Map Color', number: polylineColor });
+    trackCustomEvent({ category: 'toggle-color', action: 'Click', label: 'Set Map Color' });
   };
 
   const handleWeightClick = polylineWeight => {
     setMapOption({ polylineWeight });
-    trackCustomEvent({ category: 'toggle-weight', action: 'Click', label: 'Set Map Line Weight', number: polylineWeight });
+    trackCustomEvent({ category: 'toggle-weight', action: 'Click', label: 'Set Map Line Weight' });
   };
 
   return (
