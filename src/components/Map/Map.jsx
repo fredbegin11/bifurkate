@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef, useContext } from 'react';
-import { withLeaflet } from 'react-leaflet';
 import PrintControlDefault from 'react-leaflet-easyprint';
 import _ from 'lodash';
 import { getMedian } from '../../helpers/mathHelpers';
@@ -12,8 +11,9 @@ let PrintControl;
 
 // Fix for Heroku build (Leaflet wants a window object...)
 if (typeof window !== 'undefined') {
+  const reactLeaflet = require('react-leaflet');
   Leaflet = require('react-leaflet');
-  PrintControl = withLeaflet(PrintControlDefault);
+  PrintControl = reactLeaflet.withLeaflet(PrintControlDefault);
 }
 
 const Map = ({ activities, isLoading }) => {
