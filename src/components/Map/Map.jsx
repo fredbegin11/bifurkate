@@ -1,19 +1,18 @@
 import React, { useEffect, useState, useRef, useContext } from 'react';
-import PrintControlDefault from 'react-leaflet-easyprint';
 import _ from 'lodash';
 import { getMedian } from '../../helpers/mathHelpers';
 import PolylineActivity from './PolylineActivity';
-
 import MenuContext from '../../contexts/MenuContext';
 
 let Leaflet;
 let PrintControl;
+let PrintControlDefault;
 
 // Fix for Heroku build (Leaflet wants a window object...)
 if (typeof window !== 'undefined') {
-  const reactLeaflet = require('react-leaflet');
   Leaflet = require('react-leaflet');
-  PrintControl = reactLeaflet.withLeaflet(PrintControlDefault);
+  PrintControlDefault = require('react-leaflet-easyprint');
+  PrintControl = Leaflet.withLeaflet(PrintControlDefault);
 }
 
 const Map = ({ activities, isLoading }) => {
