@@ -6,7 +6,7 @@ import Collapsable from '../Collapsable';
 const Seasons = ({ seasonConfig, toggleSeasonDisplay }) => {
   const handleClick = key => {
     toggleSeasonDisplay({ [key]: !seasonConfig[key] });
-    trackCustomEvent({ category: 'filter-season', action: 'Click', label: 'Set Season Filter', number: key });
+    trackCustomEvent({ category: 'filter-season', action: 'Click', label: 'Set Season Filter' });
   };
 
   return (
