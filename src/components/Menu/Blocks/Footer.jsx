@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaEnvelope, FaBeer, FaPowerOff } from 'react-icons/fa';
+import { FaEnvelope, FaBeer, FaPowerOff, FaImage } from 'react-icons/fa';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
 const Footer = ({ onExportClick }) => {
@@ -23,7 +23,7 @@ const Footer = ({ onExportClick }) => {
   return (
     <div className="menu__footer">
       <button type="button" className="custom-button menu__item" onClick={handleExportClick}>
-        Export Map as PNG
+        Export Map as PNG <FaImage className="menu__status" />
       </button>
       <a href="mailto:frederic.begin.fb@gmail.com?subject=Bifurkate Feedback" target="_blank" rel="noopener noreferrer" className="custom-button menu__item">
         Feedback / Suggestion <FaEnvelope className="menu__status" />
