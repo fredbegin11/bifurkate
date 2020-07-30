@@ -19,6 +19,7 @@ function SEO({ description, lang, meta, title }) {
             description
             author
             image
+            keywords
           }
         }
       }
@@ -70,6 +71,10 @@ function SEO({ description, lang, meta, title }) {
         {
           property: `og:image`,
           content: site.siteMetadata.image,
+        },
+        {
+          name: 'keywords',
+          content: site.siteMetadata.keywords.join(','),
         },
       ].concat(meta)}
     />

@@ -7,6 +7,7 @@ module.exports = {
     author: `@fredbegin11`,
     image: '/images/logo.png',
     siteUrl: process.env.GATSBY_CURRENT_DOMAIN || `https://www.bifurkate.com`,
+    keywords: ['strava', 'heatmap', 'map', 'vizualizer', 'viewer', 'activity viewer', 'analysis'],
   },
   plugins: [
     {
