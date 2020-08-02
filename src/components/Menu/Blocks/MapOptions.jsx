@@ -56,7 +56,7 @@ const MapOptions = ({ mapConfig, setMapOption }) => {
         </div>
       </div>
       <button type="button" className="custom-button menu__item" onClick={handleBikePathsClick}>
-        Show Bike Paths (Blue) {mapConfig.showBikePaths ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
+        Bike Paths (Experimental) {mapConfig.showBikePaths ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
       </button>
       <button type="button" className="custom-button menu__item --small" onClick={() => setMapOption({ heatMapMode: false, polylineColor: 'red', polylineWeight: 2 })}>
         Reset to defaults

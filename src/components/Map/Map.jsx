@@ -39,17 +39,26 @@ const Map = ({ activities, isLoading }) => {
   return (
     <>
       {typeof window !== 'undefined' && (
-        <Leaflet.Map center={center} zoom={isLoading ? 5 : 10} zoomControl={false} zoomSnap={0.5} zoomDelta={0.5} minZoom={3} onClick={() => setSelectedActivityId(null)}>
+        <Leaflet.Map
+          preferCanvas
+          center={center}
+          zoom={isLoading ? 5 : 10}
+          zoomControl={false}
+          zoomSnap={0.5}
+          zoomDelta={0.5}
+          minZoom={3}
+          onClick={() => setSelectedActivityId(null)}
+          // eslint-disable-next-line
+        >
           <Leaflet.TileLayer
             url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
             attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
           />
+
           {options.mapConfig.showBikePaths && (
-            <Leaflet.TileLayer
-              url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm-lite/{z}/{x}/{y}.png"
-              attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
-            />
+            <Leaflet.TileLayer url={`${process.env.GATSBY_BACKEND_API_URL}/bike-path?s={s}&z={z}&x={x}&y={y}.png`} attribution="CyclOSM | OSM-FR" />
           )}
+
           <Leaflet.ScaleControl />
           {activities.map(activity => (
             <PolylineActivity key={activity.id} activity={activity} Leaflet={Leaflet} onClick={setSelectedActivityId} />
