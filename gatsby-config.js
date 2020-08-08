@@ -7,7 +7,20 @@ module.exports = {
     author: `@fredbegin11`,
     image: '/images/logo.png',
     siteUrl: process.env.GATSBY_CURRENT_DOMAIN || `https://www.bifurkate.com`,
-    keywords: ['strava', 'heatmap', 'strava heatmap', 'map', 'vizualizer', 'viewer', 'activity viewer', 'analysis'],
+    keywords: [
+      'strava heat map',
+      'strava heatmap',
+      'strava heatmaps',
+      'strava activity viewer',
+      'strava analysis',
+      'strava mapper',
+      'strava personal heatmap',
+      'strava viewer',
+      'activity viewer',
+      'bike map',
+      'cycling map',
+      'run map',
+    ],
   },
   plugins: [
     {
