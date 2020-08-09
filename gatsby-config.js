@@ -8,7 +8,6 @@ module.exports = {
     image: '/images/logo.png',
     siteUrl: process.env.GATSBY_CURRENT_DOMAIN || `https://www.bifurkate.com`,
     keywords: [
-      'strava login',
       'strava heat map',
       'strava heatmap',
       'strava heatmaps',
