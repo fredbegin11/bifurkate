@@ -11,6 +11,11 @@ const MapOptions = ({ mapConfig, setMapOption }) => {
     trackCustomEvent({ category: 'toggle-heatmap', action: 'Click', label: 'Toggle Heatmap' });
   };
 
+  const handleBikePathsClick = () => {
+    setMapOption({ showBikePaths: !mapConfig.showBikePaths });
+    trackCustomEvent({ category: 'toggle-bike-path', action: 'Click', label: 'Toggle Bike Paths' });
+  };
+
   const handleColorClick = polylineColor => {
     setMapOption({ polylineColor });
     trackCustomEvent({ category: 'toggle-color', action: 'Click', label: 'Set Map Color' });
@@ -50,6 +55,9 @@ const MapOptions = ({ mapConfig, setMapOption }) => {
           />
         </div>
       </div>
+      <button type="button" className="custom-button menu__item" onClick={handleBikePathsClick}>
+        Show Bike Paths {mapConfig.showBikePaths ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
+      </button>
       <button type="button" className="custom-button menu__item --small" onClick={() => setMapOption({ heatMapMode: false, polylineColor: 'red', polylineWeight: 2 })}>
         Reset to defaults
       </button>

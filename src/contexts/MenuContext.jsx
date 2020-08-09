@@ -14,6 +14,7 @@ const defaultState = {
       heatMapMode: false,
       polylineColor: '#FF0000',
       polylineWeight: 2,
+      showBikePaths: false,
     },
     activityTypeConfig: {},
     seasonConfig: {},

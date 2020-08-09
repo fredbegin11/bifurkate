@@ -16,7 +16,7 @@ if (typeof window !== 'undefined') {
 }
 
 const Map = ({ activities, isLoading }) => {
-  const { setPrintControlRef } = useContext(MenuContext);
+  const { setPrintControlRef, options } = useContext(MenuContext);
   const printControlRef = useRef();
   const [selectedActivityId, setSelectedActivityId] = useState([]);
   const [center, setCenter] = useState([46.8139, -71.29]);
@@ -53,6 +53,15 @@ const Map = ({ activities, isLoading }) => {
             url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
             attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
           />
+
+          {options.mapConfig.showBikePaths && (
+            <Leaflet.TileLayer
+              onTileLoad={e => e.tile.classList.add('custom-greyscale')}
+              url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm-lite/{z}/{x}/{y}.png"
+              attribution="CyclOSM | OSM-FR"
+            />
+          )}
+
           <Leaflet.ScaleControl />
           {activities.map(activity => (
             <PolylineActivity key={activity.id} activity={activity} Leaflet={Leaflet} onClick={setSelectedActivityId} />
