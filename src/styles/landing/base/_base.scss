@@ -75,3 +75,8 @@ img,
 svg {
   display: block;
 }
+
+.custom-greyscale {
+  -webkit-filter: grayscale(100%) brightness(100) opacity(0.8);
+  filter: grayscale(100%) brightness(100) opacity(0.6);
+}

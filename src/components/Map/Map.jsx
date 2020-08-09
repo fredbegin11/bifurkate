@@ -48,7 +48,6 @@ const Map = ({ activities, isLoading }) => {
           zoomDelta={0.5}
           minZoom={3}
           onClick={() => setSelectedActivityId(null)}
-          // eslint-disable-next-line
         >
           <Leaflet.TileLayer
             url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
@@ -56,7 +55,11 @@ const Map = ({ activities, isLoading }) => {
           />
 
           {options.mapConfig.showBikePaths && (
-            <Leaflet.TileLayer url={`${process.env.GATSBY_BACKEND_API_URL}/bike-path?s={s}&z={z}&x={x}&y={y}.png`} attribution="CyclOSM | OSM-FR" />
+            <Leaflet.TileLayer
+              onTileLoad={e => e.tile.classList.add('custom-greyscale')}
+              url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm-lite/{z}/{x}/{y}.png"
+              attribution="CyclOSM | OSM-FR"
+            />
           )}
 
           <Leaflet.ScaleControl />
