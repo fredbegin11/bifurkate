@@ -47,6 +47,7 @@ const Map = ({ activities, isLoading }) => {
           zoomSnap={0.5}
           zoomDelta={0.5}
           minZoom={3}
+          fadeAnimation={false}
           onClick={() => setSelectedActivityId(null)}
         >
           <Leaflet.TileLayer
@@ -55,11 +56,7 @@ const Map = ({ activities, isLoading }) => {
           />
 
           {options.mapConfig.showBikePaths && (
-            <Leaflet.TileLayer
-              onTileLoad={e => e.tile.classList.add('custom-greyscale')}
-              url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm-lite/{z}/{x}/{y}.png"
-              attribution="CyclOSM | OSM-FR"
-            />
+            <Leaflet.TileLayer className="custom-greyscale" url="https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm-lite/{z}/{x}/{y}.png" attribution="CyclOSM | OSM-FR" />
           )}
 
           <Leaflet.ScaleControl />

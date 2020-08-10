@@ -76,7 +76,8 @@ svg {
   display: block;
 }
 
-.custom-greyscale {
-  -webkit-filter: grayscale(100%) brightness(100) opacity(0.8);
+.custom-greyscale > .leaflet-tile-container > img {
+  will-change: filter;
+  -webkit-filter: grayscale(100%) brightness(100) opacity(0.6);
   filter: grayscale(100%) brightness(100) opacity(0.6);
 }
