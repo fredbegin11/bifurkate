@@ -3,12 +3,20 @@ import { FaCheck, FaTimes } from 'react-icons/fa';
 import { CirclePicker } from 'react-color';
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import InputRange from 'react-input-range';
+import classNames from 'classnames';
 import Collapsable from '../Collapsable';
 
 const MapOptions = ({ mapConfig, setMapOption }) => {
+  const isImperial = mapConfig.unit === 'imperial';
+
   const handleHeatmapClick = () => {
     setMapOption({ heatMapMode: !mapConfig.heatMapMode });
     trackCustomEvent({ category: 'toggle-heatmap', action: 'Click', label: 'Toggle Heatmap' });
+  };
+
+  const handleToggleUnit = unit => {
+    setMapOption({ unit });
+    trackCustomEvent({ category: 'toggle-unit-system', action: 'Click', label: 'Toggle Unit System' });
   };
 
   const handleBikePathsClick = () => {
@@ -28,6 +36,17 @@ const MapOptions = ({ mapConfig, setMapOption }) => {
 
   return (
     <Collapsable label="Map Options" isInitiallyOpen>
+      <span className="menu__item">
+        <span className="custom-button menu__weight-picker">Units</span>
+        <span className="custom-button --no-padding">
+          <button type="button" onClick={() => handleToggleUnit('metric')} className={classNames('custom-button', !isImperial && '--selected')}>
+            Metric
+          </button>
+          <button type="button" onClick={() => handleToggleUnit('imperial')} className={classNames('custom-button', isImperial && '--selected')}>
+            Imperial
+          </button>
+        </span>
+      </span>
       <button type="button" className="custom-button menu__item" onClick={handleHeatmapClick}>
         Heatmap {mapConfig.heatMapMode ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
       </button>

@@ -39,7 +39,7 @@ const Menu = ({ activities, shownActivities }) => {
           {_.isEmpty(userActivityTypes) && <NoActivities />}
           {!_.isEmpty(userActivityTypes) && (
             <>
-              <Stats activities={shownActivities} />
+              <Stats activities={shownActivities} mapConfig={options.mapConfig} setMapOption={setMapOption} />
               <MapOptions userActivityTypes={userActivityTypes} mapConfig={options.mapConfig} setMapOption={setMapOption} />
               <ActivityTypes userActivityTypes={userActivityTypes} activityTypeConfig={options.activityTypeConfig} toggleActivityTypeDisplay={toggleActivityTypeDisplay} />
               <Seasons

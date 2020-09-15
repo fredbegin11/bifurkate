@@ -17,6 +17,10 @@
     padding-top: 0;
   }
 
+  &.--no-padding {
+    padding: 0;
+  }
+
   &:hover {
     opacity: 1;
   }
@@ -27,5 +31,9 @@
     @include laptop {
       margin-right: rem(10);
     }
+  }
+
+  &.--selected {
+    text-decoration: underline cc(main);
   }
 }

@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import moment from 'moment';
 import MenuContext from '../../contexts/MenuContext';
+import { convertKm } from '../../helpers/mathHelpers';
 
 const PolylineActivity = ({ activity, Leaflet, onClick }) => {
   const { options } = useContext(MenuContext);
-  const { polylineColor, polylineWeight, heatMapMode } = options.mapConfig;
+  const { unit, polylineColor, polylineWeight, heatMapMode } = options.mapConfig;
 
   return (
     <Leaflet.Polyline onClick={() => onClick(activity.id)} positions={activity.polyline} color={polylineColor} weight={polylineWeight} opacity={heatMapMode ? 0.3 : 1}>
@@ -15,7 +16,7 @@ const PolylineActivity = ({ activity, Leaflet, onClick }) => {
         <br />
         Date: {moment(activity.start_date).format('YYYY-MM-DD')}
         <br />
-        Distance: {(activity.distance / 1000).toFixed(2)} km
+        Distance: {convertKm(activity.distance / 1000, unit, 2)}
       </Leaflet.Popup>
     </Leaflet.Polyline>
   );

@@ -15,6 +15,7 @@ const defaultState = {
       polylineColor: '#FF0000',
       polylineWeight: 2,
       showBikePaths: false,
+      unit: 'metric',
     },
     activityTypeConfig: {},
     seasonConfig: {},

@@ -9,3 +9,18 @@ export const getMedian = values => {
 
   return (values[half - 1] + values[half]) / 2.0;
 };
+
+export const convertMeters = (value, unit) => {
+  if (unit === 'metric') {
+    return `${value} m`;
+  }
+  return `${(value * 3.28084).toFixed(0)} ft`;
+};
+
+export const convertKm = (value, unit, decimal = 0) => {
+  if (unit === 'metric') {
+    return `${value.toFixed(decimal)} km`;
+  }
+
+  return `${(value * 0.621371).toFixed(decimal).toLocaleString('fr')} mi`;
+};
