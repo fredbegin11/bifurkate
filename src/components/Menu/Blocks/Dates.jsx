@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { DateRangePicker } from 'react-dates';
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import Collapsable from '../Collapsable';
 import { useIsMobile } from '../../../helpers/hooks';
 
@@ -15,10 +14,7 @@ const Dates = ({ config, setDateConfig, clearConfig }) => {
         startDateId="start"
         endDate={config.endDate}
         endDateId="end"
-        onDatesChange={({ startDate, endDate }) => {
-          trackCustomEvent({ category: 'filter-custom-dates', action: 'Click', label: 'Set Custom Date Filter' });
-          setDateConfig({ startDate, endDate });
-        }}
+        onDatesChange={setDateConfig}
         focusedInput={focusedInput}
         onFocusChange={setFocusedInput}
         isOutsideRange={() => false}

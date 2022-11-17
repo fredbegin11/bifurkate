@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaEnvelope, FaBeer, FaPowerOff, FaImage } from 'react-icons/fa';
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 
 const Footer = ({ onExportClick }) => {
   const handleLogOffClick = () => {
@@ -15,10 +14,7 @@ const Footer = ({ onExportClick }) => {
     window.location.replace('/');
   };
 
-  const handleExportClick = () => {
-    trackCustomEvent({ category: 'export-map', action: 'Click', label: 'Export Map as PNG' });
-    onExportClick();
-  };
+  const handleExportClick = () => onExportClick();
 
   return (
     <div className="menu__footer">

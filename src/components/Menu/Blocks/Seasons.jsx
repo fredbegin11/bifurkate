@@ -1,13 +1,9 @@
 import React from 'react';
 import { FaCheck, FaTimes } from 'react-icons/fa';
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import Collapsable from '../Collapsable';
 
 const Seasons = ({ seasonConfig, toggleSeasonDisplay }) => {
-  const handleClick = key => {
-    toggleSeasonDisplay({ [key]: !seasonConfig[key] });
-    trackCustomEvent({ category: 'filter-season', action: 'Click', label: 'Set Season Filter' });
-  };
+  const handleClick = key => toggleSeasonDisplay({ [key]: !seasonConfig[key] });
 
   return (
     <Collapsable label="Seasons" isInitiallyOpen>

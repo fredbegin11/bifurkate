@@ -17,8 +17,4 @@ Bifurkate is a powerful visualization tool to analyze your past rides, runs, wal
 
 https://www.bifurkate.com/
 
-#### Staging
-
-https://hidden-garden-48687.herokuapp.com/
-
 ✌️✌️✌️✌✌

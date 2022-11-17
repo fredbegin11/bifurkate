@@ -24,12 +24,6 @@ module.exports = {
     ],
   },
   plugins: [
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-171159310-1',
-      },
-    },
     'gatsby-plugin-eslint',
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-react-helmet`,

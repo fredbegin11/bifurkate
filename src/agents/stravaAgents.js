@@ -1,8 +1,10 @@
 import axios from 'axios';
 
+const baseUrl = 'https://www.strava.com/api/v3';
+
 export default {
   getProfile: async () => {
-    const result = await axios.get('https://www.strava.com/api/v3/athlete', {
+    const result = await axios.get(`${baseUrl}/athlete`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` },
       crossDomain: true,
     });
@@ -14,7 +16,7 @@ export default {
     let i = 1;
 
     while (true) {
-      const result = await axios.get(`https://www.strava.com/api/v3/activities?per_page=200&page=${i}`, {
+      const result = await axios.get(`${baseUrl}/activities?per_page=200&page=${i}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` },
         crossDomain: true,
       });

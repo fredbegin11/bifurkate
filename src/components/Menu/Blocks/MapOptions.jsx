@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import { CirclePicker } from 'react-color';
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import InputRange from 'react-input-range';
 import classNames from 'classnames';
 import Collapsable from '../Collapsable';
@@ -9,30 +8,15 @@ import Collapsable from '../Collapsable';
 const MapOptions = ({ mapConfig, setMapOption }) => {
   const isImperial = mapConfig.unit === 'imperial';
 
-  const handleHeatmapClick = () => {
-    setMapOption({ heatMapMode: !mapConfig.heatMapMode });
-    trackCustomEvent({ category: 'toggle-heatmap', action: 'Click', label: 'Toggle Heatmap' });
-  };
+  const handleHeatmapClick = () => setMapOption({ heatMapMode: !mapConfig.heatMapMode });
 
-  const handleToggleUnit = unit => {
-    setMapOption({ unit });
-    trackCustomEvent({ category: 'toggle-unit-system', action: 'Click', label: 'Toggle Unit System' });
-  };
+  const handleToggleUnit = unit => setMapOption({ unit });
 
-  const handleBikePathsClick = () => {
-    setMapOption({ showBikePaths: !mapConfig.showBikePaths });
-    trackCustomEvent({ category: 'toggle-bike-path', action: 'Click', label: 'Toggle Bike Paths' });
-  };
+  const handleBikePathsClick = () => setMapOption({ showBikePaths: !mapConfig.showBikePaths });
 
-  const handleColorClick = polylineColor => {
-    setMapOption({ polylineColor });
-    trackCustomEvent({ category: 'toggle-color', action: 'Click', label: 'Set Map Color' });
-  };
+  const handleColorClick = polylineColor => setMapOption({ polylineColor });
 
-  const handleWeightClick = polylineWeight => {
-    setMapOption({ polylineWeight });
-    trackCustomEvent({ category: 'toggle-weight', action: 'Click', label: 'Set Map Line Weight' });
-  };
+  const handleWeightClick = polylineWeight => setMapOption({ polylineWeight });
 
   return (
     <Collapsable label="Map Options" isInitiallyOpen>

@@ -1,14 +1,10 @@
 import React from 'react';
 import { FaCheck, FaTimes } from 'react-icons/fa';
-import { trackCustomEvent } from 'gatsby-plugin-google-analytics';
 import { ActivityType } from '../../../helpers/activityHelpers';
 import Collapsable from '../Collapsable';
 
 const ActivityTypes = ({ userActivityTypes, activityTypeConfig, toggleActivityTypeDisplay }) => {
-  const handleClick = type => {
-    toggleActivityTypeDisplay(type);
-    trackCustomEvent({ category: 'filter-activity-type', action: 'Click', label: 'Set Activity Type Filter' });
-  };
+  const handleClick = type => toggleActivityTypeDisplay(type);
 
   return (
     <Collapsable label="Activity Type" isInitiallyOpen>
