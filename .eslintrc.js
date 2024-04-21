@@ -20,6 +20,7 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error'],
     'global-require': 0,
+    'no-loop-func': 0,
     'import/extensions': 0,
     'import/no-named-as-default': 0,
     'import/no-named-as-default-member': 0,

@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import _ from 'lodash';
+
 const baseUrl = 'https://www.strava.com/api/v3';
 
 export default {
@@ -12,21 +14,28 @@ export default {
     return result.data;
   },
   getAllActivities: async () => {
-    let data = [];
-    let i = 1;
+    let firstIndex = 1;
+    const nbOfPagesPerIteration = 10;
+    const nbOfItemsPerPages = 200;
+
+    const data = [];
 
     while (true) {
-      const result = await axios.get(`${baseUrl}/activities?per_page=200&page=${i}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` },
-        crossDomain: true,
-      });
+      const promises = _.times(nbOfPagesPerIteration).map(index =>
+        axios.get(`${baseUrl}/activities?per_page=${nbOfItemsPerPages}&page=${firstIndex + index}`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('access_token')}` },
+          crossDomain: true,
+        }),
+      );
 
-      data = [...data, ...result.data];
-      i += 1;
+      const results = await Promise.all(promises);
+      const flattenedResults = results.reduce((allData, page) => [...allData, ...page.data], []);
 
-      if (result.data.length === 0) {
-        break;
-      }
+      data.push(...flattenedResults);
+
+      firstIndex += nbOfPagesPerIteration;
+
+      if (flattenedResults.length < nbOfItemsPerPages * nbOfPagesPerIteration) break;
     }
 
     return data;
