@@ -12,8 +12,9 @@ export const getMedian = values => {
 
 export const convertMeters = (value, unit) => {
   if (unit === 'metric') {
-    return `${value} m`;
+    return `${value.toFixed(0)} m`;
   }
+
   return `${(value * 3.28084).toFixed(0)} ft`;
 };
 

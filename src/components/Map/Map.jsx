@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useContext } from 'react';
 import _ from 'lodash';
 import { getMedian } from '../../helpers/mathHelpers';
-import PolylineActivity from './PolylineActivity';
+import Polyline from './Polyline';
 import MenuContext from '../../contexts/MenuContext';
 
 let Leaflet;
@@ -15,10 +15,10 @@ if (typeof window !== 'undefined') {
   PrintControl = Leaflet.withLeaflet(PrintControlDefault);
 }
 
-const Map = ({ activities, isLoading }) => {
+const Map = ({ routes, activities, isLoading }) => {
   const { setPrintControlRef, options } = useContext(MenuContext);
   const printControlRef = useRef();
-  const [selectedActivityId, setSelectedActivityId] = useState([]);
+  const [selectedId, setSelectedId] = useState([]);
   const [center, setCenter] = useState([46.8139, -71.29]);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Map = ({ activities, isLoading }) => {
     }
   }, [isLoading]);
 
-  const selectedActivity = activities.find(x => x.id === selectedActivityId);
+  const selected = activities.find(({ id }) => id === selectedId) || routes.find(({ id }) => id === selectedId);
 
   return (
     <>
@@ -48,7 +48,7 @@ const Map = ({ activities, isLoading }) => {
           zoomDelta={0.5}
           minZoom={3}
           fadeAnimation={false}
-          onClick={() => setSelectedActivityId(null)}
+          onClick={() => setSelectedId(null)}
         >
           <Leaflet.TileLayer
             url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
@@ -60,10 +60,21 @@ const Map = ({ activities, isLoading }) => {
           )}
 
           <Leaflet.ScaleControl />
-          {activities.map(activity => (
-            <PolylineActivity key={activity.id} activity={activity} Leaflet={Leaflet} onClick={setSelectedActivityId} />
-          ))}
-          {selectedActivity && <Leaflet.Polyline positions={selectedActivity.polyline} color="white" weight={2} opacity={1} />}
+          {options.mapConfig.showRoutes && !isLoading && (
+            <>
+              {routes.map(route => (
+                <Polyline key={route.id} item={route} Leaflet={Leaflet} isRoute onClick={setSelectedId} />
+              ))}
+
+              {activities.map(activity => (
+                <Polyline key={activity.id} item={activity} Leaflet={Leaflet} onClick={setSelectedId} />
+              ))}
+            </>
+          )}
+
+          {!options.mapConfig.showRoutes && !isLoading && activities.map(activity => <Polyline key={activity.id} item={activity} Leaflet={Leaflet} onClick={setSelectedId} />)}
+
+          {selected && <Leaflet.Polyline positions={selected.polyline} color="white" weight={2} opacity={1} />}
           <PrintControl ref={printControlRef} hidden position="topleft" sizeModes={['Current', 'A4Portrait', 'A4Landscape']} hideControlContainer={false} exportOnly />
         </Leaflet.Map>
       )}

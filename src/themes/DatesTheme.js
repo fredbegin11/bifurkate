@@ -4,21 +4,17 @@ const core = {
   grayLight: '#82888a',
   grayLighter: '#cacccd',
   grayLightest: '#f2f2f2',
-
   borderMedium: '#000',
   border: '#000',
   borderLight: '#000',
   borderLighter: '#000',
   borderBright: '#000',
-
   primary: '#111',
   primaryShade_1: '#111',
   primaryShade_2: '#111',
   primaryShade_3: '#111',
   primaryShade_4: '#111',
-
   secondary: '#FFF',
-
   yellow: '#ffe8bc',
   yellow_dark: '#ffce71',
 };
@@ -48,7 +44,6 @@ export default {
         backgroundColor: 'transparent !important',
       },
     },
-
     color: {
       core,
       disabled: core.grayLightest,
@@ -60,7 +55,6 @@ export default {
       textDisabled: core.border,
       textFocused: core.grayLight,
       placeholderText: '#757575',
-
       outside: {
         backgroundColor: core.white,
         backgroundColor_active: core.white,
@@ -69,7 +63,6 @@ export default {
         color_active: core.gray,
         color_hover: core.gray,
       },
-
       highlighted: {
         backgroundColor: core.yellow,
         backgroundColor_active: core.yellow_dark,
@@ -78,7 +71,6 @@ export default {
         color_active: core.gray,
         color_hover: core.gray,
       },
-
       minimumNights: {
         backgroundColor: core.white,
         backgroundColor_active: core.white,
@@ -88,7 +80,6 @@ export default {
         color_active: core.grayLighter,
         color_hover: core.grayLighter,
       },
-
       hoveredSpan: {
         backgroundColor: core.primaryShade_4,
         backgroundColor_active: core.primaryShade_3,
@@ -100,7 +91,6 @@ export default {
         color_active: core.secondary,
         color_hover: core.secondary,
       },
-
       selectedSpan: {
         backgroundColor: core.primaryShade_2,
         backgroundColor_active: core.primaryShade_1,
@@ -108,12 +98,10 @@ export default {
         borderColor: core.primaryShade_1,
         borderColor_active: core.primary,
         borderColor_hover: core.primary,
-
         color: core.secondary,
         color_active: core.secondary,
         color_hover: core.secondary,
       },
-
       selected: {
         backgroundColor: core.primary,
         backgroundColor_active: core.primary,
@@ -125,7 +113,6 @@ export default {
         color_active: core.secondary,
         color_hover: core.secondary,
       },
-
       blocked_calendar: {
         backgroundColor: core.grayLighter,
         backgroundColor_active: core.grayLighter,
@@ -137,7 +124,6 @@ export default {
         color_active: core.grayLight,
         color_hover: core.grayLight,
       },
-
       blocked_out_of_range: {
         backgroundColor: core.white,
         backgroundColor_active: core.white,
@@ -150,7 +136,6 @@ export default {
         color_hover: core.grayLighter,
       },
     },
-
     spacing: {
       dayPickerHorizontalPadding: 9,
       captionPaddingTop: 22,
@@ -169,15 +154,12 @@ export default {
       displayTextPaddingLeft_small: 7,
       displayTextPaddingRight_small: 7,
     },
-
     sizing: {
       inputWidth: 130,
       inputWidth_small: 97,
       arrowWidth: 24,
     },
-
     noScrollBarOnVerticalScrollable: false,
-
     font: {
       size: 14,
       captionSize: 18,

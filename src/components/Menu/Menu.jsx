@@ -12,6 +12,7 @@ import { usePrevious, useIsMobile } from '../../helpers/hooks';
 import MenuWrapper from './MenuWrapper';
 import Dates from './Blocks/Dates';
 import Stats from './Blocks/Stats';
+import RoutesOptions from './Blocks/RoutesOptions.jsx';
 
 const Menu = ({ activities, shownActivities }) => {
   const { printControlRef, initializeMenu, toggleActivityTypeDisplay, isMenuOpen, setOption, setMapOption, options, setDateConfig, toggleSeasonDisplay } = useContext(MenuContext);
@@ -40,7 +41,8 @@ const Menu = ({ activities, shownActivities }) => {
           {!_.isEmpty(userActivityTypes) && (
             <>
               <Stats activities={shownActivities} mapConfig={options.mapConfig} setMapOption={setMapOption} />
-              <MapOptions userActivityTypes={userActivityTypes} mapConfig={options.mapConfig} setMapOption={setMapOption} />
+              <MapOptions mapConfig={options.mapConfig} setMapOption={setMapOption} />
+              <RoutesOptions mapConfig={options.mapConfig} setMapOption={setMapOption} />
               <ActivityTypes userActivityTypes={userActivityTypes} activityTypeConfig={options.activityTypeConfig} toggleActivityTypeDisplay={toggleActivityTypeDisplay} />
               <Seasons
                 seasonConfig={options.seasonConfig}

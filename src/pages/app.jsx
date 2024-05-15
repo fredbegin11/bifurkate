@@ -10,9 +10,11 @@ import ActivityContext from '../contexts/ActivityContext';
 
 import { useInitData } from '../helpers/hooks';
 import Map from '../components/Map/Map';
+import RouteContext from '../contexts/RouteContext';
 
 const App = () => {
   const { activities } = useContext(ActivityContext);
+  const { routes } = useContext(RouteContext);
   const { options } = useContext(MenuContext);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -26,7 +28,7 @@ const App = () => {
       <Menu activities={activities} shownActivities={activitiesToShow} />
       <Layout showMenu={!isLoading}>
         <SEO title="App" />
-        <Map activities={activitiesToShow} isLoading={isLoading} />
+        <Map routes={routes} activities={activitiesToShow} isLoading={isLoading} />
       </Layout>
     </>
   );

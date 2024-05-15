@@ -48,14 +48,7 @@ const MapOptions = ({ mapConfig, setMapOption }) => {
       <div className="custom-button menu__item">
         <span className="menu__weight-picker">Line Weight</span>
         <div className="menu__weight-picker --picker">
-          <InputRange
-            maxValue={5}
-            minValue={1}
-            color={mapConfig.polylineColor}
-            value={mapConfig.polylineWeight}
-            onChange={polylineWeight => handleWeightClick(polylineWeight)}
-            formatLabel={() => ''}
-          />
+          <InputRange maxValue={5} minValue={1} value={mapConfig.polylineWeight} onChange={polylineWeight => handleWeightClick(polylineWeight)} formatLabel={() => ''} />
         </div>
       </div>
       <button type="button" className="custom-button menu__item" onClick={handleBikePathsClick}>

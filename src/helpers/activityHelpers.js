@@ -39,10 +39,18 @@ export const decodePolylines = activity => {
   return { ...activity, polyline: decodedPolyline };
 };
 
-export const processActivities = data => {
-  const filteredActivities = data.filter(x => !x.type.includes('Virtual') && !!_.get(x, 'map.summary_polyline'));
+export const processRoutes = data => {
+  return data
+    .filter(x => !!_.get(x, 'map.summary_polyline'))
+    .map(x => decodePolylines(x))
+    .reverse();
+};
 
-  return filteredActivities.map(x => decodePolylines(x)).reverse();
+export const processActivities = data => {
+  return data
+    .filter(x => !x.type.includes('Virtual') && !!_.get(x, 'map.summary_polyline'))
+    .map(x => decodePolylines(x))
+    .reverse();
 };
 
 export const ActivityType = {
