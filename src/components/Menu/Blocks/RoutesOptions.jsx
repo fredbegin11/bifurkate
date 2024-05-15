@@ -18,7 +18,7 @@ const RoutesOptions = ({ mapConfig, setMapOption }) => {
         Show Athlete Routes {mapConfig.showRoutes ? <FaCheck className="menu__status --active" /> : <FaTimes className="menu__status --inactive" />}
       </button>
       <div className="custom-button menu__item">
-        <span className="menu__color-picker">Routes Line Color</span>
+        <span className="menu__color-picker">Line Color</span>
         <CirclePicker
           circleSize={20}
           colors={['#E6E6E9', '#9999A1', '#66666E']}
