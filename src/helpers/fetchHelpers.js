@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 export const fetchAllResults = async url => {
   let firstIndex = 1;
-  const nbOfPagesPerIteration = 10;
+  const nbOfPagesPerIteration = 4;
   const nbOfItemsPerPages = 200;
 
   const data = [];
