@@ -1,0 +1,98 @@
+%font-type-title {
+  font-family: Gidole;
+  font-size: rem(25);
+  font-weight: 900;
+
+  @include tablet {
+    font-family: Gidole;
+    font-size: rem(35);
+    font-weight: 900;
+  }
+
+  @include laptop {
+    font-family: Gidole;
+    font-size: rem(40);
+    font-weight: 900;
+  }
+
+  @include desktop {
+    font-family: Gidole;
+    font-size: rem(45);
+    font-weight: 900;
+  }
+}
+
+%font-type-header {
+  font-family: Gidole;
+  font-size: rem(18);
+  font-weight: 900;
+  text-decoration: underline cc(main);
+
+  @include tablet {
+    font-family: Gidole;
+    font-size: rem(18);
+    font-weight: 900;
+  }
+
+  @include desktop {
+    font-family: Gidole;
+    font-size: rem(25);
+    font-weight: 900;
+  }
+}
+
+%font-type-subheader {
+  font-family: Gidole;
+  font-size: rem(18);
+  font-weight: 900;
+
+  @include tablet {
+    font-family: Gidole;
+    font-size: rem(18);
+    font-weight: 900;
+  }
+
+  @include desktop {
+    font-family: Gidole;
+    font-size: rem(20);
+    font-weight: 900;
+  }
+}
+
+%font-type-label {
+  font-family: Gidole;
+  font-size: rem(18);
+  font-weight: 500;
+}
+
+%font-type-button {
+  font-family: 'Gidole';
+  font-size: rem(16);
+  font-weight: 500;
+  line-height: 1;
+}
+
+%font-type-button-override {
+  font-family: 'Gidole' !important;
+  font-size: rem(14) !important;
+  font-weight: 900 !important;
+
+  @include tablet {
+    font-family: 'Gidole' !important;
+    font-size: rem(14) !important;
+    font-weight: 900 !important;
+  }
+
+  @include desktop {
+    font-family: 'Gidole' !important;
+    font-size: rem(14) !important;
+    font-weight: 900 !important;
+  }
+}
+
+%font-type-button-small {
+  font-family: 'Gidole';
+  font-size: rem(12);
+  font-weight: 900;
+  line-height: 2;
+}

@@ -1,0 +1,44 @@
+.landing {
+  &__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  &__button {
+    @extend %font-type-header;
+    text-decoration: underline cc(main);
+    margin-right: rem(10);
+  }
+
+  &__strava {
+    @include tablet {
+      max-width: rem(175);
+      margin-left: rem(-5);
+    }
+  }
+
+  &__policy {
+    margin-left: rem(3);
+
+    @include phone {
+      margin-left: rem(12);
+    }
+  }
+
+  &__main-title {
+    @extend %font-type-subheader;
+  }
+}
+
+.hero-cta {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+
+  @include phone {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,32 @@
+.label {
+  @extend %font-type-label;
+  margin-left: rem(20);
+  margin-bottom: rem(10);
+
+  &__header {
+    @extend %font-type-header;
+    margin-left: rem(20);
+    margin-bottom: rem(10);
+
+    &.--small-margin {
+      margin: 0;
+      margin-left: rem(10);
+      margin-bottom: rem(3);
+    }
+
+    &.--no-margin {
+      margin: 0;
+    }
+  }
+
+  &__subheader {
+    @extend %font-type-subheader;
+    margin-left: rem(20);
+    margin-bottom: rem(10);
+
+    &.--no-margin {
+      margin: 0;
+      text-decoration: underline cc(main);
+    }
+  }
+}

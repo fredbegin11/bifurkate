@@ -1,0 +1,13 @@
+@function rem($size) {
+  @return #{$size / 16}rem;
+}
+
+@function cc($name, $theme: null, $component: null) {
+  @if ($theme == null) and ($component == null) {
+    @return map-get($colors, $name);
+  } @else if ($theme != null) and ($component == null) {
+    @return map-get(map-get($colors, $name), $theme);
+  } @else {
+    @return map-get(map-get(map-get($colors, $name), $theme), $component);
+  }
+}

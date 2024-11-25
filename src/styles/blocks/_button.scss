@@ -1,0 +1,39 @@
+.custom-button {
+  @extend %font-type-button;
+  align-items: center;
+  display: flex;
+  opacity: 0.8;
+  padding: rem(3) rem(10);
+  top: rem(70);
+  transition: all 0.2s ease-out;
+  z-index: 2;
+
+  @include phone {
+    padding: rem(5) rem(10);
+  }
+
+  &.--small {
+    @extend %font-type-button-small;
+    padding-top: 0;
+  }
+
+  &.--no-padding {
+    padding: 0;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &__icon {
+    font-size: rem(25);
+
+    @include laptop {
+      margin-right: rem(10);
+    }
+  }
+
+  &.--selected {
+    text-decoration: underline cc(main);
+  }
+}

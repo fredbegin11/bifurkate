@@ -1,0 +1,75 @@
+.header {
+  background-color: cc(darkest);
+  position: absolute;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 rem(10);
+  height: rem(60);
+  width: 100%;
+  z-index: 2;
+
+  @include laptop {
+    padding: 0 rem(10);
+  }
+
+  @include phone {
+    padding: 0 rem(10) 0 rem(25);
+
+    &.--open {
+      background-color: rgba(0, 0, 0, 1);
+    }
+  }
+
+  &__logo {
+    cursor: pointer;
+    height: rem(40);
+
+    @include phone {
+      height: rem(30);
+    }
+  }
+
+  &__title-container {
+    display: flex;
+    align-items: center;
+
+    &.--full {
+      width: 100%;
+      justify-content: space-between;
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    padding: rem(10);
+    position: relative;
+
+    @include laptop {
+      width: rem(500);
+      justify-content: flex-end;
+    }
+
+    @include phone {
+      position: static;
+    }
+  }
+
+  &__name {
+    @extend %font-type-label;
+
+    @include phone {
+      display: none;
+    }
+  }
+
+  &__image {
+    height: rem(40);
+    width: rem(40);
+    border-radius: 100%;
+    background-color: cc(darkest);
+    margin-left: rem(20);
+  }
+}
