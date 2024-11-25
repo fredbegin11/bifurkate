@@ -4,7 +4,6 @@ import { getSeasonConfig } from '../helpers/activityHelpers';
 
 const defaultState = {
   isMenuOpen: false,
-  printControlRef: null,
   toggleMenuOpen: () => {},
   toggleActivityTypeDisplay: () => {},
   toggleSeasonDisplay: () => {},
@@ -60,8 +59,6 @@ class MenuProvider extends React.Component {
 
   setMapOption = options => this.setState({ options: { ...this.state.options, mapConfig: { ...this.state.options.mapConfig, ...options } } });
 
-  setPrintControlRef = printControlRef => this.setState({ printControlRef });
-
   toggleSeasonDisplay = season => {
     this.setOption({ datesConfig: {}, seasonConfig: { ...this.state.options.seasonConfig, ...season } });
   };
@@ -87,8 +84,8 @@ class MenuProvider extends React.Component {
 
   render() {
     const { children } = this.props;
-    const { options, isMenuOpen, printControlRef } = this.state;
-    const { setPrintControlRef, initializeMenu, toggleSeasonDisplay, toggleMenuOpen, setOption, toggleActivityTypeDisplay, setMapOption, setDateConfig } = this;
+    const { options, isMenuOpen } = this.state;
+    const { initializeMenu, toggleSeasonDisplay, toggleMenuOpen, setOption, toggleActivityTypeDisplay, setMapOption, setDateConfig } = this;
 
     return (
       <MenuContext.Provider
@@ -102,8 +99,6 @@ class MenuProvider extends React.Component {
           toggleSeasonDisplay,
           setMapOption,
           setDateConfig,
-          setPrintControlRef,
-          printControlRef,
         }}
       >
         {children}

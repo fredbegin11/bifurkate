@@ -15,12 +15,10 @@ import Stats from './Blocks/Stats';
 import RoutesOptions from './Blocks/RoutesOptions.jsx';
 
 const Menu = ({ activities, shownActivities }) => {
-  const { printControlRef, initializeMenu, toggleActivityTypeDisplay, isMenuOpen, setOption, setMapOption, options, setDateConfig, toggleSeasonDisplay } = useContext(MenuContext);
+  const { initializeMenu, toggleActivityTypeDisplay, isMenuOpen, setOption, setMapOption, options, setDateConfig, toggleSeasonDisplay } = useContext(MenuContext);
   const userActivityTypes = getAllActivityTypes(activities);
 
   const isMobile = useIsMobile();
-
-  const handleExportMap = () => printControlRef.current.printMap(isMobile ? 'A4Portrait' : 'A4Landscape', 'Bifurkate-Export');
 
   const prevActivityTypes = usePrevious(userActivityTypes);
 
@@ -59,7 +57,7 @@ const Menu = ({ activities, shownActivities }) => {
             </>
           )}
         </div>
-        <Footer onExportClick={handleExportMap} />
+        <Footer />
       </div>
     </MenuWrapper>
   );

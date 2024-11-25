@@ -5,19 +5,13 @@ import Polyline from './Polyline';
 import MenuContext from '../../contexts/MenuContext';
 
 let Leaflet;
-let PrintControl;
-let PrintControlDefault;
 
 // Fix for Heroku build (Leaflet wants a window object...)
 if (typeof window !== 'undefined') {
   Leaflet = require('react-leaflet');
-  PrintControlDefault = require('react-leaflet-easyprint');
-  PrintControl = Leaflet.withLeaflet(PrintControlDefault);
 }
 
 const Map = ({ routes, activities, isLoading }) => {
-  const { setPrintControlRef, options } = useContext(MenuContext);
-  const printControlRef = useRef();
   const [selectedId, setSelectedId] = useState([]);
   const [center, setCenter] = useState([46.8139, -71.29]);
 
@@ -29,8 +23,6 @@ const Map = ({ routes, activities, isLoading }) => {
       if (centerLat && centerLong) {
         setCenter([centerLat, centerLong]);
       }
-
-      setPrintControlRef(printControlRef);
     }
   }, [isLoading]);
 
@@ -75,7 +67,6 @@ const Map = ({ routes, activities, isLoading }) => {
           {!options.mapConfig.showRoutes && !isLoading && activities.map(activity => <Polyline key={activity.id} item={activity} Leaflet={Leaflet} onClick={setSelectedId} />)}
 
           {selected && <Leaflet.Polyline positions={selected.polyline} color="white" weight={2} opacity={1} />}
-          <PrintControl ref={printControlRef} hidden position="topleft" sizeModes={['Current', 'A4Portrait', 'A4Landscape']} hideControlContainer={false} exportOnly />
         </Leaflet.Map>
       )}
     </>
