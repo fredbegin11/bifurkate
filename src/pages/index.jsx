@@ -203,7 +203,7 @@ const IndexPage = () => {
               <div className="cta-inner section-inner">
                 <h3 className="section-title mt-0">Still not convinced? Give it a try, it's free!</h3>
                 <div className="cta-cta">
-                  <a href="/app">
+                  <a href="/app" aria-label="landing">
                     <img alt="" className="landing__strava" src={stravaButton} />
                   </a>
                 </div>

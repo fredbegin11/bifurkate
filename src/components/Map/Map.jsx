@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import _ from 'lodash';
 import { getMedian } from '../../helpers/mathHelpers';
 import Polyline from './Polyline';
@@ -12,6 +12,7 @@ if (typeof window !== 'undefined') {
 }
 
 const Map = ({ routes, activities, isLoading }) => {
+  const { options } = useContext(MenuContext);
   const [selectedId, setSelectedId] = useState([]);
   const [center, setCenter] = useState([46.8139, -71.29]);
 

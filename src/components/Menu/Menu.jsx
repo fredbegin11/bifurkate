@@ -8,7 +8,7 @@ import MenuContext from '../../contexts/MenuContext';
 import NoActivities from './Blocks/NoActivities';
 import Seasons from './Blocks/Seasons';
 import { getAllActivityTypes } from '../../helpers/activityHelpers';
-import { usePrevious, useIsMobile } from '../../helpers/hooks';
+import { usePrevious } from '../../helpers/hooks';
 import MenuWrapper from './MenuWrapper';
 import Dates from './Blocks/Dates';
 import Stats from './Blocks/Stats';
@@ -17,8 +17,6 @@ import RoutesOptions from './Blocks/RoutesOptions.jsx';
 const Menu = ({ activities, shownActivities }) => {
   const { initializeMenu, toggleActivityTypeDisplay, isMenuOpen, setOption, setMapOption, options, setDateConfig, toggleSeasonDisplay } = useContext(MenuContext);
   const userActivityTypes = getAllActivityTypes(activities);
-
-  const isMobile = useIsMobile();
 
   const prevActivityTypes = usePrevious(userActivityTypes);
 
