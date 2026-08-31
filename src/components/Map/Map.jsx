@@ -44,7 +44,7 @@ const Map = ({ routes, activities, isLoading }) => {
           onClick={() => setSelectedId(null)}
         >
           <Leaflet.TileLayer
-            url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
+            url={`https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png?key=${process.env.GATSBY_MAP_KEY}`}
             attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
           />
 
