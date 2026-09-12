@@ -1,13 +1,34 @@
-const axios = require('axios');
-
-const handler = async event => {
+export const handler = async (event) => {
   const { refresh_token: refreshToken } = JSON.parse(event.body);
 
-  const result = await axios.post(
-    `https://www.strava.com/oauth/token?client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&grant_type=refresh_token&refresh_token=${refreshToken}`,
-  );
+  try {
+    const response = await fetch('https://www.strava.com/oauth/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        client_id: process.env.VITE_STRAVA_CLIENT_ID,
+        client_secret: process.env.CLIENT_SECRET,
+        grant_type: 'refresh_token',
+        refresh_token: refreshToken,
+      }),
+    });
 
-  return { statusCode: 200, body: JSON.stringify(result.data) };
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error('Strava rejected token refresh:', data);
+      return {
+        statusCode: response.status,
+        body: JSON.stringify({ message: 'Failed to refresh Strava token' }),
+      };
+    }
+
+    return { statusCode: 200, body: JSON.stringify(data) };
+  } catch (error) {
+    console.error('Failed to refresh Strava token:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: 'Failed to refresh Strava token' }),
+    };
+  }
 };
-
-module.exports = { handler };

@@ -1,0 +1,169 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./styles/landing.css";
+
+@font-face {
+  font-family: "Gidole";
+  src: url("./assets/fonts/Gidole-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Gidole", ui-sans-serif, system-ui, sans-serif;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --navbar-height: 3.75rem;
+  --radius: 0.625rem;
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.65 0.22 32);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.65 0.22 32);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply scroll-smooth motion-reduce:scroll-auto;
+  }
+  body {
+    font-family: var(--font-sans);
+    @apply bg-background text-foreground;
+  }
+}
+
+.leaflet-container {
+  background-color: #0b0b0b !important;
+}
+
+.leaflet-control-attribution {
+  background-color: #0b0b0b !important;
+  color: white !important;
+  font-size: 10px;
+
+  a {
+    color: white !important;
+  }
+}
+
+.bifurkate-popup .leaflet-popup-content-wrapper {
+  background: var(--popover);
+  color: var(--popover-foreground);
+  border: 1px solid oklch(1 0 0 / 20%);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.5);
+}
+
+.bifurkate-popup .leaflet-popup-content {
+  margin: 1rem;
+}
+
+.bifurkate-popup .leaflet-popup-content a {
+  color: var(--primary-foreground);
+}
+
+.bifurkate-popup .leaflet-popup-tip {
+  background: var(--popover);
+  border: 1px solid oklch(1 0 0 / 20%);
+  box-shadow: none;
+}
+
+.bike-paths-tiles > .leaflet-tile-container > img {
+  filter: grayscale(100%) brightness(100) opacity(0.6);
+}
+
+@keyframes route-loader-dash {
+  to {
+    stroke-dashoffset: -280;
+  }
+}
+
+.route-loader-dashes {
+  animation: route-loader-dash 2.2s linear infinite;
+}
+
+@keyframes route-loader-dot {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  94% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+.route-loader-dot {
+  animation: route-loader-dot 2.2s ease-in-out infinite;
+}
+
+* {
+  scrollbar-color: var(--muted-foreground) transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--muted-foreground);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
