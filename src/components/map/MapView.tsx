@@ -1,4 +1,5 @@
 import 'leaflet/dist/leaflet.css';
+import { canvas } from 'leaflet';
 import { Activity, ExternalLink, RouteIcon, TrendingUp, X } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { MapContainer, Polyline, Popup, TileLayer, useMap } from 'react-leaflet';
@@ -60,6 +61,7 @@ const MapView = ({ activities, routes }: MapViewProps) => {
   return (
     <MapContainer
       preferCanvas
+      renderer={canvas({ tolerance: 15 })}
       center={[46.81, -71.29]}
       zoom={8}
       zoomSnap={0.5}

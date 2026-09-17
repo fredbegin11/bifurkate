@@ -29,6 +29,7 @@ const Sidebar = ({ shownActivities, activityCount, routeCount }: SidebarProps) =
         showOverlay={false}
         showCloseButton={false}
         onInteractOutside={(event) => event.preventDefault()}
+        onOpenAutoFocus={(event) => event.preventDefault()}
         className="top-(--navbar-height) h-[calc(100%-var(--navbar-height))] w-full gap-0 sm:max-w-md"
       >
         <SheetTitle className="sr-only">Menu</SheetTitle>
